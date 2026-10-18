@@ -1,7 +1,7 @@
 // Blog: content/blog/JJJJ-MM-DD-slug.md → /blog/<slug>/. Zelfde opbouw als de BoekhoudMatch-blog.
 // Extra tokens in de markdown: {{knop:<merk-id>}} op een eigen regel = knop naar de aanbieder (partnerlink zodra goedgekeurd,
 // via partnerlinks.js; heeft nooit invloed op score of volgorde) en {{score:<merk-id>}} = checklistscore uit de data.
-import { readdirSync, readFileSync } from 'node:fs';
+import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { SITE, esc, fmtDate, ORG, AUTHOR } from './layout.mjs';
 import { parsePost, markdown, inline } from './markdown.mjs';
@@ -57,6 +57,7 @@ function splitFaq(md) {
 }
 
 export function loadPosts(dir = 'content/blog', today = process.env.BUILD_DATE || new Date().toISOString().slice(0, 10)) {
+  if (!existsSync(dir)) return [];
   return readdirSync(dir).filter((f) => f.endsWith('.md')).sort().reverse()
     .map((f) => {
       const p = parsePost(f, readFileSync(join(dir, f), 'utf8'));
