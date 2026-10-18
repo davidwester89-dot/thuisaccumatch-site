@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { GA_ID as GA_CONFIG } from './analytics.config.mjs';
 import { GA_ID_RE } from './lib/consent.js';
 import { networkFor } from './network.mjs';
@@ -44,6 +44,39 @@ export const NAV_OPT = { blog: false };
 const navLinks = (navPath) => NAV.filter(([, , , k]) => !k || NAV_OPT[k]).map(([h, t, c]) => `<a href="${h}"${c ? ` class="${c}"` : ''}${navPath.startsWith(h) ? ' aria-current="page"' : ''}>${esc(t)}</a>`).join('');
 const CSS = readFileSync(new URL('./assets/css/style.css', import.meta.url), 'utf8')
   .replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s*\n\s*/g, '').replace(/\s*([{};:,>])\s*/g, '$1').replace(/;}/g, '}');
+// Per pagina alleen de CSS-regels die de pagina (of een script dat klassen toevoegt) gebruikt. Scheelt ~70% inline CSS.
+const JS_TOKENS = new Set([...['assets/js', 'lib'].flatMap((d) => readdirSync(new URL(`./${d}/`, import.meta.url)).filter((f) => f.endsWith('.js')).map((f) => readFileSync(new URL(`./${d}/${f}`, import.meta.url), 'utf8')))].join(' ').match(/[A-Za-z][\w-]*/g));
+function splitRules(css) {
+  const out = []; let i = 0;
+  while (i < css.length) {
+    const open = css.indexOf('{', i); if (open < 0) break;
+    const pre = css.slice(i, open).trim();
+    if (pre.startsWith('@media') || pre.startsWith('@supports')) {
+      let depth = 1; let j = open + 1;
+      while (depth && j < css.length) { if (css[j] === '{') depth++; else if (css[j] === '}') depth--; j++; }
+      out.push({ at: pre, inner: css.slice(open + 1, j - 1) }); i = j;
+    } else {
+      let depth = 1; let j = open + 1;
+      while (depth && j < css.length) { if (css[j] === '{') depth++; else if (css[j] === '}') depth--; j++; }
+      out.push({ sel: pre, body: css.slice(open + 1, j - 1) }); i = j;
+    }
+  }
+  return out;
+}
+const RULES = splitRules(CSS);
+function purge(rules, used) {
+  return rules.map((r) => {
+    if (r.at) { const inner = purge(splitRules(r.inner), used); return inner ? `${r.at}{${inner}}` : ''; }
+    if (r.sel.startsWith('@') || r.sel.startsWith(':root') || r.sel === '*' ) return `${r.sel}{${r.body}}`;
+    const keep = r.sel.split(/,(?![^(]*\))/).filter((x) => [...x.matchAll(/[.#]([A-Za-z_][\w-]*)/g)].every((m) => used.has(m[1])));
+    return keep.length ? `${keep.join(',')}{${r.body}}` : '';
+  }).join('');
+}
+export function cssFor(html) {
+  const used = new Set(JS_TOKENS);
+  for (const m of html.matchAll(/\s(?:class|id)="([^"]+)"/g)) for (const c of m[1].split(/\s+/)) used.add(c);
+  return purge(RULES, used);
+}
 
 export function networkFooter() {
   return `<div class="net"><p class="fh">Ook van ons</p><ul>${networkFor(SITE.host).map((s) => `<li><a href="${s.url}">${s.logo}</a> · ${esc(s.wat)}</li>`).join('')}</ul></div>`;
@@ -86,8 +119,8 @@ ${p.article ? `<meta property="article:published_time" content="${p.article.date
 <meta name="theme-color" content="${SITE.theme}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
 ${NAV_OPT.blog ? `<link rel="alternate" type="application/rss+xml" title="${SITE.name} blog" href="/blog/feed.xml">` : ''}
-<link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/inter-800.woff2" as="font" type="font/woff2" crossorigin>
-<style>${CSS}</style>
+<link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/inter-800.woff2" as="font" type="font/woff2" crossorigin>
+<style>{{CSS}}</style>
 ${ld.map((x) => `<script type="application/ld+json">${JSON.stringify(x).replace(/</g, '\\u003c')}</script>`).join('\n')}
 </head>
 <body${hasCta ? ' class="has-cta"' : ''}${GA_ID ? ` data-ga="${GA_ID}"` : ''}${BASE ? ` data-base="${BASE}"` : ''}>
@@ -117,7 +150,7 @@ ${hasCta ? `<a class="stickycta" href="/thuisaccu-keuzehulp/" data-cta="sticky_m
 ${[...(GA_ID ? ['/js/consent.js'] : []), ...(p.scripts || [])].map((s) => `<script type="module" src="${s}"></script>`).join('\n')}
 </body>
 </html>`;
-  return withBase(html);
+  return withBase(html.replace('{{CSS}}', () => cssFor(html)));
 }
 
 export const ORG = { '@type': 'Organization', '@id': SITE.domain + '/#org', name: SITE.name, url: SITE.domain + '/', email: SITE.email, logo: { '@type': 'ImageObject', url: SITE.domain + '/apple-touch-icon.png' } };

@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync, cpSync, rmSync } from 'node:fs';
+import { mkdirSync, writeFileSync, cpSync, rmSync, readdirSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { layout, SITE, BASE, PREVIEW, NAV_OPT } from './src/layout.mjs';
 import { loadPosts, postPage, blogIndex, latestHtml, feed } from './src/blog.mjs';
@@ -16,6 +16,12 @@ export const pages = [home, P.quiz, P.toolHub, P.calcTvt, P.calcCap, P.calcSal, 
 for (const p of pages) write(p.path.endsWith('.html') ? join(OUT, p.path) : join(OUT, p.path, 'index.html'), layout(p));
 cpSync('src/assets/js', join(OUT, 'js'), { recursive: true });
 cpSync('src/lib', join(OUT, 'js/lib'), { recursive: true });
+// Lichte minificatie van de scripts: commentaarregels, blokcommentaar en inspringing eruit (geen bundler nodig).
+for (const f of readdirSync(join(OUT, 'js'), { recursive: true })) {
+  if (!String(f).endsWith('.js')) continue;
+  const p = join(OUT, 'js', String(f));
+  writeFileSync(p, readFileSync(p, 'utf8').replace(/^\s*\/\*\*?[\s\S]*?\*\/\s*$/gm, '').split('\n').map((l) => l.trim()).filter((l) => l && !l.startsWith('//')).join('\n') + '\n');
+}
 // Offertepartners voor de browser (leeg = geen offerteknoppen). Alleen velden die de browser nodig heeft.
 const pub = Object.fromEntries(Object.entries(LEADS).map(([id, x]) => [id, { naam: x.naam, type: x.type, url: x.url, origin: x.origin, privacy: x.privacy, max: x.max, prefill: x.prefill, subidParam: x.subidParam, klaar: x.klaar }]));
 write(join(OUT, 'js/lib/leads.config.js'), `// Gegenereerd door build.mjs${LEADS_PREVIEW ? ' (LEADS_PREVIEW)' : ''}. Niet bewerken.\nexport const LEADS = ${JSON.stringify(pub)};\nexport const ROUTING = ${JSON.stringify(ROUTING)};\n`);

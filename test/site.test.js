@@ -14,7 +14,7 @@ const NEP = [/★/, /aggregateRating/, /reviewCount/, /ratingValue/, /sterren/i,
 test('build (productie): pagina’s, sitemap, robots, IndexNow, CNAME, huisregels', () => {
   buildLive();
   const html = htmlFiles();
-  assert.equal(html.length, 26); // 25 indexeerbaar + 404 (nog geen blogposts)
+  assert.equal(html.length, 30); // 25 pagina's + blogindex + 3 blogposts + 404
   const sm = read('dist/sitemap.xml');
   assert.equal((sm.match(/<loc>/g) || []).length, html.length - 1);
   assert.match(read('dist/robots.txt'), /Sitemap: https:\/\/thuisaccumatch.nl\/sitemap.xml/);
@@ -84,8 +84,21 @@ test('build: componenten, vergelijking in vaste volgorde, keuzehulp en rekentool
   assert.match(read('dist/btw-thuisaccu/index.html'), /21%/);
   assert.match(read('dist/merken/sessy/index.html'), /€ 3\.550/);
   assert.match(read('dist/merken/homewizard/index.html'), /€ 1\.195/);
-  // Geen blog zolang er geen posts zijn.
-  assert.ok(!existsSync('dist/blog/index.html')); assert.ok(!/href="\/blog\/"/.test(h));
+  // Blog: index, 3 posts met kopfoto, naamsvermelding, BlogPosting + FAQPage, in sitemap en feed.
+  assert.ok(existsSync('dist/blog/index.html')); assert.match(h, /href="\/blog\/"/);
+  const sm = read('dist/sitemap.xml'); assert.ok(existsSync('dist/blog/feed.xml'));
+  for (const slug of ['thuisbatterij-rendabel-2027', 'thuisbatterij-dynamisch-contract', 'thuisbatterij-terugleverkosten-2027']) {
+    const b = read(`dist/blog/${slug}/index.html`);
+    assert.ok(sm.includes(`<loc>https://thuisaccumatch.nl/blog/${slug}/</loc>`), `${slug} in sitemap`);
+    assert.match(b, /"@type":"BlogPosting"/); assert.match(b, /"@type":"FAQPage"/); assert.match(b, /Door Redactie ThuisaccuMatch/);
+    assert.match(b, /<figcaption class="src">Foto: [^<]+CC BY/); assert.match(b, /href="\/thuisaccu-keuzehulp\/"/);
+    for (const w of [600, 900, 1200]) assert.ok(existsSync(`dist/img/blog/${slug}-${w}.webp`), `${slug}-${w}.webp`);
+    assert.ok(existsSync(`dist/og/blog-${slug}.png`));
+    const main = b.split('<main')[1].split('</main>')[0].replace(/<script[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ');
+    assert.ok(main.split(/\s+/).filter((x) => /[a-zà-ü0-9]/i.test(x)).length >= 1000, `${slug}: minstens 1000 woorden`);
+    assert.ok(read('src/assets/img/blog/BRONNEN.md').includes(`## ${slug}-`), `${slug} in BRONNEN.md`);
+  }
+  assert.match(read('dist/blog/thuisbatterij-dynamisch-contract/index.html'), /href="\/vergelijken\/"/);
   assert.ok(!existsSync('dist/img/blog/BRONNEN.md'), 'fotobronnen niet in dist');
   assert.ok(existsSync('dist/site.webmanifest') && existsSync('dist/icon-512.png'), 'manifest');
   assert.match(read('dist/site.webmanifest'), /ThuisaccuMatch/);

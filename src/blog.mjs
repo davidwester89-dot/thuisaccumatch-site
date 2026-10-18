@@ -56,7 +56,7 @@ function splitFaq(md) {
   return { md: md.slice(0, i) + (end < 0 ? '' : rest.slice(end)), faq };
 }
 
-export function loadPosts(dir = 'content/blog', today = process.env.BUILD_DATE || new Date().toISOString().slice(0, 10)) {
+export function loadPosts(dir = 'content/blog', today = process.env.BUILD_DATE || new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Amsterdam' })) {
   if (!existsSync(dir)) return [];
   return readdirSync(dir).filter((f) => f.endsWith('.md')).sort().reverse()
     .map((f) => {
@@ -105,6 +105,10 @@ export function blogIndex(posts) {
 <div class="postlist">
 ${posts.map((x) => `<a class="card${x.image ? ' has-img' : ''}" href="${x.path}">${x.image ? thumbHtml(x.image) + '<div>' : ''}<time datetime="${x.date}">${fmtDate(x.date)}</time><h2 style="margin:.2em 0 .3em;font-size:1.3rem">${esc(x.title)}</h2><p>${esc(x.description)}</p><span class="more">Lees verder →</span>${x.image ? '</div>' : ''}</a>`).join('\n')}
 </div>
+<h2>Waar de blog over gaat</h2>
+<p>Op 1 januari 2027 stopt de salderingsregeling. Daarna hangt wat een thuisaccu oplevert af van je eigen situatie: heb je zonnepanelen, een warmtepomp of een elektrische auto, en wat voor energiecontract heb je? Op de blog rekenen we dat per situatie uit. We gebruiken alleen cijfers met een bron: van de Rijksoverheid, de Belastingdienst, de ACM, Milieu Centraal, het CBS en de tarievenbladen en sites van de leveranciers en merken zelf. Elke bron staat onder het artikel.</p>
+<p>Waar we zelf rekenen, laten we zien hoe. Bijvoorbeeld met de echte stroomprijzen van 2026 of met de terugleverkosten die leveranciers voor 2027 publiceren. Onze aannames, zoals het aantal dagen per jaar dat een batterij vol raakt, staan ook in de <a href="/rekentools/">rekentools</a>. Daar kun je ze aanpassen aan je eigen situatie.</p>
+<p>Partnerlinks spelen geen rol in wat we schrijven of in de volgorde van merken. Meer over hoe we werken lees je <a href="/over/">over ThuisaccuMatch</a>. Wil je eerst de basis? Lees dan de <a href="/gidsen/">gidsen</a> over saldering, kosten, btw en veiligheid.</p>
 <p>Liever alles naast elkaar? <a href="/vergelijken/">Vergelijk alle merken</a>.</p>
 ${matchCta()}`;
   const upd = posts.map((x) => x.updated).sort().at(-1);

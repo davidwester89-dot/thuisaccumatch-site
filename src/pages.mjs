@@ -40,7 +40,7 @@ const miniRows = RANG.map((id) => `<tr><th scope="row"><span class="rowlogo">${l
 const toolCards = () => `<div class="grid cards">${TOOLS.map(([h, t, d]) => `<a class="card" href="${h}"><h3>${esc(t)}</h3><p>${esc(d)}</p><span class="more">Naar de rekentool →</span></a>`).join('')}</div>`;
 
 export const home = {
-  path: '/', title: 'Thuisaccu kiezen? Reken eerst | ThuisaccuMatch', ogTitle: 'ThuisaccuMatch: past een thuisaccu bij jou?', h1: 'Thuisaccu kiezen? Reken eerst.', og: 'home',
+  path: '/', title: 'Thuisaccu kiezen: keuzehulp, merken, kosten | ThuisaccuMatch', ogTitle: 'ThuisaccuMatch: past een thuisaccu bij jou?', h1: 'Thuisaccu kiezen? Reken eerst.', og: 'home',
   description: 'Past een thuisaccu bij jou? Doe de keuzehulp, vergelijk 6 merken op een vaste checklist en reken uit wat een accu oplevert als de saldering in 2027 stopt.',
   schema: [faqSchema(homeFaq)],
   body: `<section class="hero"><div>
@@ -114,11 +114,12 @@ const ALG_PRIJS = `Ter vergelijking: Milieu Centraal noemt voor een gemiddelde t
 export const merkPages = IDS.map((id) => {
   const p = M[id];
   const path = `/merken/${p.slug}/`;
-  const h1 = `${p.naam} thuisaccu: aanbod, checklist en voor wie`;
+  const h1 = `${p.naam}-thuisaccu: aanbod, checklist en voor wie`;
   const pos = RANG.indexOf(id) + 1;
   const alt = RANG.filter((x) => x !== id).slice(0, 3);
-  const t = [`${p.naam} thuisaccu 2026: aanbod en score | ThuisaccuMatch`, `${p.naam} thuisaccu 2026: aanbod en checklist`, `${p.naam} thuisaccu 2026`].find((x) => x.length <= 60);
-  const d = [`${p.naam} thuisaccu: ${aanbodTekst(id).toLowerCase()}. De checklist van 10 punten met bron, sterke punten, aandachtspunten en voor wie het past.`, `${p.naam} thuisaccu: aanbod, checklist van 10 punten met bron en voor wie het past.`].find((x) => x.length <= 155);
+  const t = [`${p.naam}-thuisaccu 2026: aanbod en score | ThuisaccuMatch`, `${p.naam}-thuisaccu 2026: aanbod en checklist`, `${p.naam}-thuisaccu 2026`].find((x) => x.length <= 60);
+  const lc = (x) => (/^[A-Z][a-z]/.test(x) ? x[0].toLowerCase() + x.slice(1) : x);
+  const d = [`${p.naam}-thuisaccu: ${lc(aanbodTekst(id))}. Checklist van 10 punten met bron, prijs, sterke punten en voor wie hij past.`, `${p.naam}-thuisaccu: ${lc(aanbodTekst(id))}. Checklist van 10 punten met bron en voor wie hij past.`, `${p.naam}-thuisaccu: aanbod, prijs, checklist van 10 punten met bron, sterke punten, aandachtspunten en voor wie hij past.`].find((x) => x.length <= 155 && x.length >= 70);
   const prijsBlok = p.prijzen
     ? `<h2>Prijzen</h2><p class="sub">Zoals ${esc(p.naam)} ze op de eigen site toont.</p><div class="table-wrap"><table class="data stack"><thead><tr><th scope="col">Model</th><th scope="col">Prijs</th><th scope="col">Toelichting</th></tr></thead><tbody>${p.prijzen.map(([n, pr, w]) => `<tr><th scope="row">${esc(n)}</th><td data-l="Prijs"><strong>${esc(pr)}</strong></td><td data-l="Toelichting">${esc(w)}</td></tr>`).join('')}</tbody></table></div><p>${ALG_PRIJS}</p>`
     : `<h2>Prijzen</h2><p>${esc(p.naam)} noemt geen consumentenprijzen op de eigen site; je koopt via een installateur en de prijs staat in je offerte. Vraag altijd naar de bruikbare capaciteit in kWh, zodat je de prijs per kWh kunt vergelijken.</p><p>${ALG_PRIJS}</p>`;
@@ -147,7 +148,7 @@ ${matchCta(`Past ${esc(p.naam)} bij jou?`)}${bron(p.bronnen, featureBronnen(id),
 });
 
 export const merkHub = {
-  path: '/merken/', title: 'Thuisaccu merken 2026: 6 merken op een rij', h1: 'Alle thuisaccumerken op een rij', crumb: 'Merken', og: 'merken', stamp: { checked: CHECKED, updated: CHECKED },
+  path: '/merken/', title: 'Thuisaccu merken 2026: 6 merken op een rij | ThuisaccuMatch', h1: 'Alle thuisaccumerken op een rij', crumb: 'Merken', og: 'merken', stamp: { checked: CHECKED, updated: CHECKED },
   description: 'HomeWizard, Sessy, Zonneplan, Huawei, SolarEdge en BYD: per merk het aanbod, de checklistscore met bron, de prijs als die openbaar is en voor wie het past.',
   schema: [{ '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: RANG.map((id, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE.domain}/merken/${M[id].slug}/`, name: M[id].naam })) }],
   body: `<h1>Alle thuisaccumerken op een rij</h1><p class="lead">Zes merken die in Nederland thuisaccu's leveren: een stekkerbatterij en vijf vaste systemen. Gesorteerd op checklistscore, bij gelijke stand op naam.</p>
@@ -161,10 +162,11 @@ ${methodBox()}`,
 const FILTERS = ['stekker', 'bestaand', 'noodstroom', 'lfp', 'modulair', 'groot', 'app', 'dynamisch', 'garantie', 'prijs'];
 const sel = (id, label, opts) => `<div class="field"><label for="${id}">${label}</label><select id="${id}" name="${id}">${opts.map(([v, t]) => `<option value="${v}">${esc(t)}</option>`).join('')}</select></div>`;
 export const vsHub = {
-  path: '/vergelijken/', title: 'Thuisaccu vergelijken 2026 | ThuisaccuMatch', h1: 'Thuisaccu’s vergelijken', crumb: 'Vergelijken', og: 'vergelijken', stamp: { checked: CHECKED, updated: CHECKED },
+  path: '/vergelijken/', title: 'Beste thuisaccu 2026? 6 merken vergeleken | ThuisaccuMatch', h1: 'Thuisaccu’s vergelijken: welke past het best?', crumb: 'Vergelijken', og: 'vergelijken', stamp: { checked: CHECKED, updated: CHECKED },
   scripts: ['/js/vergelijk.js'],
-  description: 'Zes thuisaccumerken in één tabel: stekker of vast, noodstroom, LFP, uitbreidbaar, app, dynamisch, garantie en prijs. Filter op wat jij nodig hebt.',
-  body: `<h1>Thuisaccu’s vergelijken (2026)</h1><p class="lead">Zes merken op 10 vaste punten. Filter op wat jij zoekt.</p>
+  description: 'Welke thuisaccu is de beste voor jou? Zes merken in één tabel: stekker of vast, noodstroom, LFP, garantie en prijs. Filter op wat je nodig hebt.',
+  body: `<h1>Thuisaccu’s vergelijken: welke past het best?</h1><p class="lead">Zes merken op 10 vaste punten. Filter op wat jij zoekt.</p>
+<p>Zoek je de beste thuisaccu? Die bestaat niet voor iedereen. Een stekkerbatterij is de beste keus als je hem zelf wilt aansluiten en weinig wilt uitgeven; een grote vaste thuisaccu als je veel zonnepanelen hebt of noodstroom wilt. De checklistscore telt hoeveel van de 10 punten een merk zelf noemt. Het is geen beoordeling. Wat bij jou past, hangt af van je zonnepanelen, je verbruik en je contract: de <a href="/thuisaccu-keuzehulp/">keuzehulp</a> rekent het uit, en in <a href="/stekkerbatterij-of-vaste-thuisaccu/">stekkerbatterij of vaste thuisaccu</a> lees je de verschillen.</p>
 <div class="actions"><a class="btn" href="/thuisaccu-keuzehulp/">Liever advies op maat? Start de keuzehulp</a></div>
 <form class="filters card" id="filters" aria-labelledby="h-f"><h2 id="h-f">Filter de merken</h2>
 <fieldset class="q"><legend>Moet het merk hebben</legend><div class="fchecks">${FILTERS.map((k) => `<label class="check"><input type="checkbox" name="need" value="${k}"><span>${esc(PUNTEN[k].lang)}</span></label>`).join('')}</div></fieldset>
@@ -189,7 +191,7 @@ const salFaq = [
   ['Hoeveel krijg ik vanaf 2027 voor teruggeleverde stroom?', `Tot 1 januari 2030 minstens 50% van de kale leveringsprijs, zonder energiebelasting en btw. Bij een kale prijs van ongeveer ${ct(KAAL)} is dat minstens ${ct(MIN_VERGOEDING)} per kWh. Veel leveranciers rekenen daarnaast terugleverkosten; netto houd je bij een vast of variabel contract rond de halve cent per kWh over (Milieu Centraal).`],
   ['Zijn zonnepanelen na 2027 nog de moeite waard?', 'Volgens Milieu Centraal wel: stroom die je zelf direct gebruikt, hoef je niet in te kopen. Zelfopgewekte stroom is bij een vast of variabel contract vaak 3 tot 4 keer goedkoper dan ingekochte stroom.'],
 ];
-export const salderingGids = g('/salderingsregeling-stopt-2027/', 'Salderingsregeling stopt 1 januari 2027: dit verandert', 'Salderingsregeling stopt in 2027: wat verandert er?', 'Op 1 januari 2027 stopt het salderen. Wat je dan krijgt voor teruggeleverde stroom, wat terugleverkosten zijn en wat het je kost, met bronnen.', 'salderingsregeling-stopt-2027', salFaq,
+export const salderingGids = g('/salderingsregeling-stopt-2027/', 'Salderen stopt 1 januari 2027: wat verandert er voor jou?', 'Salderingsregeling stopt in 2027: wat verandert er?', 'Op 1 januari 2027 stopt het salderen. Wat je dan krijgt voor teruggeleverde stroom, wat terugleverkosten zijn en wat het je kost, met bronnen.', 'salderingsregeling-stopt-2027', salFaq,
   `<p class="lead">Op 1 januari 2027 stopt de salderingsregeling. Zonnestroom die je teruglevert, mag je dan niet meer wegstrepen tegen de stroom die je op andere momenten van het net haalt (Rijksoverheid). Wat betekent dat voor jou, en is een thuisaccu dan het antwoord?</p>
 <h2>Hoe salderen nu werkt</h2><p>Tot en met 31 december 2026 verrekent je leverancier de stroom die je afneemt met de stroom die je teruglevert, inclusief energiebelasting en btw (ACM ConsuWijzer). Lever je overdag 1 kWh terug en neem je 's avonds 1 kWh af, dan betaal je daar netto niets voor. Je net is in feite een gratis batterij.</p>
 <h2>Wat er vanaf 2027 verandert</h2><ul><li><strong>Geen verrekening meer.</strong> Je betaalt energiebelasting en btw over alle stroom die je afneemt. Over stroom die je zelf opwekt en direct gebruikt, betaal je geen belasting (ACM ConsuWijzer).</li><li><strong>Een terugleververgoeding.</strong> Voor teruggeleverde stroom krijg je een redelijke vergoeding. Tot 1 januari 2030 is dat minstens 50% van het kale leveringstarief, de prijs zonder belastingen (Rijksoverheid).</li><li><strong>Terugleverkosten blijven.</strong> Leveranciers mogen kosten rekenen die ze maken om teruggeleverde stroom te verwerken. De ACM houdt toezicht (Rijksoverheid). Die kosten kunnen soms hoger zijn dan de vergoeding (ACM ConsuWijzer).</li><li><strong>Uitsplitsing.</strong> Loopt je contract over de jaargrens, dan moet je leverancier je verbruik en teruglevering splitsen in de periode tot en met 31 december 2026 en de periode vanaf 1 januari 2027.</li></ul>
@@ -208,7 +210,7 @@ const kostenFaq = [
   ['Wat kost een stekkerbatterij?', 'HomeWizard noemt € 1.195 voor de Plug-In Battery van 2,7 kWh, zonder installatiekosten. Je hebt wel een HomeWizard P1 Meter nodig (apart).'],
   ['Is er subsidie op een thuisaccu?', 'Nee, er is geen rijkssubsidie op een thuisbatterij (Milieu Centraal).'],
 ];
-export const kostenGids = g('/thuisaccu-kosten/', 'Wat kost een thuisaccu in 2026? Prijzen per kWh', 'Wat kost een thuisaccu in 2026?', 'Van € 1.195 voor een stekkerbatterij tot € 9.400 voor 15 kWh. Prijzen van de merken, prijs per kWh, installatie, btw en waarom er geen subsidie is.', 'thuisaccu-kosten', kostenFaq,
+export const kostenGids = g('/thuisaccu-kosten/', 'Thuisaccu kosten 2026: prijzen per kWh en per merk', 'Wat kost een thuisaccu in 2026?', 'Van € 1.195 voor een stekkerbatterij tot € 9.400 voor 15 kWh. Prijzen van de merken, prijs per kWh, installatie, btw en waarom er geen subsidie is.', 'thuisaccu-kosten', kostenFaq,
   `<p class="lead">Milieu Centraal noemt voor een gemiddelde thuisaccu van 6 kWh, inclusief omvormer en installatie, "een paar duizend euro". De merken die prijzen tonen, zitten tussen € 1.195 voor een stekkerbatterij van 2,7 kWh en € 9.400 voor een vaste accu van 15 kWh.</p>
 <h2>Prijzen van de merken</h2><div class="table-wrap"><table class="data stack"><thead><tr><th scope="col">Merk en model</th><th scope="col">Capaciteit</th><th scope="col">Prijs</th><th scope="col">Per kWh</th></tr></thead><tbody>
 <tr><th scope="row"><a href="/merken/homewizard/">HomeWizard</a> Plug-In Battery<span class="fnote">Stekker, zonder installatie; P1 Meter apart</span></th><td data-l="Capaciteit">2,7 kWh</td><td class="n" data-l="Prijs">€ 1.195</td><td class="n" data-l="Per kWh">€ 443</td></tr>
@@ -229,7 +231,7 @@ const tvtFaq = [
   ['Verdien je een thuisaccu terug?', 'Milieu Centraal verwacht dat je een thuisaccu op dit moment hoogstwaarschijnlijk niet terugverdient met de besparing op je stroomrekening. Of het bij jou wel lukt, hangt af van de prijs per kWh, hoeveel je teruglevert en je energiecontract.'],
   ['Hoe lang gaat een thuisaccu mee?', 'Dat verschilt per merk. Sessy en Zonneplan noemen 6.000 cycli of meer, Zonneplan garandeert minimaal 70% capaciteit na tien jaar. HomeWizard noemt een verwachte levensduur tot 15 jaar.'],
 ];
-export const tvtGids = g('/thuisaccu-terugverdientijd/', 'Verdien je een thuisaccu terug? Zo reken je het uit', 'Verdien je een thuisaccu terug?', `Terugverdientijd = prijs gedeeld door wat je per jaar bespaart. In het voorbeeld van 10 zonnepanelen: 2,7 kWh in ${jr(T27)}, 5 kWh in ${jr(T5)}.`, 'thuisaccu-terugverdientijd', tvtFaq,
+export const tvtGids = g('/thuisaccu-terugverdientijd/', 'Thuisbatterij terugverdientijd: verdien je hem terug?', 'Verdien je een thuisaccu terug?', `Terugverdientijd = prijs gedeeld door wat je per jaar bespaart. In het voorbeeld van 10 zonnepanelen: 2,7 kWh in ${jr(T27)}, 5 kWh in ${jr(T5)}.`, 'thuisaccu-terugverdientijd', tvtFaq,
   `<p class="lead">Milieu Centraal is duidelijk: een thuisaccu kost vooral geld, en je verdient hem op dit moment hoogstwaarschijnlijk niet terug met de besparing op je stroomrekening. Na het einde van de saldering wordt elke kWh die je zelf gebruikt wel meer waard. Zo reken je het uit.</p>
 <h2>De formule</h2><p><strong>Terugverdientijd = prijs van de accu ÷ besparing per jaar.</strong> De besparing is het aantal kWh dat je uit de accu gebruikt in plaats van terug te leveren, keer het verschil tussen wat je voor stroom betaalt en wat je voor teruglevering krijgt. Met een dynamisch contract kan daar opbrengst bij komen door goedkoop te laden en duur te gebruiken.</p>
 <h2>Rekenvoorbeeld: 10 zonnepanelen</h2><p>Opwek ${EX.opwek.toLocaleString('nl-NL')} kWh, waarvan je ${EX.terug.toLocaleString('nl-NL')} kWh teruglevert (Milieu Centraal: 30% gebruik je direct zelf). Stroom kost € ${komma(STROOMPRIJS, 2)} per kWh (CBS), teruglevering levert netto ${ct(NETTO_TERUG)} op (Milieu Centraal).</p>
@@ -309,7 +311,19 @@ export const veiligGids = g('/thuisaccu-veiligheid/', 'Thuisaccu veilig plaatsen
 <h2>Een stekkerbatterij: zo sluit je hem aan</h2><ul><li>Rechtstreeks op een geaard stopcontact, zonder verlengsnoer of stekkerblok.</li><li>Niet op dezelfde groep als zware apparaten zoals een wasmachine; liefst op een aparte groep.</li><li>Maximaal één accu per groep. Meer? Schakel een erkend installateur in.</li><li>Markeer in de meterkast dat er een accu is aangesloten, met het (nood)nummer van de leverancier.</li><li>Controleer twee keer per jaar stekker, kabels en behuizing op schade.</li></ul><p class="src">Zie de Brandweer over de plug-and-play thuisbatterij en Milieu Centraal over brandrisico bij stekkerbatterijen.</p>
 ${end('Welke thuisaccu past bij jouw huis?', B('brandweer', 'brandweerStekker', 'nipv', 'mcAccu'))}`);
 
-export const guides = [salderingGids, kostenGids, tvtGids, soortGids, dynGids, tlkGids, btwGids, veiligGids];
+const LEES = {
+  '/salderingsregeling-stopt-2027/': ['/terugleverkosten/', '/thuisaccu-terugverdientijd/', '/thuisaccu-dynamisch-energiecontract/', '/einde-salderen-berekenen/'],
+  '/thuisaccu-kosten/': ['/btw-thuisaccu/', '/thuisaccu-terugverdientijd/', '/stekkerbatterij-of-vaste-thuisaccu/', '/vergelijken/'],
+  '/thuisaccu-terugverdientijd/': ['/thuisaccu-kosten/', '/salderingsregeling-stopt-2027/', '/thuisaccu-dynamisch-energiecontract/', '/terugverdientijd-thuisaccu-berekenen/'],
+  '/stekkerbatterij-of-vaste-thuisaccu/': ['/thuisaccu-veiligheid/', '/thuisaccu-kosten/', '/merken/homewizard/', '/capaciteit-thuisaccu-berekenen/'],
+  '/thuisaccu-dynamisch-energiecontract/': ['/btw-thuisaccu/', '/salderingsregeling-stopt-2027/', '/terugleverkosten/', '/terugverdientijd-thuisaccu-berekenen/'],
+  '/terugleverkosten/': ['/salderingsregeling-stopt-2027/', '/thuisaccu-dynamisch-energiecontract/', '/thuisaccu-terugverdientijd/', '/einde-salderen-berekenen/'],
+  '/btw-thuisaccu/': ['/thuisaccu-kosten/', '/thuisaccu-dynamisch-energiecontract/', '/merken/zonneplan/', '/terugverdientijd-thuisaccu-berekenen/'],
+  '/thuisaccu-veiligheid/': ['/stekkerbatterij-of-vaste-thuisaccu/', '/thuisaccu-kosten/', '/vergelijken/', '/capaciteit-thuisaccu-berekenen/'],
+};
+const NAMEN = Object.fromEntries([...GIDSLINKS, ...TOOLS.map(([h, t]) => [h, t]), ['/vergelijken/', 'Alle thuisaccu’s vergelijken'], ...IDS.map((id) => [`/merken/${M[id].slug}/`, `${M[id].naam}-thuisaccu`])]);
+export const leesOok = (path) => (LEES[path] ? `<h2>Lees ook</h2><ul class="gidslijst">${LEES[path].map((h) => `<li><a href="${h}">${esc(NAMEN[h])}</a></li>`).join('')}</ul>` : '');
+export const guides = [salderingGids, kostenGids, tvtGids, soortGids, dynGids, tlkGids, btwGids, veiligGids].map((x) => ({ ...x, body: x.body.replace('<p class="src">Bronnen:', () => `${leesOok(x.path)}<p class="src">Bronnen:`) }));
 
 // ---- Rekentools ----
 const num = (id, label, val, unit, hint, attrs = '') => `<div class="field"><label for="${id}">${label}</label><div class="inline"><input type="text" inputmode="decimal" id="${id}" name="${id}" value="${val}" ${attrs}><span class="unit">${unit}</span></div>${hint ? `<span class="hint">${hint}</span>` : ''}</div>`;
@@ -394,7 +408,7 @@ export const toolHub = {
 };
 
 export const gidsHub = {
-  path: '/gidsen/', title: 'Gidsen over thuisaccu’s | ThuisaccuMatch', h1: 'Thuisaccu kiezen: alle gidsen', crumb: 'Gidsen', og: 'gidsen',
+  path: '/gidsen/', title: 'Thuisaccu gidsen: saldering, kosten, btw | ThuisaccuMatch', h1: 'Thuisaccu kiezen: alle gidsen', crumb: 'Gidsen', og: 'gidsen',
   description: 'Gidsen over het einde van salderen in 2027, kosten en terugverdientijd van een thuisaccu, dynamische contracten, terugleverkosten, btw en veiligheid.',
   body: `<h1>Thuisaccu kiezen: alle gidsen</h1><p class="lead">Alles wat je wilt weten voordat je een thuisaccu koopt, met bronnen van Milieu Centraal, de Rijksoverheid, de ACM, de Belastingdienst en de Brandweer.</p><div class="grid cards two">${guides.map((x) => `<a class="card" href="${x.path}"><h2 class="h3">${esc(x.h1)}</h2><p>${esc(x.description)}</p><span class="more">Lees de gids →</span></a>`).join('')}${TOOLS.map(([h, t, d]) => `<a class="card" href="${h}"><h2 class="h3">${esc(t)}</h2><p>${esc(d)}</p><span class="more">Naar de rekentool →</span></a>`).join('')}</div>${matchCta()}`,
 };
@@ -408,14 +422,14 @@ export const over = {
 <p>Veel informatie over thuisaccu's komt van merken en installateurs die je hun eigen product willen verkopen. Wij zetten de merken naast elkaar met wat ze zelf op hun site zetten, en rekenen met de onafhankelijke cijfers van Milieu Centraal en het CBS en de regels van de Rijksoverheid, de ACM en de Belastingdienst. Ook als die zeggen dat een accu zich nu meestal niet terugverdient.</p>
 <h2>Hoe we werken</h2><ul><li><strong>Alleen de bron.</strong> Elk checklistpunt komt van de site, het datasheet of het garantiedocument van het merk, elk bedrag van het CBS, Milieu Centraal of het merk zelf, met link.</li><li><strong>Niets verzonnen.</strong> Staat iets niet op de site van het merk, dan staat er "niet vermeld". We plaatsen geen reviews of beoordelingen. Aannames in de rekentools staan er altijd als aanname bij.</li><li><strong>Onafhankelijk.</strong> We installeren geen thuisaccu's en verkopen niets.</li><li><strong>Partners tellen nooit mee</strong> in de score, de volgorde of het advies. Een partnerlink heeft altijd het label "partnerlink".</li></ul>
 </article>${methodBox()}<article class="prose"><h2>Wat telt de checklist?</h2><ul>${GROEPEN.map((x) => `<li><strong>${esc(x.naam)}:</strong> ${x.punten.map((k) => esc(/^[A-Z][a-z]/.test(PUNTEN[k].lang) ? PUNTEN[k].lang[0].toLowerCase() + PUNTEN[k].lang.slice(1) : PUNTEN[k].lang)).join(', ')}.</li>`).join('')}</ul><p>"Minstens 10 jaar garantie op de batterij" is ja als het merk dat noemt, deels als het alleen met een voorwaarde kan en nee als de standaardgarantie korter is. "Noodstroom" is deels als het een uitbreiding of extra product vraagt. Noemt een merk een punt niet, dan staat er "niet vermeld" en telt het als 0. Mist er iets? Mail ons, dan passen we het aan met bron.</p>
-<p>Fout gezien? Mail naar <a href="mailto:${SITE.email}">${SITE.email}</a>.</p>${LEADS_AAN ? `<p>Offertes vraag je aan via een offertepartner. ${SITE.name} is geen partij bij de offerte of de opdracht en ontvangt een vergoeding per aanvraag.</p>` : ''}</article>`,
+<h2>Waar begin je?</h2><ul><li><a href="/thuisaccu-keuzehulp/">De keuzehulp</a>: zes vragen, één advies.</li><li><a href="/vergelijken/">Alle merken vergelijken</a> op de 10 punten.</li><li><a href="/rekentools/">De rekentools</a> voor terugverdientijd, capaciteit en het einde van salderen.</li><li><a href="/gidsen/">De gidsen</a>, van kosten tot veiligheid.</li></ul><p>Hoe we met je gegevens omgaan, lees je in <a href="/privacy/">privacy en cookies</a>. Fout gezien? Mail naar <a href="mailto:${SITE.email}">${SITE.email}</a>.</p>${LEADS_AAN ? `<p>Offertes vraag je aan via een offertepartner. ${SITE.name} is geen partij bij de offerte of de opdracht en ontvangt een vergoeding per aanvraag.</p>` : ''}</article>`,
 };
 
 export const privacy = {
   path: '/privacy/', title: 'Privacy en cookies | ThuisaccuMatch', h1: 'Privacy en cookies', crumb: 'Privacy', og: 'home',
   description: 'Hoe ThuisaccuMatch met je gegevens omgaat: geen account, je antwoorden blijven in je browser en statistieken alleen na jouw toestemming.',
   body: `<article class="prose"><h1>Privacy en cookies</h1>
-<p>Vragen? Mail naar <a href="mailto:${SITE.email}">${SITE.email}</a>.</p>
+<p>Vragen? Mail naar <a href="mailto:${SITE.email}">${SITE.email}</a>. Wie we zijn en hoe we werken, lees je bij <a href="/over/">over ons</a>.</p>
 <h2>Wie is verantwoordelijk?</h2><p>Verantwoordelijk voor de verwerking van persoonsgegevens op deze site: ${SITE.name}, <a href="mailto:${SITE.email}">${SITE.email}</a>.</p>
 <h2>Welke gegevens?</h2><p>Je antwoorden in de keuzehulp en de rekentools blijven in je browser. We slaan ze niet op en sturen ze nergens heen. We vragen geen naam, e-mailadres of andere persoonsgegevens.</p>
 ${GA_ID ? `<h2 id="cookies">Cookies en statistieken</h2><p>We gebruiken geen advertentiecookies. Statistieken met Google Analytics zetten we alleen aan als je in de cookiemelding op "Accepteren" klikt. Zonder toestemming laden we Google Analytics niet en gaat er niets naar Google.</p>
@@ -424,7 +438,7 @@ ${GA_ID ? `<h2 id="cookies">Cookies en statistieken</h2><p>We gebruiken geen adv
 <h2>Links naar merken</h2><p>Klik je door naar een merk, dan geldt de privacyverklaring van dat merk.</p>
 ${privacyOffertes()}
 <h2>Wat we niet doen</h2><ul><li>We verkopen of verhuren geen gegevens.</li><li>We gebruiken geen advertentienetwerken, geen social-mediapixels en geen tracking van andere partijen dan hieronder genoemd.</li><li>We maken geen profielen en nemen geen beslissingen op basis van je gegevens.</li><li>Je hoeft geen account aan te maken, en we sturen geen nieuwsbrief.</li></ul>
-<h2>Keuzehulp en rekentools</h2><p>De keuzehulp en de rekentools rekenen in je eigen browser. Je antwoorden staan alleen in de adresbalk (zodat je je advies kunt bewaren of delen) en worden niet naar ons verstuurd. Deel je de link, dan ziet de ontvanger dezelfde antwoorden.</p>
+<h2>Keuzehulp en rekentools</h2><p>De <a href="/thuisaccu-keuzehulp/">keuzehulp</a> en de <a href="/rekentools/">rekentools</a> rekenen in je eigen browser. Je antwoorden staan alleen in de adresbalk (zodat je je advies kunt bewaren of delen) en worden niet naar ons verstuurd. Deel je de link, dan ziet de ontvanger dezelfde antwoorden.</p>
 <h2>Bewaartermijnen</h2><p>Statistieken in Google Analytics bewaren we maximaal 14 maanden. Je cookiekeuze bewaren we 12 maanden in je browser. E-mails die je ons stuurt, bewaren we zolang nodig is om je vraag te beantwoorden.</p>
 <h2>Hosting</h2><p>De site draait op GitHub Pages. GitHub verwerkt technische gegevens zoals je IP-adres om de site te leveren.</p>
 <h2>Je rechten</h2><p>Je mag vragen welke gegevens we van je hebben en die laten verwijderen. Een klacht kun je indienen bij de Autoriteit Persoonsgegevens.</p></article>`,
