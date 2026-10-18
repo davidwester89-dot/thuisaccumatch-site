@@ -91,12 +91,13 @@ test('build: componenten, vergelijking in vaste volgorde, keuzehulp en rekentool
     const b = read(`dist/blog/${slug}/index.html`);
     assert.ok(sm.includes(`<loc>https://thuisaccumatch.nl/blog/${slug}/</loc>`), `${slug} in sitemap`);
     assert.match(b, /"@type":"BlogPosting"/); assert.match(b, /"@type":"FAQPage"/); assert.match(b, /Door Redactie ThuisaccuMatch/);
-    assert.match(b, /<figcaption class="src">Foto: [^<]+CC BY/); assert.match(b, /href="\/thuisaccu-keuzehulp\/"/);
+    assert.ok(!/<figcaption/.test(b), `${slug}: geen fotografenbijschrift (CC0)`); assert.match(b, /href="\/thuisaccu-keuzehulp\/"/);
     for (const w of [600, 900, 1200]) assert.ok(existsSync(`dist/img/blog/${slug}-${w}.webp`), `${slug}-${w}.webp`);
     assert.ok(existsSync(`dist/og/blog-${slug}.png`));
     const main = b.split('<main')[1].split('</main>')[0].replace(/<script[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ');
     assert.ok(main.split(/\s+/).filter((x) => /[a-zà-ü0-9]/i.test(x)).length >= 1000, `${slug}: minstens 1000 woorden`);
-    assert.ok(read('src/assets/img/blog/BRONNEN.md').includes(`## ${slug}-`), `${slug} in BRONNEN.md`);
+    const bron = read('src/assets/img/blog/BRONNEN.md'); assert.ok(bron.includes(`## ${slug}-`), `${slug} in BRONNEN.md`);
+    assert.match(bron.split(`## ${slug}-`)[1].split('\n## ')[0], /Licentie: CC0 1\.0/, `${slug}: CC0`);
   }
   assert.match(read('dist/blog/thuisbatterij-dynamisch-contract/index.html'), /href="\/vergelijken\/"/);
   assert.ok(!existsSync('dist/img/blog/BRONNEN.md'), 'fotobronnen niet in dist');
@@ -128,7 +129,7 @@ test('build (test-site): noindex overal, Disallow, BASE-paden, geen CNAME, previ
   // Ook met GO_LIVE=1 en een BASE nooit een CNAME (veiligheid).
   execSync('node build.mjs', { env: { ...process.env, BASE: '/thuisaccumatch-site', GO_LIVE: '1', LEADS_PREVIEW: '' } });
   assert.ok(!existsSync('dist/CNAME'));
-  // Workflow staat op de testversie.
+  // Workflow staat live: BASE leeg, GO_LIVE 1, deploy bij push op main.
   const wf = read('.github/workflows/pages.yml');
-  assert.match(wf, /BASE: '\/thuisaccumatch-site'/); assert.ok(!/GO_LIVE: '1'/.test(wf));
+  assert.match(wf, /BASE: ''/); assert.match(wf, /GO_LIVE: '1'/); assert.match(wf, /push:\n\s+branches: \[main\]/);
 });

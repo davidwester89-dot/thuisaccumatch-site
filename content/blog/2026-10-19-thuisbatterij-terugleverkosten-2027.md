@@ -6,8 +6,7 @@ date: 2026-10-19
 updated: 2026-10-19
 checked: 2026-10-19
 image: thuisbatterij-terugleverkosten-2027
-image_alt: Rijtjeshuizen met zonnepanelen zonder merkopdruk op de schuine daken
-image_caption: Foto: Steven Lek, Wikimedia Commons, CC BY-SA 4.0 (bijgesneden)
+image_alt: Dak met zonnepanelen zonder merkopdruk achter een graanveld, met bossen op de achtergrond
 tools: /thuisaccu-keuzehulp/, /terugverdientijd-thuisaccu-berekenen/, /einde-salderen-berekenen/
 sources:
 - Coolblue Energie: modelcontract (bijgewerkt 30 september 2026) | https://www.coolblue.nl/energiecontracten/modelcontract

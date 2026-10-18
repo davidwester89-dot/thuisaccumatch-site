@@ -1,9 +1,9 @@
-# Bouwt ThuisaccuMatch en publiceert via GitHub Pages.
-# TESTVERSIE: BASE=/thuisaccumatch-site, noindex, geen CNAME. Livegang pas na akkoord Dave: BASE '' en GO_LIVE '1' (CNAME thuisaccumatch.nl).
-# Alleen handmatig (workflow_dispatch): GitHub Pages werkt niet op deze private repo met het huidige plan.
-# Bij livegang: repo openbaar maken (zoals de andere match-sites) of plan upgraden, Pages aanzetten (bron: GitHub Actions) en 'push: branches: [main]' terugzetten.
+# Bouwt ThuisaccuMatch en publiceert via GitHub Pages (bron: GitHub Actions).
+# LIVE sinds 19-10-2026 (akkoord gegeven): BASE leeg, GO_LIVE=1 (CNAME thuisaccumatch.nl, indexeerbaar). Testversie was BASE=/thuisaccumatch-site.
 name: Deploy ThuisaccuMatch
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
@@ -13,7 +13,8 @@ concurrency:
   group: pages
   cancel-in-progress: true
 env:
-  BASE: '/thuisaccumatch-site'
+  BASE: ''
+  GO_LIVE: '1'
 jobs:
   build:
     runs-on: ubuntu-latest

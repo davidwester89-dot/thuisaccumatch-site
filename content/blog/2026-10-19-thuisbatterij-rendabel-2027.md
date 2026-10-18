@@ -6,8 +6,7 @@ date: 2026-10-19
 updated: 2026-10-19
 checked: 2026-10-19
 image: thuisbatterij-rendabel-2027
-image_alt: Zonnepanelen zonder merkopdruk op het pannendak van een Nederlandse rijtjeswoning
-image_caption: Foto: Steven Lek, Wikimedia Commons, CC BY-SA 4.0 (bijgesneden)
+image_alt: Schuin dak van een woning vol zonnepanelen zonder merkopdruk, onder een blauwe lucht
 tools: /thuisaccu-keuzehulp/, /terugverdientijd-thuisaccu-berekenen/, /capaciteit-thuisaccu-berekenen/, /einde-salderen-berekenen/
 sources:
 - Rijksoverheid: salderingsregeling stopt in 2027 | https://www.rijksoverheid.nl/themas/klimaat-milieu-en-natuur/energie-thuis/salderingsregeling
@@ -68,7 +67,7 @@ Je hebt dan geen eigen stroom om op te slaan. En met een vaste prijs per kWh is 
 
 ### 4. Geen zonnepanelen, wel een dynamisch contract
 
-Met een dynamisch contract betaal je per kwartier de prijs van de stroombeurs. Een batterij laadt dan als de stroom goedkoop is en levert stroom aan je huis als hij duur is. Wij rekenden dat na met de echte day-ahead-prijzen van 1 januari tot en met 18 oktober 2026 (291 dagen). Zelfs met perfecte voorspelling, meerdere laadrondes per dag en alle stroom zelf verbruikt, levert een batterij van 5 kWh in die periode hooguit **€ 234** op. In januari en februari was dat maar € 7 tot € 9 per maand. In de praktijk is het minder: niemand voorspelt de prijs perfect en je gebruikt 's avonds niet steeds 2,5 kW.
+Met een dynamisch contract betaal je per kwartier de prijs van de stroombeurs. Een batterij laadt dan als de stroom goedkoop is en levert stroom aan je huis als hij duur is. Wij rekenden dat na met de echte day-ahead-prijzen van 1 januari tot en met 18 oktober 2026 (291 dagen). We lieten een rekenprogramma per dag de goedkoopste uren kiezen om te laden en de duurste om te ontladen, met 90 procent rendement en energiebelasting en btw bij het laden. Zelfs met die perfecte voorspelling, meerdere laadrondes per dag en alle stroom zelf verbruikt, levert een batterij van 5 kWh in die periode hooguit **€ 234** op. In januari en februari was dat maar € 7 tot € 9 per maand. In de praktijk is het minder: niemand voorspelt de prijs perfect en je gebruikt 's avonds niet steeds 2,5 kW.
 
 > **Besluit:** alleen rendabel met een goedkope batterij en goede sturing. Lees [welke combinatie van contract en batterij werkt](/blog/thuisbatterij-dynamisch-contract/).
 

@@ -6,8 +6,7 @@ date: 2026-10-19
 updated: 2026-10-19
 checked: 2026-10-19
 image: thuisbatterij-dynamisch-contract
-image_alt: Hoogspanningsmast als silhouet tegen een oranje zonsondergang boven een vlak landschap
-image_caption: Foto: Dg-505, Wikimedia Commons (Panoramio), CC BY 3.0 (bijgesneden)
+image_alt: Hoogspanningsmast met stroomkabels tussen herfstbomen
 tools: /vergelijken/, /thuisaccu-keuzehulp/, /terugverdientijd-thuisaccu-berekenen/
 sources:
 - Belastingdienst: thuisbatterij en btw | https://www.belastingdienst.nl/wps/wcm/connect/nl/btw/content/thuisbatterij-btw
@@ -20,7 +19,7 @@ sources:
 - HomeWizard: Plug-In Battery | https://www.homewizard.com/nl/plug-in-battery/
 - Sessy | https://www.sessy.nl/
 - Sessy: prijsinformatie | https://www.sessy.nl/prijsinformatie
-- SolarEdge: batterijen | https://www.solaredge.com/nl/producten/thuis/batterijen
+- SolarEdge: SolarEdge ONE, modus Dynamisch Tarief | https://marketing.solaredge.com/nl/dynamisch-tarief
 - Zonneplan: thuisbatterij | https://www.zonneplan.nl/thuisbatterij
 - Huawei: LUNA2000 | https://solar.huawei.com/nl/products/luna2000-7-14-21-s1/
 - BYD: Battery-Box HVS datasheet | https://bydbatterybox.com/uploads/downloads/BCU2.0_BBOX_HVS_Datasheet_EN_V1.0_250328-67ee42d4ced21.pdf
@@ -62,14 +61,22 @@ Dit staat op de eigen sites van de zes merken in onze vergelijking, in alfabetis
 | HomeWizard | "Slim laden op de actuele stroomprijs" | Stekkerbatterij |
 | Huawei | Niet vermeld op de productpagina | Vaste batterij |
 | Sessy | "Klaar voor dynamische tarieven" | Vaste batterij |
-| SolarEdge | SolarEdge ONE stemt af op stroomtarieven | Vaste batterij |
+| SolarEdge | Modus Dynamisch Tarief in SolarEdge ONE: laden als het tarief laag is, de batterij gebruiken als het hoog is | Vaste batterij |
 | Zonneplan | "Werkt met alle dynamische energiecontracten" | Vaste batterij |
 
 Staat het niet op de site, dan betekent dat niet dat het niet kan. Het betekent wel dat je het vóór de aankoop moet navragen bij de installateur of het merk. In [de vergelijking van alle merken](/vergelijken/) zie je per merk ook noodstroom, garantie en prijs.
 
 ## Wat slim laden opleverde in 2026
 
-Wij rekenden uit wat een batterij tussen 1 januari en 18 oktober 2026 had kunnen verdienen met alleen laden van het net en ontladen op het duurste moment. We namen perfecte voorspelling aan, meerdere laadrondes per dag als dat loont en een rendement van 90 procent. Energiebelasting (€ 0,09161 per kWh in 2026) en btw betaal je bij het laden. Dit is dus een bovengrens: in de praktijk is de opbrengst lager.
+Wij rekenden uit wat een batterij tussen 1 januari en 18 oktober 2026 had kunnen verdienen met alleen laden van het net en ontladen op het duurste moment. Zo rekenden we:
+
+- **Prijzen:** de day-ahead-prijzen per uur van de stroombeurs, zonder btw en energiebelasting, opgehaald bij de openbare API van EnergyZero. We telden alleen volledige dagen: 291 in totaal.
+- **Per dag:** de batterij begint en eindigt leeg. Hij laadt per uur een vast deel, zo groot als het vermogen toelaat (bij 5 kWh en 2,5 kW is dat in twee uur vol). Een rekenprogramma zoekt per dag de beste uren om te laden en te ontladen; meer laadrondes per dag mogen.
+- **Kosten van laden:** beursprijs plus energiebelasting (€ 0,09161 per kWh in 2026), plus 21 procent btw.
+- **Opbrengst van ontladen:** 90 procent van wat je laadde, gewaardeerd tegen de prijs van dat uur.
+- **Wat er niet in zit:** de opslag van je leverancier en vaste kosten. En we gaan uit van perfecte kennis van de prijzen.
+
+Dit is dus een bovengrens: in de praktijk is de opbrengst lager. Het rekenscript en de prijsdata bewaren we bij de broncode van de site, zodat de berekening te herhalen is.
 
 We rekenden twee manieren van ontladen:
 

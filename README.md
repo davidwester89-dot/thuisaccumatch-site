@@ -11,6 +11,6 @@ Onafhankelijke keuzehulp en vergelijker voor thuisaccu's (thuisbatterijen): keuz
 
 Varianten:
 - Testversie (nu, in `.github/workflows/pages.yml`): `BASE=/thuisaccumatch-site` → noindex, robots `Disallow: /`, geen CNAME.
-- Live (pas na akkoord Dave): `BASE=` en `GO_LIVE=1` → CNAME thuisaccumatch.nl, indexeerbaar.
+- Live sinds 19-10-2026: `BASE=` en `GO_LIVE=1` → CNAME thuisaccumatch.nl, indexeerbaar (pages.yml, deploy bij push op main).
 
 Regels: alle bedragen en checklistpunten met bron (naam + link). Byline "Redactie ThuisaccuMatch", geen verzonnen experts, reviews of beoordelingen. Partners tellen nooit mee in score, volgorde of advies. Offertemodule staat uit zolang `LEADPARTNERS` leeg is; partnerlinks zijn leeg tot een goedgekeurd partnerprogramma. Google Analytics (G-S8PV3K139J) laadt alleen na toestemming.
