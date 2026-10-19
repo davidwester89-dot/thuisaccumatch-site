@@ -24,13 +24,13 @@ sources:
 - Huawei: LUNA2000 | https://solar.huawei.com/nl/products/luna2000-7-14-21-s1/
 - BYD: Battery-Box HVS datasheet | https://bydbatterybox.com/uploads/downloads/BCU2.0_BBOX_HVS_Datasheet_EN_V1.0_250328-67ee42d4ced21.pdf
 ---
-Een dynamisch energiecontract en een thuisbatterij worden vaak in één adem genoemd. Logisch: met een dynamisch contract verandert de stroomprijs per kwartier, en een batterij kan laden als stroom goedkoop is en ontladen als hij duur is. Maar dat werkt alleen als de batterij weet wat de prijs is en er zelf op stuurt. En de btw op de batterij krijg je alleen terug als je aan alle voorwaarden van de Belastingdienst voldoet. Hieronder lees je welke combinaties van contract, batterij en sturing werken, wat het met de echte stroomprijzen van 2026 had opgeleverd en hoe de btw-teruggave uitpakt.
+Een dynamisch energiecontract en een thuisbatterij worden vaak in één adem genoemd. Logisch: met een dynamisch contract kan de stroomprijs per kwartier verschillen, en een batterij kan laden als stroom goedkoop is en ontladen als hij duur is. Maar dat werkt alleen als de batterij weet wat de prijs is en er zelf op stuurt. En de btw op de batterij krijg je alleen terug als je aan alle voorwaarden van de Belastingdienst voldoet. Hieronder lees je welke combinaties van contract, batterij en sturing werken, wat het met de echte stroomprijzen van 2026 had opgeleverd en hoe de btw-teruggave uitpakt.
 
 > **Kort gezegd:** een batterij met een dynamisch contract levert alleen iets extra's op met een Energie Management Systeem (EMS) dat op de kwartierprijs stuurt. Met de echte prijzen van 2026 leverde slim laden met een batterij van 5 kWh hooguit € 234 op als je de stroom zelf gebruikt, en hooguit € 54 als je hem teruglevert. Btw terugvragen kan alleen met EMS, dynamisch contract, factuur en contract op je eigen naam en zonder kleineondernemersregeling.
 
 ## Hoe een dynamisch contract werkt
 
-Bij een vast of variabel contract betaal je de hele dag dezelfde prijs per kWh. Bij een dynamisch contract betaal je de prijs van de stroombeurs van dat moment, plus energiebelasting, btw en een opslag van je leverancier. Volgens de ACM rekenen leveranciers sinds oktober 2025 met prijzen per kwartier in plaats van per uur.
+Bij een vast of variabel contract betaal je de hele dag dezelfde prijs per kWh. Bij een dynamisch contract betaal je de prijs van de stroombeurs van dat moment, plus energiebelasting, btw en een opslag van je leverancier. Volgens de ACM wordt stroom op de Europese dag-vooruitmarkt sinds oktober 2025 per kwartier verhandeld in plaats van per uur: 96 prijzen per dag in plaats van 24.
 
 Wij haalden de day-ahead-prijzen per uur van 1 januari tot en met 18 oktober 2026 op (291 dagen). Wat opvalt:
 
@@ -58,7 +58,7 @@ Dit staat op de eigen sites van de zes merken in onze vergelijking, in alfabetis
 | Merk | Wat het merk zegt over dynamische tarieven | Soort |
 |---|---|---|
 | BYD | Niet vermeld in de datasheet | Vaste batterij |
-| HomeWizard | "Slim laden op de actuele stroomprijs" | Stekkerbatterij |
+| HomeWizard | Laadstrategie "slim met dynamisch tarief": laadt en ontlaadt op basis van verwachte opwek, verbruik, weersverwachting en stroomprijzen | Stekkerbatterij |
 | Huawei | Niet vermeld op de productpagina | Vaste batterij |
 | Sessy | "Klaar voor dynamische tarieven" | Vaste batterij |
 | SolarEdge | Modus Dynamisch Tarief in SolarEdge ONE: laden als het tarief laag is, de batterij gebruiken als het hoog is | Vaste batterij |
@@ -93,7 +93,7 @@ Per maand liep het sterk uiteen. Een batterij van 5 kWh die de stroom zelf gebru
 
 Twee lessen uit deze tabel:
 
-1. **Zelf gebruiken levert veel meer op dan terugleveren.** Bij terugleveren betaal je bij het laden energiebelasting die je bij het terugleveren niet terugkrijgt. In de Kamerbrief over de 500-regelaanpak van 8 oktober 2026 schrijft het kabinet dat het die dubbele heffing wil voorkomen, maar een oplossing volgt pas na 2026.
+1. **Zelf gebruiken levert veel meer op dan terugleveren.** Laad je de batterij van het net en lever je die stroom later terug, dan betaal je bij het laden energiebelasting die je bij het terugleveren niet terugkrijgt. In de Kamerbrief over de 500-regelaanpak van 8 oktober 2026 schrijft het kabinet dat het die dubbele heffing wil voorkomen. De ministeries van Financiën en van Economische Zaken en Klimaat zoeken met de sector naar een oplossing voor na 2026; die is er nog niet.
 2. **Ook de bovengrens is bescheiden.** Een batterij van 5 kWh kost al snel € 3.550. Zelfs met perfecte voorspelling verdien je die met alleen slim laden niet binnen tien jaar terug. In onze [rekentool voor de terugverdientijd](/terugverdientijd-thuisaccu-berekenen/) rekenen we daarom voorzichtiger: 150 dagen per jaar met een prijsverschil van 10 cent, voor 5 kWh ongeveer € 68 per jaar.
 
 De opslag die je leverancier per kWh rekent, zit niet in deze berekening. Die verschilt per leverancier en staat op je tarievenblad. Hoe hoger die opslag, hoe minder slim laden oplevert.
@@ -128,7 +128,7 @@ Rekenvoorbeeld bij 45 procent: € 4.545 zonder btw gedeeld door 5 is € 909 pe
 4. **Bepaal of de btw-teruggave de moeite waard is.** Bij veel privégebruik blijft er weinig over en heb je wel elk kwartaal een aangifte.
 5. **Vergelijk de merken.** In [de vergelijking](/vergelijken/) zie je per merk wat het op de eigen site zegt over dynamische tarieven, noodstroom en garantie. Of [doe de keuzehulp](/thuisaccu-keuzehulp/) voor een advies over soort en capaciteit.
 
-Wil je meer weten over de basis? Lees onze gids [thuisaccu en dynamisch energiecontract](/thuisaccu-dynamisch-energiecontract/). Hoe een batterij in jouw situatie uitpakt, met of zonder zonnepanelen, lees je in [thuisbatterij rendabel in 2027](/blog/thuisbatterij-rendabel-2027/).
+Wil je meer weten over de basis? Lees onze gids [thuisaccu en dynamisch energiecontract](/thuisaccu-dynamisch-energiecontract/). Of een batterij in 2027 rendabel is, lees je in [thuisbatterij rendabel in 2027](/blog/thuisbatterij-rendabel-2027/), en wat de terugleverkosten per leverancier betekenen in [thuisbatterij en terugleverkosten 2027](/blog/thuisbatterij-terugleverkosten-2027/). Hoe een batterij in jouw situatie uitpakt, met of zonder zonnepanelen, lees je in [thuisbatterij rendabel in 2027](/blog/thuisbatterij-rendabel-2027/).
 
 ## Veelgestelde vragen
 

@@ -3,6 +3,9 @@
 // Ook in de browser gebruikt (keuzehulp.js), daarom zonder Node-imports.
 import { MERKEN } from './merken.js';
 
+/** Merken met een officieel logo in src/assets/logos (webp, 320x96, transparant). Ontbreekt een merk: woordmerk, net als BoekhoudMatch. */
+export const LOGO_BESTANDEN = new Set(['homewizard', 'sessy', 'zonneplan', 'huawei', 'solaredge', 'byd']);
+
 /** Vaste vakmaten per formaat; width/height staan altijd in de HTML (geen layoutverschuiving). */
 export const LOGO_MATEN = { sm: [100, 30], md: [120, 36], lg: [160, 48] };
 
@@ -11,5 +14,6 @@ export function logoImg(id, { maat = 'md', eager = false, base = '', cls = '' } 
   const p = MERKEN[id];
   if (!p) throw new Error('Onbekend merk ' + id);
   const [w, h] = LOGO_MATEN[maat];
-  return `<img class="plogo plogo-${maat}${cls ? ' ' + cls : ''}" src="${base}/logos/${id}.svg" alt="${p.naam}" width="${w}" height="${h}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`;
+  if (!LOGO_BESTANDEN.has(id)) return `<span class="wordmark plogo-${maat}">${p.naam}</span>`;
+  return `<img class="plogo plogo-${maat}${cls ? ' ' + cls : ''}" src="${base}/logos/${id}.webp" alt="${p.naam}" width="${w}" height="${h}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`;
 }

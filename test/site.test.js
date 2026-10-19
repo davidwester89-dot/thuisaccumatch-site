@@ -45,13 +45,13 @@ test('build (productie): pagina’s, sitemap, robots, IndexNow, CNAME, huisregel
     // Minstens 300 woorden zichtbare tekst in <main>.
     if (!f.endsWith('404.html')) { const main = s.split('<main')[1].split('</main>')[0].replace(/<script[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' '); const w = main.split(/\s+/).filter((x) => /[a-zà-ü0-9]/i.test(x)).length; assert.ok(w >= 300, `${f}: ${w} woorden`); }
     // Logo's: lokaal, vaste maat, alt = merknaam.
-    for (const m of s.matchAll(/<img class="plogo plogo-(sm|md|lg)[^"]*" src="\/logos\/([a-z]+)\.svg" alt="([^"]+)" width="(\d+)" height="(\d+)"/g)) {
+    for (const m of s.matchAll(/<img class="plogo plogo-(sm|md|lg)[^"]*" src="\/logos\/([a-z]+)\.webp" alt="([^"]+)" width="(\d+)" height="(\d+)"/g)) {
       assert.equal(m[3], MERKEN[m[2]].naam);
       assert.deepEqual([m[4], m[5]], { sm: ['100', '30'], md: ['120', '36'], lg: ['160', '48'] }[m[1]]);
     }
     assert.ok(!/<img(?![^>]*\balt=)/.test(s), `${f}: img zonder alt`);
   }
-  for (const id of IDS) assert.ok(existsSync(`dist/logos/${id}.svg`), `logo ${id}`);
+  for (const id of IDS) assert.ok(existsSync(`dist/logos/${id}.webp`), `logo ${id}`);
 });
 
 test('build: componenten, vergelijking in vaste volgorde, keuzehulp en rekentools', () => {

@@ -32,7 +32,7 @@ De besparing van een thuisbatterij is eenvoudig op te schrijven:
 
 Drie getallen bepalen de uitkomst:
 
-1. **De stroomprijs.** Volgens het CBS betaalde een huishouden met een variabel contract in september 2026 gemiddeld € 0,1487 per kWh voor de levering, plus € 0,11085 energiebelasting. Samen is dat ongeveer **€ 0,26 per kWh**.
+1. **De stroomprijs.** Volgens het CBS was het gemiddelde variabele leveringstarief voor huishoudens (vaste en variabele contracten) in september 2026 € 0,1487 per kWh inclusief btw, plus € 0,11085 energiebelasting. Samen is dat ongeveer **€ 0,26 per kWh**.
 2. **Wat je netto krijgt voor teruglevering.** Vanaf 2027 krijg je een terugleververgoeding, maar betaal je vaak ook terugleverkosten. Milieu Centraal noemt een netto vergoeding van rond de halve cent per kWh. Hoe dat per leverancier uitpakt, lees je in [thuisbatterij en terugleverkosten 2027](/blog/thuisbatterij-terugleverkosten-2027/).
 3. **Hoeveel kWh je echt verschuift.** Een batterij raakt niet elke dag vol. Wij rekenen met 200 volle dagen per jaar en een rendement van 90 procent. In de winter wekken je panelen te weinig op: volgens Milieu Centraal leveren 10 panelen op een decemberdag ongeveer 2,5 kWh, tegen 15 kWh op een junidag.
 
