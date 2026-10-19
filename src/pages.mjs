@@ -37,9 +37,11 @@ const homeFaq = [
   ['Verdient ThuisaccuMatch aan de merken?', 'Nu niet. Komt er later een partnerlink of offertepartner, dan heeft die altijd het label "partnerlink" en telt die nooit mee in de score, de volgorde of het advies.'],
 ];
 const miniRows = RANG.map((id) => `<tr><th scope="row"><span class="rowlogo">${logo(id, 'sm')}</span><a href="/merken/${M[id].slug}/">${esc(M[id].naam)}</a></th><td data-l="Score">${scoreBadge(id)}</td>${[['stekker', 'Stekker'], ['bestaand', 'Bestaande omvormer'], ['noodstroom', 'Noodstroom'], ['garantie', 'Garantie 10 jaar'], ['prijs', 'Prijs openbaar']].map(([k, l]) => `<td data-l="${l}">${fv(FEATURES[id][k], false)}</td>`).join('')}</tr>`).join('');
-const toolCards = () => `<div class="grid cards">${TOOLS.map(([h, t, d]) => `<a class="card" href="${h}"><h3>${esc(t)}</h3><p>${esc(d)}</p><span class="more">Naar de rekentool →</span></a>`).join('')}</div>`;
+// Kopniveau volgt de pagina: op /rekentools/ staan de kaarten direct onder de H1 (dus H2), op de homepage onder de H2 "Rekentools" (dus H3).
+const toolCards = (h = 'h3') => `<div class="grid cards">${TOOLS.map(([href, t, d]) => `<a class="card" href="${href}"><${h}${h === 'h2' ? ' class="h3"' : ''}>${esc(t)}</${h}><p>${esc(d)}</p><span class="more">Naar de rekentool →</span></a>`).join('')}</div>`;
 
 export const home = {
+  lastmod: '2026-10-19',
   path: '/', title: 'Thuisaccu kiezen: keuzehulp, merken, kosten | ThuisaccuMatch', ogTitle: 'ThuisaccuMatch: past een thuisaccu bij jou?', h1: 'Thuisaccu kiezen? Reken eerst.', og: 'home',
   description: 'Past een thuisaccu bij jou? Doe de keuzehulp, vergelijk 6 merken op een vaste checklist en reken uit wat een accu oplevert als de saldering in 2027 stopt.',
   schema: [faqSchema(homeFaq)],
@@ -60,9 +62,9 @@ export const home = {
 <section class="logobar" aria-labelledby="h-pl"><h2 id="h-pl">Deze 6 merken vergelijken we</h2><div class="logos six">${[...IDS].sort((a, b) => M[a].naam.localeCompare(M[b].naam, 'nl')).map((id) => `<a class="logo-tile" href="/merken/${M[id].slug}/">${logo(id, 'lg')}</a>`).join('')}</div></section>
 <h2>Wat verandert er in 2027?</h2>
 <p>Tot en met 2026 streep je teruggeleverde zonnestroom weg tegen de stroom die je op andere momenten van het net haalt. Vanaf 1 januari 2027 kan dat niet meer (Rijksoverheid). Voor teruggeleverde stroom krijg je dan een vergoeding van je leverancier, maar na aftrek van terugleverkosten is dat bij een vast of variabel contract netto rond de halve cent per kWh (Milieu Centraal). Stroom die je inkoopt kost gemiddeld zo'n € ${komma(STROOMPRIJS, 2)} per kWh (CBS, september 2026). Elke kWh zonnestroom die je zelf gebruikt in plaats van teruglevert, is dus veel meer waard. Een thuisaccu is één manier om dat te doen, maar niet de enige en niet altijd de goedkoopste.</p>
-<p>In het rekenvoorbeeld van 10 zonnepanelen (${EX.opwek.toLocaleString('nl-NL')} kWh per jaar) leveren je panelen vanaf 2027 ongeveer ${eur(SAL.verschil)} per jaar minder op. Een thuisaccu van 5 kWh voor € 3.550 wint daarvan ongeveer ${eur(T5.besparing)} per jaar terug: terugverdiend in ${jr(T5)}. <a href="/einde-salderen-berekenen/">Reken het uit voor jouw dak →</a></p>
+<p>In het rekenvoorbeeld van 10 zonnepanelen (${EX.opwek.toLocaleString('nl-NL')} kWh per jaar) leveren je panelen vanaf 2027 ongeveer ${eur(SAL.verschil)} per jaar minder op. Een thuisaccu van 5 kWh voor € 3.550 wint daarvan ongeveer ${eur(T5.besparing)} per jaar terug: terugverdiend in ${jr(T5)}. Met je eigen verbruik en accu <a href="/terugverdientijd-thuisaccu-berekenen/">bereken je de terugverdientijd van je thuisaccu</a>. <a href="/einde-salderen-berekenen/">Of reken uit wat het einde van salderen jouw dak kost →</a></p>
 <h2>Rekentools</h2>
-<p class="sub">Vul je eigen cijfers in. Standaardwaarden komen van Milieu Centraal, het CBS en de prijzen van de merken.</p>
+<p class="sub">Vul je eigen cijfers in. Standaardwaarden komen van Milieu Centraal, het CBS en de prijzen van de merken. Uitleg en aannames per tool staan op <a href="/rekentools/">alle rekentools voor je thuisaccu</a>.</p>
 ${toolCards()}
 <h2>De merken op een rij</h2>
 <p class="sub">Gesorteerd op checklistscore, bij gelijke stand op naam. De score telt wat het merk zelf op de eigen site noemt.</p>
@@ -84,6 +86,7 @@ ${faqHtml(homeFaq)}`,
 
 // ---- Keuzehulp ----
 export const quiz = {
+  lastmod: '2026-10-19',
   path: '/thuisaccu-keuzehulp/', title: 'Thuisaccu keuzehulp: past een thuisbatterij bij jou?', h1: 'Past een thuisaccu bij jou?', crumb: 'Keuzehulp', og: 'match', noCta: true,
   description: 'Zes vragen over je zonnepanelen, verbruik, contract en budget. Advies: geen accu, stekkerbatterij of vaste thuisaccu, met capaciteit en merken.',
   scripts: ['/js/keuzehulp.js'],
@@ -97,6 +100,7 @@ ${VRAGEN.map((v, i) => `<fieldset class="q"><legend>${i + 1}. ${esc(v.vraag)}</l
 </form>
 <aside class="card mpanel" id="result" aria-live="polite"><h2>Jouw advies</h2><p class="mwait">Beantwoord de vragen. Je advies verschijnt hier, met de capaciteit, de terugverdientijd en de merken die passen.</p><p class="sub">Of bekijk <a href="/vergelijken/">alle 6 merken naast elkaar</a>.</p></aside>
 </div>
+<p>Wil je liever zelf rekenen met je eigen cijfers? Met de <a href="/terugverdientijd-thuisaccu-berekenen/">rekentool terugverdientijd</a> zie je wat een thuisaccu jou per jaar oplevert. Wil je ook weten hoeveel kWh je nodig hebt of wat het einde van salderen kost? Kijk bij de <a href="/rekentools/">rekentools voor je thuisaccu</a>.</p>
 <noscript><p class="alert">De keuzehulp werkt met JavaScript. Zonder JavaScript lees je de regels in <a href="/stekkerbatterij-of-vaste-thuisaccu/">stekkerbatterij of vaste thuisaccu</a>.</p></noscript>
 <section class="method" id="methode"><h2>Zo werkt de keuzehulp</h2><ol><li><strong>Eerst: heb je iets om op te slaan?</strong> Milieu Centraal ziet een thuisaccu vooral als manier om meer eigen zonnestroom te gebruiken, of om met een dynamisch contract goedkoop in te kopen. Zonder zonnepanelen en zonder dynamisch contract raden we nog geen accu aan.</li><li><strong>Dan de grootte.</strong> Milieu Centraal: kies niet te groot, de accu hoeft alleen je avond- en nachtverbruik te dekken. We nemen aan dat de helft van je verbruik 's avonds en 's nachts valt, en rekenen met het zomeroverschot van je panelen (${komma(ZOMERDAG_PANEEL)} kWh per paneel op een junidag, waarvan je 30% direct zelf gebruikt).</li><li><strong>Dan de soort.</strong> Wil je zelf aansluiten, is je budget tot € 1.500 of is de benodigde capaciteit kleiner dan 3 kWh, dan wordt het een stekkerbatterij. Anders een vaste thuisaccu door een installateur.</li><li><strong>Dan de cijfers.</strong> Prijs per kWh opslag: stekkerbatterij € ${PRIJS_KWH.stekker} (HomeWizard, € 1.195 voor 2,7 kWh), vaste accu € ${PRIJS_KWH.vast} (Sessy 10 kWh, € 5.500), met als minimum € 3.550 (Sessy 5 kWh, de kleinste vaste accu met een openbare prijs). Stroom € ${komma(STROOMPRIJS, 2)} per kWh (CBS), teruglevering netto ${ct(NETTO_TERUG)} per kWh (Milieu Centraal).</li><li><strong>Merken:</strong> alleen merken van de juiste soort, in de vaste volgorde (checklistscore, dan naam). Wil je noodstroom, dan alleen merken die dat noemen.</li></ol><p>Het advies is een indicatie. Je eigen verbruiksprofiel meet je met een P1-meter op je slimme meter; een installateur kan je meterkast en de plek voor de accu beoordelen. De keuzehulp verandert nooit door partners: er zijn nu geen partnerlinks en geen offertepartners.</p><p class="src">Bronnen: <a href="${BRON.mcAccu.url}" rel="noopener">${BRON.mcAccu.naam}</a> · <a href="${BRON.cbs.url}" rel="noopener">${BRON.cbs.naam}</a> · <a href="${BRON.mcNa2027.url}" rel="noopener">${BRON.mcNa2027.naam}</a> · <a href="${BRON.brandweerStekker.url}" rel="noopener">${BRON.brandweerStekker.naam}</a> · <a href="${BRON.bdBtw.url}" rel="noopener">${BRON.bdBtw.naam}</a></p></section>`,
 };
@@ -402,9 +406,10 @@ ${num('cap', 'Capaciteit thuisaccu', 5, 'kWh', 'Vul 0 in zonder accu.')}
 });
 
 export const toolHub = {
+  lastmod: '2026-10-19',
   path: '/rekentools/', title: 'Rekentools thuisaccu: terugverdientijd, kWh en saldering', h1: 'Rekentools voor je thuisaccu', crumb: 'Rekentools', og: 'rekenhulp',
   description: 'Drie gratis rekentools: de terugverdientijd van een thuisaccu, de capaciteit die je nodig hebt en wat het einde van salderen in 2027 jou kost.',
-  body: `<h1>Rekentools voor je thuisaccu</h1><p class="lead">Drie rekentools met je eigen cijfers. Standaardwaarden komen van het CBS, Milieu Centraal en de prijzen van de merken; aannames staan er altijd bij.</p>${toolCards()}
+  body: `<h1>Rekentools voor je thuisaccu</h1><p class="lead">Drie rekentools met je eigen cijfers. Standaardwaarden komen van het CBS, Milieu Centraal en de prijzen van de merken; aannames staan er altijd bij.</p>${toolCards('h2')}
 <section class="prose"><h2>In welke volgorde?</h2><ol><li><strong>Wat kost het einde van salderen jou?</strong> Begin hier als je zonnepanelen hebt. Je ziet wat je panelen vanaf 2027 minder opleveren. Dat is ongeveer het bedrag waar een thuisaccu een deel van kan terugwinnen.</li><li><strong>Hoeveel kWh heb je nodig?</strong> Een te grote accu raakt niet vol en verdient zich langzamer terug. Milieu Centraal adviseert: niet groter dan je avond- en nachtverbruik.</li><li><strong>Terugverdientijd.</strong> Vul de prijs uit je offerte in. Reken met de bruikbare capaciteit en de totaalprijs inclusief installatie en btw.</li></ol>
 <p>De rekentools zijn een indicatie. Stroomprijzen veranderen, en je eigen verbruiksprofiel kan anders zijn dan het gemiddelde. Je antwoorden blijven in je browser; we slaan niets op. Wil je liever één advies? Doe de <a href="/thuisaccu-keuzehulp/">keuzehulp</a>: zes vragen en je krijgt de soort, de capaciteit, de terugverdientijd en de merken die passen.</p>
 <h2>Welke cijfers gebruiken we?</h2><ul><li>Stroomprijs € ${komma(STROOMPRIJS, 2)} per kWh: CBS, september 2026 (levering plus energiebelasting, inclusief btw).</li><li>Netto teruglevering ${ct(NETTO_TERUG)} per kWh: Milieu Centraal, vast of variabel contract.</li><li>Opwek ${OPWEK_PANEEL} kWh per paneel per jaar en 30% direct zelf gebruikt: Milieu Centraal.</li><li>Prijzen van accu's: de eigen sites van HomeWizard, Sessy en Zonneplan.</li></ul></section>${matchCta()}`,

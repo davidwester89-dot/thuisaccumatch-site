@@ -8,7 +8,7 @@ import { IDS, MERKEN } from '../src/lib/merken.js';
 import { PARTNERLINKS } from '../src/lib/partnerlinks.js';
 import { ranglijst, score } from '../src/lib/checklist.js';
 
-const VERBODEN = [/Dave/i, /Wester/i, /batterijmatch/i, /goodfellas/i, /reddit/i, /geraadpleegd op/i, /check altijd/i, /controleer altijd/i, /kan veranderen/i, /dit is geen advies/i, /shopmatch-site/i, /e08923fead07e26/];
+const VERBODEN = [/Dave/i, /Wester/i, /batterijmatch/i, /goodfellas/i, /reddit/i, /geraadpleegd op/i, /check altijd/i, /controleer altijd/i, /kan veranderen/i, /dit is geen advies/i, /shopmatch-site/i];
 const NEP = [/★/, /aggregateRating/, /reviewCount/, /ratingValue/, /sterren/i, /klantbeoordeling/i, /AI-gegenereerd/i, /gemaakt met AI/i, /\bAI-disclaimer/i, /trustpilot/i];
 
 test('build (productie): pagina’s, sitemap, robots, IndexNow, CNAME, huisregels', () => {
@@ -22,6 +22,9 @@ test('build (productie): pagina’s, sitemap, robots, IndexNow, CNAME, huisregel
   const key = readdirSync('dist').find((f) => /^[0-9a-f]{32}\.txt$/.test(f));
   assert.ok(key && read(join('dist', key)) === key.replace('.txt', ''), 'IndexNow-sleutelbestand');
   assert.equal(read('dist/urls.txt').trim().split('\n').length, html.length - 1);
+  // Daisycon-verificatie (mediaregistratie thuisaccumatch.nl, 19-10-2026): alleen op de homepage.
+  assert.ok(read('dist/index.html').includes('<meta name="e08923fead07e26" content="c805cc3c2262098e1a99fce841da04b0" />'), 'Daisycon-meta op /');
+  for (const f of html) if (f !== join('dist', 'index.html')) assert.ok(!read(f).includes('e08923fead07e26'), `${f}: Daisycon-meta hoort alleen op /`);
   for (const f of html) {
     const s = read(f);
     for (const r of [...VERBODEN, ...NEP]) assert.ok(!r.test(s), `${f} bevat ${r}`);
