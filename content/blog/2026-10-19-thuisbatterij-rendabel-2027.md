@@ -32,7 +32,7 @@ De besparing van een thuisbatterij is eenvoudig op te schrijven:
 
 Drie getallen bepalen de uitkomst:
 
-1. **De stroomprijs.** Volgens het CBS was het gemiddelde variabele leveringstarief voor huishoudens (vaste en variabele contracten) in september 2026 € 0,1487 per kWh inclusief btw, plus € 0,11085 energiebelasting. Samen is dat ongeveer **€ 0,26 per kWh**.
+1. **De stroomprijs.** Volgens het CBS was het gemiddelde leveringstarief voor huishoudens (vaste en variabele contracten) in september 2026 € 0,1487 per kWh inclusief btw, plus € 0,11085 energiebelasting. Samen is dat ongeveer **€ 0,26 per kWh**.
 2. **Wat je netto krijgt voor teruglevering.** Vanaf 2027 krijg je een terugleververgoeding, maar betaal je vaak ook terugleverkosten. Milieu Centraal noemt een netto vergoeding van rond de halve cent per kWh. Hoe dat per leverancier uitpakt, lees je in [thuisbatterij en terugleverkosten 2027](/blog/thuisbatterij-terugleverkosten-2027/).
 3. **Hoeveel kWh je echt verschuift.** Een batterij raakt niet elke dag vol. Wij rekenen met 200 volle dagen per jaar en een rendement van 90 procent. In de winter wekken je panelen te weinig op: volgens Milieu Centraal leveren 10 panelen op een decemberdag ongeveer 2,5 kWh, tegen 15 kWh op een junidag.
 
@@ -67,7 +67,7 @@ Je hebt dan geen eigen stroom om op te slaan. En met een vaste prijs per kWh is 
 
 ### 4. Geen zonnepanelen, wel een dynamisch contract
 
-Met een dynamisch contract betaal je per kwartier de prijs van de stroombeurs. Een batterij laadt dan als de stroom goedkoop is en levert stroom aan je huis als hij duur is. Wij rekenden dat na met de echte day-ahead-prijzen van 1 januari tot en met 18 oktober 2026 (291 dagen). We lieten een rekenprogramma per dag de goedkoopste uren kiezen om te laden en de duurste om te ontladen, met 90 procent rendement en energiebelasting en btw bij het laden. Zelfs met die perfecte voorspelling, meerdere laadrondes per dag en alle stroom zelf verbruikt, levert een batterij van 5 kWh in die periode hooguit **€ 234** op. In januari en februari was dat maar € 7 tot € 9 per maand. In de praktijk is het minder: niemand voorspelt de prijs perfect en je gebruikt 's avonds niet steeds 2,5 kW.
+Met een dynamisch contract betaal je per kwartier of per uur de prijs van de stroombeurs. Een batterij laadt dan als de stroom goedkoop is en levert stroom aan je huis als hij duur is. Wij rekenden dat na met de echte day-ahead-prijzen van 1 januari tot en met 18 oktober 2026 (291 dagen). We lieten een rekenprogramma per dag de goedkoopste uren kiezen om te laden en de duurste om te ontladen, met 90 procent rendement en energiebelasting en btw bij het laden. Zelfs met die perfecte voorspelling, meerdere laadrondes per dag en alle stroom zelf verbruikt, levert een batterij van 5 kWh in die periode hooguit **€ 234** op. In januari en februari was dat maar € 7 tot € 9 per maand. In de praktijk is het minder: niemand voorspelt de prijs perfect en je gebruikt 's avonds niet steeds 2,5 kW.
 
 > **Besluit:** alleen rendabel met een goedkope batterij en goede sturing. Lees [welke combinatie van contract en batterij werkt](/blog/thuisbatterij-dynamisch-contract/).
 
@@ -124,7 +124,7 @@ Zonnepanelen leveren per euro meer op dan een batterij. Milieu Centraal is duide
 Twee dingen spelen mee in je berekening:
 
 - **Lagere energiebelasting.** In het Belastingplan 2027 staat voor stroom een energiebelasting van 8,80 cent per kWh zonder btw, tegen 9,161 cent in 2026. Dat is een voorstel dat de Tweede en Eerste Kamer nog moeten aannemen. Een iets lagere stroomprijs maakt elke kWh uit de batterij een fractie minder waard.
-- **Dubbele energiebelasting bij laden en terugleveren.** Laad je een batterij van het net en lever je die stroom later terug, dan betaal je bij het laden energiebelasting die je bij terugleveren niet terugkrijgt. In de Kamerbrief over de 500-regelaanpak van 8 oktober 2026 schrijft het kabinet dat het dubbele heffing wil voorkomen: "Dat zou namelijk de opkomst van thuisbatterijen en bi-directioneel laden bij auto’s kunnen afremmen." De ministeries van Financiën en van Economische Zaken en Klimaat werken met de sector aan een oplossing voor na 2026. Gebruik je de stroom uit de batterij zelf, dan speelt dit niet.
+- **Dubbele energiebelasting bij laden en terugleveren.** Laad je een batterij van het net en lever je die stroom later terug, dan betaal je bij het laden energiebelasting die je bij terugleveren niet terugkrijgt. In de Kamerbrief over de 500-regelaanpak van 8 oktober 2026 schrijft het kabinet dat het dubbele heffing wil voorkomen: "Dat zou namelijk de opkomst van thuisbatterijen en bi-directioneel laden bij auto’s kunnen afremmen." Maar er is nog geen oplossing. Gebruik je de stroom uit de batterij zelf, dan speelt dit niet.
 
 ## Zo maak je je eigen berekening
 

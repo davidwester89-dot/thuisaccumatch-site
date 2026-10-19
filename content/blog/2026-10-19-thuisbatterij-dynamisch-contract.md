@@ -93,7 +93,7 @@ Per maand liep het sterk uiteen. Een batterij van 5 kWh die de stroom zelf gebru
 
 Twee lessen uit deze tabel:
 
-1. **Zelf gebruiken levert veel meer op dan terugleveren.** Laad je de batterij van het net en lever je die stroom later terug, dan betaal je bij het laden energiebelasting die je bij het terugleveren niet terugkrijgt. In de Kamerbrief over de 500-regelaanpak van 8 oktober 2026 schrijft het kabinet dat het die dubbele heffing wil voorkomen. De ministeries van Financiën en van Economische Zaken en Klimaat zoeken met de sector naar een oplossing voor na 2026; die is er nog niet.
+1. **Zelf gebruiken levert veel meer op dan terugleveren.** Laad je de batterij van het net en lever je die stroom later terug, dan betaal je bij het laden energiebelasting die je bij het terugleveren niet terugkrijgt. In de Kamerbrief over de 500-regelaanpak van 8 oktober 2026 schrijft het kabinet dat het die dubbele heffing wil voorkomen, maar er is nog geen oplossing.
 2. **Ook de bovengrens is bescheiden.** Een batterij van 5 kWh kost al snel € 3.550. Zelfs met perfecte voorspelling verdien je die met alleen slim laden niet binnen tien jaar terug. In onze [rekentool voor de terugverdientijd](/terugverdientijd-thuisaccu-berekenen/) rekenen we daarom voorzichtiger: 150 dagen per jaar met een prijsverschil van 10 cent, voor 5 kWh ongeveer € 68 per jaar.
 
 De opslag die je leverancier per kWh rekent, zit niet in deze berekening. Die verschilt per leverancier en staat op je tarievenblad. Hoe hoger die opslag, hoe minder slim laden oplevert.
@@ -150,4 +150,4 @@ Ja. Over het privégebruik betaal je vijf jaar lang btw. Bij een batterij van �
 
 ### Waarom levert terugleveren uit de batterij zo weinig op?
 
-Bij het laden van het net betaal je energiebelasting, en die krijg je vanaf 2027 bij terugleveren niet terug. Het kabinet wil die dubbele heffing voorkomen, maar een oplossing volgt pas na 2026.
+Bij het laden van het net betaal je energiebelasting, en die krijg je vanaf 2027 bij terugleveren niet terug. Het kabinet wil die dubbele heffing voorkomen, maar er is nog geen oplossing.

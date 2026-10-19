@@ -9,7 +9,7 @@ image: thuisbatterij-terugleverkosten-2027
 image_alt: Dak met zonnepanelen zonder merkopdruk achter een graanveld, met bossen op de achtergrond
 tools: /thuisaccu-keuzehulp/, /terugverdientijd-thuisaccu-berekenen/, /einde-salderen-berekenen/
 sources:
-- Coolblue Energie: modelcontract (bijgewerkt 16 oktober 2026) | https://www.coolblue.nl/energiecontracten/modelcontract
+- Coolblue Energie: modelcontract | https://www.coolblue.nl/energiecontracten/modelcontract
 - Eneco: modelcontract | https://www.eneco.nl/duurzame-energie/modelcontract/
 - Energiedirect: referentieproducten (tarievenblad AltijdVoordeel Modelcontract 1 jaar, wervingsperiode vanaf 2 oktober 2026) | https://www.energiedirect.nl/energie/referentieproducten
 - Essent: terugleverkosten | https://www.essent.nl/klantenservice/contract/terugleverkosten
@@ -44,7 +44,7 @@ Vergelijkingssites spreken elkaar op dit punt tegen. Daarom gebruiken wij alleen
 
 Zo lees je de tabel:
 
-- **Coolblue Energie** zet de tarieven op de pagina over het modelcontract, bijgewerkt op 16 oktober 2026. De stroomprijs is inclusief energiebelasting.
+- **Coolblue Energie** zet de tarieven op de pagina over het modelcontract. De stroomprijs is inclusief energiebelasting.
 - **Eneco** noemt op de pagina over het modelcontract de tarieven voor bepaalde tijd (1 jaar), inclusief energiebelasting. De vergoeding staat daar als negatief bedrag, omdat je die terugkrijgt.
 - **Energiedirect** publiceert per wervingsperiode een tarievenblad. Wij gebruikten dat van de periode vanaf 2 oktober 2026 (AltijdVoordeel Modelcontract 1 jaar). Op dat blad staat het leveringstarief van € 0,21229 zonder energiebelasting; wij telden de energiebelasting van 2026 (€ 0,11085) erbij op. De vergoeding staat er als "geen btw".
 
@@ -77,10 +77,9 @@ Achter elk bedrag staat de terugverdientijd. Ter vergelijking: zonder batterij l
 
 Onze rekentool komt voor de batterij van 5 kWh uit op € 230 per jaar en 15,4 jaar. Dat komt doordat de rekentool met de gemiddelde stroomprijs van het CBS rekent: ongeveer € 0,26 per kWh. De modelcontracten hierboven zijn duurder. Dat is de vuistregel: **hoe duurder je stroom, hoe meer een thuisbatterij bespaart**. Een goedkoper contract kan dus meer schelen dan een batterij.
 
-Twee kanttekeningen:
+Een kanttekening:
 
 - **Energiebelasting 2027.** In het Belastingplan 2027 staat een energiebelasting op stroom van 8,80 cent per kWh zonder btw, tegen 9,161 cent in 2026. Met btw is dat ongeveer 0,44 cent lager. Wordt het voorstel aangenomen, dan bespaart elke kWh uit de batterij ongeveer 0,4 cent minder.
-- **Tarieven veranderen.** De leveranciers in de tabel kunnen hun tarieven per wervingsperiode aanpassen. Bij een vast contract staan ze vast voor de looptijd.
 
 ## Zo reken je het uit voor jouw contract
 
