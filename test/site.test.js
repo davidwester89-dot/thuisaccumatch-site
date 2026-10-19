@@ -7,6 +7,7 @@ import { buildLive, buildPreview, htmlFiles, read, DOMAIN } from './helpers.js';
 import { IDS, MERKEN } from '../src/lib/merken.js';
 import { PARTNERLINKS } from '../src/lib/partnerlinks.js';
 import { ranglijst, score } from '../src/lib/checklist.js';
+import { loadPosts } from '../src/blog.mjs';
 
 const VERBODEN = [/Dave/i, /Wester/i, /batterijmatch/i, /goodfellas/i, /reddit/i, /geraadpleegd op/i, /check altijd/i, /controleer altijd/i, /kan veranderen/i, /dit is geen advies/i, /shopmatch-site/i];
 const NEP = [/★/, /aggregateRating/, /reviewCount/, /ratingValue/, /sterren/i, /klantbeoordeling/i, /AI-gegenereerd/i, /gemaakt met AI/i, /\bAI-disclaimer/i, /trustpilot/i];
@@ -14,7 +15,7 @@ const NEP = [/★/, /aggregateRating/, /reviewCount/, /ratingValue/, /sterren/i,
 test('build (productie): pagina’s, sitemap, robots, IndexNow, CNAME, huisregels', () => {
   buildLive();
   const html = htmlFiles();
-  assert.equal(html.length, 30); // 25 pagina's + blogindex + 3 blogposts + 404
+  assert.equal(html.length, 27 + loadPosts().length); // 25 pagina's + blogindex + 404 + gepubliceerde blogposts (datum <= vandaag)
   const sm = read('dist/sitemap.xml');
   assert.equal((sm.match(/<loc>/g) || []).length, html.length - 1);
   assert.match(read('dist/robots.txt'), /Sitemap: https:\/\/thuisaccumatch.nl\/sitemap.xml/);

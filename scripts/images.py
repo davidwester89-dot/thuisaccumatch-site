@@ -30,6 +30,7 @@ cards={
  'blog-thuisbatterij-rendabel-2027':('Thuisbatterij rendabel in 2027?','12 situaties, elk met een besluit'),
  'blog-thuisbatterij-dynamisch-contract':('Thuisbatterij en dynamisch contract','Sturing, EMS en btw-teruggave'),
  'blog-thuisbatterij-terugleverkosten-2027':('Terugleverkosten 2027 en je thuisbatterij','Wat je per kWh bespaart'),
+ 'blog-thuisbatterij-met-noodstroom':('Thuisbatterij met noodstroom','Welke merken het kunnen'),
  'gidsen':('Gidsen over thuisaccu’s','Saldering, kosten, btw en veiligheid'),
 }
 # blogkaarten met kopfoto: kaart -> WebP in src/assets/img/blog

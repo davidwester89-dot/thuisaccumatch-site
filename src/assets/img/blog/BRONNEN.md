@@ -32,3 +32,12 @@ Alle kopfoto's van de blog zijn CC0 (publiek domein): geen naamsvermelding verpl
 - Aanpassingen: bijgesneden tot 5472 × 2873 (x = 0, y = 550), verkleind naar 1200, 900 en 600 breed, omgezet naar WebP (kwaliteit 72).
 - Merkcontrole 19-10-2026: op de panelen en het gebouw staat geen merknaam of logo; geen personen.
 - Vervangen (19-10-2026): de eerdere kopfoto's van deze drie posts (CC BY-SA 4.0 en CC BY 3.0) vroegen een naamsvermelding en zijn vervangen door deze CC0-foto's.
+
+## thuisbatterij-met-noodstroom-{600,900,1200}.webp
+
+- Gebruikt in: /blog/thuisbatterij-met-noodstroom/ (kopfoto) en og-kaart `src/assets/og/blog-thuisbatterij-met-noodstroom.png`
+- Origineel: "Candels in the dark" (1920 × 1280, 23-06-2019)
+- Bron: Wikimedia Commons, https://commons.wikimedia.org/wiki/File:Candels_in_the_dark.jpg
+- Licentie: CC0 1.0 Universal (Public Domain Dedication), https://creativecommons.org/publicdomain/zero/1.0/deed.nl
+- Aanpassingen: bijgesneden tot 1920 × 1008 (x = 0, y = 136), verkleind naar 1200, 900 en 600 breed, omgezet naar WebP (kwaliteit 72).
+- Merkcontrole 19-10-2026: brandende kaarsen tegen een donkere achtergrond; geen merknaam, logo of personen.
