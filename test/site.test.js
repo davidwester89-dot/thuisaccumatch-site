@@ -140,3 +140,9 @@ test('build (test-site): noindex overal, Disallow, BASE-paden, geen CNAME, previ
   const wf = read('.github/workflows/pages.yml');
   assert.match(wf, /BASE: ''/); assert.match(wf, /GO_LIVE: '1'/); assert.match(wf, /push:\n\s+branches: \[main\]/);
 });
+
+test('blog: post van 20-10-2026 staat pas vanaf die datum in loadPosts', () => {
+  const slugs = (d) => loadPosts('content/blog', d).map((p) => p.slug);
+  assert.ok(!slugs('2026-10-19').includes('thuisbatterij-met-noodstroom'), 'niet op 19-10');
+  assert.ok(slugs('2026-10-20').includes('thuisbatterij-met-noodstroom'), 'wel op 20-10');
+});

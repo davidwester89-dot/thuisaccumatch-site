@@ -71,7 +71,7 @@ Voor een back-up heb je meestal meer nodig dan alleen de batterij:
 - **Aanpassingen in je meterkast**, zoals een aparte groep voor noodstroom.
 - **Een installateur.** Bij Sessy is het aansluiten van een off-grid omvormer uitdrukkelijk werk voor een professional.
 
-Zonneplan zegt dat de kosten uiteenlopen van zo'n € 200 voor één stopcontact tot circa € 3.000 voor je hele woning. Zijn eigen noodstroomvoorziening kost € 250 extra. Een Zonneplan-batterij kost € 4.690 (10 kWh) tot € 9.090 (35 kWh), na btw-teruggave. De Sessy Plus 15 kWh met back-up-uitgang kost € 9.400 inclusief btw, zonder installatie. Huawei, SolarEdge en BYD noemen geen prijs; die hangt af van je installateur.
+Zonneplan zegt dat de kosten uiteenlopen van zo'n € 200 voor één stopcontact tot circa € 3.000 voor je hele woning. Bij Zonneplan zelf kost het noodstroomstopcontact € 200 tot € 250 extra. Een Zonneplan-batterij kost € 4.690 (10 kWh) tot € 9.090 (35 kWh), na btw-teruggave; die krijg je volgens Zonneplan met een dynamisch contract en slimme aansturing. De Sessy Plus 15 kWh met back-up-uitgang kost € 9.400 inclusief btw, zonder installatie. Huawei, SolarEdge en BYD noemen geen prijs; die hangt af van je installateur.
 
 Denk ook aan je warme water. Zonneplan wijst erop dat je cv-ketel of boiler stroom nodig heeft: zonder stroom heb je dan geen warm water. Wat een batterij in totaal kost, lees je bij [thuisaccu kosten](/thuisaccu-kosten/).
 
@@ -101,4 +101,4 @@ Niet vanzelf. Volgens Milieu Centraal moet de batterij een speciale noodstroomfu
 Nee. De Plug-In Battery van HomeWizard schakelt bij een storing automatisch uit, omdat hij het net nodig heeft.
 
 ### Wat kost noodstroom bij een thuisbatterij?
-Volgens Zonneplan van zo'n € 200 voor één stopcontact tot circa € 3.000 voor je hele woning. Bij Zonneplan zelf kost de noodstroomvoorziening € 250 extra.
+Volgens Zonneplan van zo'n € 200 voor één stopcontact tot circa € 3.000 voor je hele woning. Bij Zonneplan zelf kost het noodstroomstopcontact € 200 tot € 250 extra.
