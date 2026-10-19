@@ -27,6 +27,7 @@ test('build (productie): pagina’s, sitemap, robots, IndexNow, CNAME, huisregel
   assert.ok(read('dist/index.html').includes('<meta name="e08923fead07e26" content="c805cc3c2262098e1a99fce841da04b0" />'), 'Daisycon-meta op /');
   for (const f of html) if (f !== join('dist', 'index.html')) assert.ok(!read(f).includes('e08923fead07e26'), `${f}: Daisycon-meta hoort alleen op /`);
   const impact = "<meta name='impact-site-verification' value='3863a096-87d6-4ae8-aea8-c856e59d324b'>";
+  assert.ok(read(join('dist', 'index.html')).includes("<meta name='impact-site-verification' value='bcdec9e7-96e8-449e-b059-a1ed69bdb69c'>"), 'tweede Impact-meta op /');
   assert.ok(read('dist/index.html').includes(impact), 'Impact-verificatie op /');
   for (const f of html) if (f !== join('dist', 'index.html')) assert.ok(!read(f).includes('impact-site-verification'), `${f}: Impact-meta hoort alleen op /`);
   for (const f of html) {
