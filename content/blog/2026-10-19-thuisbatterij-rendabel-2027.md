@@ -81,7 +81,7 @@ Dit is de sterkste combinatie. In de zomer vult de batterij zich met zonnestroom
 
 Een warmtepomp verbruikt vooral stroom in de winter, juist als je panelen weinig opwekken. Dan heeft de batterij weinig zonnestroom om op te slaan. Milieu Centraal raadt aan een warmtepomp met voorraadvat te laten draaien als de zon schijnt: het warme water is dan je buffer.
 
-> **Besluit:** de warmtepomp maakt een batterij niet rendabeler. Met een dynamisch contract kan een batterij in de winter wel helpen, maar reken met lage wintercijfers. [Doe de keuzehulp](/thuisaccu-keuzehulp/).
+> **Besluit:** de warmtepomp maakt een batterij niet rendabeler. Met een dynamisch contract kan een batterij in de winter wel helpen, maar reken met lage wintercijfers. [Doe de keuzehulp](/thuisaccu-keuzehulp/). Hybride of all-electric? Zie [WarmtepompenMatch](https://warmtepompenmatch.nl/hybride-of-all-electric/).
 
 ### 7. Je hebt een elektrische auto met eigen laadpaal
 
@@ -117,7 +117,7 @@ Niet elke batterij levert stroom als het net uitvalt. Daarvoor is een noodstroom
 
 Zonnepanelen leveren per euro meer op dan een batterij. Milieu Centraal is duidelijk: wil je geld besparen, dan zijn isoleren of een warmtepomp betere stappen dan een thuisbatterij.
 
-> **Besluit:** eerst panelen, dan pas een batterij. Wat het einde van de saldering met je panelen doet, zie je met de [rekentool einde salderen](/einde-salderen-berekenen/).
+> **Besluit:** eerst panelen, dan pas een batterij. Isoleren of een warmtepomp eerst? Zie [welke maatregel eerst](https://verduurzaammatch.nl/blog/huis-verduurzamen-waar-beginnen/) op VerduurzaamMatch. Wat het einde van de saldering met je panelen doet, zie je met de [rekentool einde salderen](/einde-salderen-berekenen/).
 
 ## Wat er in 2027 nog verandert
 
