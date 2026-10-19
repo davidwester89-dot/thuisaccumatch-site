@@ -25,6 +25,9 @@ test('build (productie): pagina’s, sitemap, robots, IndexNow, CNAME, huisregel
   // Daisycon-verificatie (mediaregistratie thuisaccumatch.nl, 19-10-2026): alleen op de homepage.
   assert.ok(read('dist/index.html').includes('<meta name="e08923fead07e26" content="c805cc3c2262098e1a99fce841da04b0" />'), 'Daisycon-meta op /');
   for (const f of html) if (f !== join('dist', 'index.html')) assert.ok(!read(f).includes('e08923fead07e26'), `${f}: Daisycon-meta hoort alleen op /`);
+  const impact = "<meta name='impact-site-verification' value='3863a096-87d6-4ae8-aea8-c856e59d324b'>";
+  assert.ok(read('dist/index.html').includes(impact), 'Impact-verificatie op /');
+  for (const f of html) if (f !== join('dist', 'index.html')) assert.ok(!read(f).includes('impact-site-verification'), `${f}: Impact-meta hoort alleen op /`);
   for (const f of html) {
     const s = read(f);
     for (const r of [...VERBODEN, ...NEP]) assert.ok(!r.test(s), `${f} bevat ${r}`);

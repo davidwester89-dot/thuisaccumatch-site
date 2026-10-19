@@ -118,6 +118,7 @@ ${robots}${p.noindex ? '' : `<link rel="canonical" href="${url}">`}
 ${p.article ? `<meta property="article:published_time" content="${p.article.date}"><meta property="article:modified_time" content="${p.article.updated}">` : ''}
 <meta name="theme-color" content="${SITE.theme}">
 ${p.path === '/' ? '<meta name="e08923fead07e26" content="c805cc3c2262098e1a99fce841da04b0" />' : ''}
+${p.path === '/' ? "<meta name='impact-site-verification' value='3863a096-87d6-4ae8-aea8-c856e59d324b'>" : ''}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
 ${NAV_OPT.blog ? `<link rel="alternate" type="application/rss+xml" title="${SITE.name} blog" href="/blog/feed.xml">` : ''}
 <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/inter-800.woff2" as="font" type="font/woff2" crossorigin>
