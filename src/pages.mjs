@@ -50,7 +50,7 @@ export const home = {
   body: `<section class="hero"><div>
 <p class="h1-brand">Thuisaccu<b>Match</b>.nl</p>
 <h1 class="tagline">Thuisaccu kiezen? Reken eerst.</h1>
-<p class="lead">Op 1 januari 2027 stopt de salderingsregeling. Is een thuisaccu dan slim, hoe groot moet hij zijn en welk merk past? Zes vragen en je krijgt een advies met capaciteit en terugverdientijd. Zes merken naast elkaar op 10 vaste punten.</p>
+<p class="lead">Op 1 januari 2027 <a href="/salderingsregeling-stopt-2027/">stopt de salderingsregeling</a>. Is een thuisaccu dan slim, hoe groot moet hij zijn en welk merk past? Zes vragen en je krijgt een advies met capaciteit en terugverdientijd. Zes merken naast elkaar op 10 vaste punten.</p>
 <div class="actions"><a class="btn" href="/thuisaccu-keuzehulp/" data-cta="home_hero">Start de keuzehulp</a><a class="btn ghost" href="/vergelijken/">Vergelijk alle 6 merken</a></div>
 </div>
 <div class="hero-q"><p class="hero-q-step">Vraag 1 van ${VRAGEN.length}</p><p class="hero-q-title" id="hq">${esc(VRAGEN[0].vraag)}</p><div class="hero-q-opts" role="group" aria-labelledby="hq">${VRAGEN[0].opties.map(([v, l]) => `<a class="choice" href="/thuisaccu-keuzehulp/?panelen=${v}" rel="nofollow">${esc(l)}<span aria-hidden="true">→</span></a>`).join('')}</div><p class="hero-q-foot">Daarna nog ${VRAGEN.length - 1} korte vragen. Gratis, zonder account.</p></div>
@@ -123,7 +123,7 @@ export const merkPages = IDS.map((id) => {
   const h1 = `${p.naam}-thuisaccu: aanbod, checklist en voor wie`;
   const pos = RANG.indexOf(id) + 1;
   const alt = RANG.filter((x) => x !== id).slice(0, 3);
-  const t = [`${p.naam}-thuisaccu 2026: aanbod en score | ThuisaccuMatch`, `${p.naam}-thuisaccu 2026: aanbod en checklist`, `${p.naam}-thuisaccu 2026`].find((x) => x.length <= 60);
+  const t = [`${p.naam}-thuisaccu 2026: aanbod en checklist`, `${p.naam}-thuisaccu 2026`].find((x) => x.length <= 60);
   const lc = (x) => (/^[A-Z][a-z]/.test(x) ? x[0].toLowerCase() + x.slice(1) : x);
   const d = [`${p.naam}-thuisaccu: ${lc(aanbodTekst(id))}. Checklist van 10 punten met bron, prijs, sterke punten en voor wie hij past.`, `${p.naam}-thuisaccu: ${lc(aanbodTekst(id))}. Checklist van 10 punten met bron en voor wie hij past.`, `${p.naam}-thuisaccu: aanbod, prijs, checklist van 10 punten met bron, sterke punten, aandachtspunten en voor wie hij past.`].find((x) => x.length <= 155 && x.length >= 70);
   const prijsBlok = p.prijzen
@@ -322,14 +322,14 @@ ${end('Welke thuisaccu past bij jouw huis?', B('brandweer', 'brandweerStekker', 
 const LEES = {
   '/salderingsregeling-stopt-2027/': ['/terugleverkosten/', '/thuisaccu-terugverdientijd/', '/thuisaccu-dynamisch-energiecontract/', '/einde-salderen-berekenen/'],
   '/thuisaccu-kosten/': ['/btw-thuisaccu/', '/thuisaccu-terugverdientijd/', '/stekkerbatterij-of-vaste-thuisaccu/', '/vergelijken/'],
-  '/thuisaccu-terugverdientijd/': ['/thuisaccu-kosten/', '/salderingsregeling-stopt-2027/', '/thuisaccu-dynamisch-energiecontract/', '/terugverdientijd-thuisaccu-berekenen/'],
+  '/thuisaccu-terugverdientijd/': ['/thuisaccu-kosten/', '/salderingsregeling-stopt-2027/', '/thuisaccu-dynamisch-energiecontract/', '/terugverdientijd-thuisaccu-berekenen/', '/blog/thuisbatterij-rendabel-2027/'],
   '/stekkerbatterij-of-vaste-thuisaccu/': ['/thuisaccu-veiligheid/', '/thuisaccu-kosten/', '/merken/homewizard/', '/capaciteit-thuisaccu-berekenen/'],
-  '/thuisaccu-dynamisch-energiecontract/': ['/btw-thuisaccu/', '/salderingsregeling-stopt-2027/', '/terugleverkosten/', '/terugverdientijd-thuisaccu-berekenen/'],
-  '/terugleverkosten/': ['/salderingsregeling-stopt-2027/', '/thuisaccu-dynamisch-energiecontract/', '/thuisaccu-terugverdientijd/', '/einde-salderen-berekenen/'],
+  '/thuisaccu-dynamisch-energiecontract/': ['/btw-thuisaccu/', '/salderingsregeling-stopt-2027/', '/terugleverkosten/', '/terugverdientijd-thuisaccu-berekenen/', '/blog/thuisbatterij-dynamisch-contract/'],
+  '/terugleverkosten/': ['/salderingsregeling-stopt-2027/', '/thuisaccu-dynamisch-energiecontract/', '/thuisaccu-terugverdientijd/', '/einde-salderen-berekenen/', '/blog/thuisbatterij-terugleverkosten-2027/'],
   '/btw-thuisaccu/': ['/thuisaccu-kosten/', '/thuisaccu-dynamisch-energiecontract/', '/merken/zonneplan/', '/terugverdientijd-thuisaccu-berekenen/'],
   '/thuisaccu-veiligheid/': ['/stekkerbatterij-of-vaste-thuisaccu/', '/thuisaccu-kosten/', '/vergelijken/', '/capaciteit-thuisaccu-berekenen/'],
 };
-const NAMEN = Object.fromEntries([...GIDSLINKS, ...TOOLS.map(([h, t]) => [h, t]), ['/vergelijken/', 'Alle thuisaccu’s vergelijken'], ...IDS.map((id) => [`/merken/${M[id].slug}/`, `${M[id].naam}-thuisaccu`])]);
+const NAMEN = Object.fromEntries([...GIDSLINKS, ...TOOLS.map(([h, t]) => [h, t]), ['/vergelijken/', 'Alle thuisaccu’s vergelijken'], ['/blog/thuisbatterij-rendabel-2027/', 'Blog: is een thuisbatterij rendabel in 2027?'], ['/blog/thuisbatterij-dynamisch-contract/', 'Blog: welke thuisbatterij past bij een dynamisch contract?'], ['/blog/thuisbatterij-terugleverkosten-2027/', 'Blog: thuisbatterij en terugleverkosten 2027'], ...IDS.map((id) => [`/merken/${M[id].slug}/`, `${M[id].naam}-thuisaccu`])]);
 export const leesOok = (path) => (LEES[path] ? `<h2>Lees ook</h2><ul class="gidslijst">${LEES[path].map((h) => `<li><a href="${h}">${esc(NAMEN[h])}</a></li>`).join('')}</ul>` : '');
 const BIJGEWERKT = { '/salderingsregeling-stopt-2027/': '2026-10-19', '/thuisaccu-terugverdientijd/': '2026-10-19', '/thuisaccu-dynamisch-energiecontract/': '2026-10-19' };
 export const guides = [salderingGids, kostenGids, tvtGids, soortGids, dynGids, tlkGids, btwGids, veiligGids].map((x) => (BIJGEWERKT[x.path] ? { ...x, lastmod: BIJGEWERKT[x.path], article: { ...x.article, updated: BIJGEWERKT[x.path] } } : x)).map((x) => ({ ...x, body: x.body.replace('<p class="src">Bronnen:', () => `${leesOok(x.path)}<p class="src">Bronnen:`) }));
@@ -340,11 +340,23 @@ const R = [['/rekentools/', 'Rekentools']];
 const srcs = (...ids) => `<p class="src">Bronnen: ${ids.map((k) => `<a href="${BRON[k].url}" rel="noopener">${esc(BRON[k].naam)}</a>`).join(' · ')}</p>`;
 const tool = (o) => ({ ...o, crumb: o.crumb, parents: R, navPath: '/rekentools/', stamp: { checked: CHECKED } });
 
+// SEO-audit 20-10 (TAM-02): uitgewerkt voorbeeld en FAQ onder de rekentool, alleen met de rekenregels en standaardwaarden van de tool.
+const T5D = terugverdien({ prijs: 3550, capaciteit: 5, teruglevering: EX.terug, dynamisch: true });
+const tvtToolFaq = [
+  ['Welke gegevens heb ik nodig om de terugverdientijd te berekenen?', 'De prijs van de accu inclusief installatie en btw, de bruikbare capaciteit in kWh (datasheet of offerte) en hoeveel stroom je per jaar teruglevert (jaarafrekening). Stroomprijs en terugleververgoeding staan al ingevuld; pas ze aan aan je eigen contract.'],
+  ['Waarom geeft de rekentool een lange terugverdientijd?', `Omdat een accu maar een beperkt aantal kWh per jaar verschuift: hooguit capaciteit × ${AANNAMES.volDagen} dagen dat hij vol raakt, keer ${komma(AANNAMES.rendement * 100, 0)}% rendement. Per kWh bespaar je het verschil tussen de stroomprijs (€ ${komma(STROOMPRIJS, 2)}) en de netto terugleververgoeding (${ct(NETTO_TERUG)}). Milieu Centraal schrijft dat je een thuisaccu op dit moment hoogstwaarschijnlijk niet terugverdient.`],
+  ['Telt een dynamisch contract mee?', 'Alleen als je het vinkje zet. Dan rekent de tool er een opbrengst van slim laden uit het net bij: capaciteit × dagen × rendement × prijsverschil. Die dagen en dat prijsverschil zijn aannames, want dynamische prijzen zijn niet te voorspellen (ACM ConsuWijzer).'],
+];
+const tvtVoorbeeld = `<section id="voorbeeld"><h2>Rekenvoorbeeld met de standaardwaarden</h2>
+<p>Een accu van 5 kWh voor ${eur(3550)} (adviesprijs Sessy 5 kWh), bij ${EX.terug.toLocaleString('nl-NL')} kWh teruglevering per jaar:</p>
+<ol><li><strong>Uit de accu per jaar:</strong> het kleinste van ${EX.terug.toLocaleString('nl-NL')} kWh en 5 × ${AANNAMES.volDagen} = ${(5 * AANNAMES.volDagen).toLocaleString('nl-NL')} kWh, keer ${komma(AANNAMES.rendement * 100, 0)}% = ${T5.kwh.toLocaleString('nl-NL')} kWh.</li><li><strong>Besparing per kWh:</strong> € ${komma(STROOMPRIJS, 2)} die je niet inkoopt, min ${ct(NETTO_TERUG)} die je niet meer krijgt voor teruglevering.</li><li><strong>Besparing per jaar:</strong> ${eur(T5.besparing)}.</li><li><strong>Terugverdientijd:</strong> ${eur(3550)} ÷ ${eur(T5.besparing)} = ${jr(T5)}.</li></ol>
+<p>Met een dynamisch contract en slim laden komt daar volgens de aannames van de tool ${eur(T5D.dyn)} per jaar bij: 5 kWh × ${AANNAMES.dynDagen} dagen × ${komma(AANNAMES.rendement * 100, 0)}% × € ${komma(AANNAMES.spread, 2)}. De besparing wordt dan ${eur(T5D.besparing)} per jaar en de terugverdientijd ${jr(T5D)}. Pas de waarden hierboven aan voor je eigen offerte en contract.</p></section>
+${faqHtml(tvtToolFaq)}`;
 export const calcTvt = tool({
   path: '/terugverdientijd-thuisaccu-berekenen/', title: 'Terugverdientijd thuisaccu berekenen (2027) | ThuisaccuMatch', h1: 'Terugverdientijd van je thuisaccu berekenen', crumb: 'Terugverdientijd', og: 'rekenhulp',
   description: 'Bereken wat een thuisaccu per jaar oplevert na het einde van de saldering en na hoeveel jaar je hem terugverdient. Met of zonder dynamisch contract.',
   scripts: ['/js/terugverdientijd.js'],
-  schema: [app('Terugverdientijd thuisaccu berekenen', '/terugverdientijd-thuisaccu-berekenen/')],
+  schema: [app('Terugverdientijd thuisaccu berekenen', '/terugverdientijd-thuisaccu-berekenen/'), faqSchema(tvtToolFaq)],
   body: `<h1>Terugverdientijd van je thuisaccu berekenen</h1><p class="lead">Vul de prijs en capaciteit uit je offerte in en hoeveel stroom je teruglevert. De rest staat op de cijfers van het CBS en Milieu Centraal; pas ze aan aan je eigen contract.</p>
 <div class="grid calc">
 <form class="calc-form card" id="form" novalidate>
@@ -360,6 +372,7 @@ ${num('terug', 'Teruglevering per jaar', EX.terug, 'kWh', 'Staat op je jaarafrek
 </div>
 <section class="method" id="methode"><h2>Zo rekenen we</h2><ul><li><strong>Uit de accu per jaar:</strong> het kleinste van je teruglevering en capaciteit × dagen dat de accu vol raakt, keer het rendement.</li><li><strong>Besparing zonnestroom:</strong> die kWh koop je niet in (€ ${komma(STROOMPRIJS, 2)}) en lever je niet terug (netto ${ct(NETTO_TERUG)}). Het verschil is je besparing per kWh.</li><li><strong>Slim laden:</strong> alleen met een dynamisch contract. Capaciteit × dagen × rendement × prijsverschil. De prijzen zijn niet te voorspellen (ACM ConsuWijzer), dus dit is een schatting.</li><li><strong>Stroomprijs:</strong> CBS, september 2026: variabel leveringstarief € ${komma(LEVERING, 4)} plus energiebelasting € ${komma(ENERGIEBELASTING, 5)} per kWh, inclusief btw.</li><li><strong>Niet meegerekend:</strong> slijtage van de accu, rente, prijsstijgingen en een eventuele btw-teruggave.</li></ul>
 <p>Kijk ook naar de grootte: een te grote accu raakt in de winter niet vol en verlengt je terugverdientijd. Milieu Centraal raadt aan niet te groot te kiezen. Bereken je capaciteit met de <a href="/capaciteit-thuisaccu-berekenen/">capaciteitsberekening</a>, of zie met de <a href="/einde-salderen-berekenen/">rekentool einde salderen</a> wat het einde van salderen je kost.</p>${srcs('cbs', 'mcAccu', 'mcNa2027', 'acmAanbod')}</section>
+${tvtVoorbeeld}
 <p>Meer uitleg: <a href="/thuisaccu-terugverdientijd/">verdien je een thuisaccu terug?</a> · <a href="/thuisaccu-kosten/">wat kost een thuisaccu?</a> · <a href="/thuisaccu-keuzehulp/">past een thuisaccu bij jou?</a></p>`,
 });
 
