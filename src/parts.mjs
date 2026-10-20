@@ -18,8 +18,13 @@ export const bron = (...lists) => {
 export const B = (...ids) => ids.map((k) => [BRON[k].naam, BRON[k].url]);
 /** Bronnen van de checklist van één of meer merken (unieke URL's). */
 export const featureBronnen = (...ids) => ids.flatMap((id) => [...new Set(Object.values(FEATURES[id]).map((f) => f.s).filter(Boolean))].map((u) => [`${M[id].naam}: ${bronTekst(u)}`, u]));
-/** Linktekst van een bron: paginatitel uit de URL als die leesbaar is (3+ woorden), anders domein + pad. */
+/** Leesbare linkteksten voor bron-URL's zonder bruikbare slug (titel van de pagina zelf, gecontroleerd 20-10-2026). */
+const BRONTITEL = {
+  'https://marketing.solaredge.com/nl/dynamisch-tarief': 'SolarEdge ONE, modus Dynamisch Tarief (solaredge.com)',
+};
+/** Linktekst van een bron: vaste titel uit BRONTITEL, anders paginatitel uit de URL als die leesbaar is (3+ woorden), anders domein + pad. */
 export function bronTekst(u) {
+  if (BRONTITEL[u]) return BRONTITEL[u];
   const url = new URL(u); const host = url.hostname.replace(/^www\./, '');
   const slug = decodeURIComponent(url.pathname.replace(/\/$/, '').split('/').pop() || '').replace(/\.html?$/, '').replace(/^\d+-/, '');
   if (slug.split('-').length >= 3) return `${slug.charAt(0).toUpperCase()}${slug.slice(1).replace(/-/g, ' ')} (${host})`;
