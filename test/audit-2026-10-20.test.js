@@ -27,3 +27,11 @@ test('build: privacyblok, tabellen, menu-Escape, cookieknoppen', () => {
   }
   assert.match(readFileSync('dist/js/menu.js', 'utf8'), /Escape/);
 });
+
+test('privacy: GA4-bewaartermijn 14 maanden (ingesteld 20-10-2026)', () => {
+  execSync('node build.mjs', { stdio: 'ignore', env: { ...process.env, BASE: '', PREVIEW: '' } });
+  const priv = readFileSync('dist/privacy/index.html', 'utf8');
+  assert.ok(priv.includes('bewaart Google 14 maanden'), 'bewaartermijn niet 14');
+  assert.ok(!/bewaart Google 2 maanden/.test(priv), 'oude termijn 2 maanden staat er nog');
+  assert.ok(priv.includes('maximaal 14 maanden'));
+});
