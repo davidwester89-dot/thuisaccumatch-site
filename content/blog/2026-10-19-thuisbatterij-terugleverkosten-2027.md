@@ -11,14 +11,14 @@ tools: /thuisaccu-keuzehulp/, /terugverdientijd-thuisaccu-berekenen/, /einde-sal
 sources:
 - Coolblue Energie: modelcontract | https://www.coolblue.nl/energiecontracten/modelcontract
 - Eneco: modelcontract | https://www.eneco.nl/duurzame-energie/modelcontract/
-- Energiedirect: referentieproducten (tarievenblad AltijdVoordeel Modelcontract 1 jaar, wervingsperiode vanaf 2 oktober 2026) | https://www.energiedirect.nl/energie/referentieproducten
+- Energiedirect: referentieproducten | https://www.energiedirect.nl/energie/referentieproducten
 - Essent: terugleverkosten | https://www.essent.nl/klantenservice/contract/terugleverkosten
 - Vattenfall: vaste terugleverkosten | https://www.vattenfall.nl/zonnepanelen/vaste-terugleverkosten/
 - Rijksoverheid: salderingsregeling stopt in 2027 | https://www.rijksoverheid.nl/themas/klimaat-milieu-en-natuur/energie-thuis/salderingsregeling
 - ACM: veranderingen in 2027 | https://www.acm.nl/nl/publicaties/energiemonitor-acm-leveranciers-moeten-klanten-goed-informeren-over-belangrijke-veranderingen-2027
 - Milieu Centraal: zonnestroom als de saldering stopt | https://www.milieucentraal.nl/energie-besparen/zonnepanelen/zonnestroom-als-de-saldering-stopt-dit-moet-je-weten/
 - Belastingdienst: tarieven energiebelasting | https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/overige_belastingen/belastingen_op_milieugrondslag/energiebelasting/energiebelasting
-- Rijksfinanciën: fiscale sleuteltabel 2027 (Belastingplan 2027) | https://www.rijksfinancien.nl/sites/default/files/bestanden/belastingplan-2027/pakket-belastingplan-2027/Fiscale-sleuteltabel-2027-incl-correctie-tarieven-energiebelasting-zelfstandigenaftrek.pdf
+- Rijksfinanciën: fiscale sleuteltabel 2027 | https://www.rijksfinancien.nl/sites/default/files/bestanden/belastingplan-2027/pakket-belastingplan-2027/Fiscale-sleuteltabel-2027-incl-correctie-tarieven-energiebelasting-zelfstandigenaftrek.pdf
 - HomeWizard: Plug-In Battery | https://www.homewizard.com/nl/plug-in-battery/
 - Sessy: prijsinformatie | https://www.sessy.nl/prijsinformatie
 ---
