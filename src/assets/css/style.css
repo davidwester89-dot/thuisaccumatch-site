@@ -514,3 +514,10 @@ input[aria-invalid=true]{border-color:var(--bad)!important}
 @media(min-width:900px){.logos.six{grid-template-columns:repeat(6,minmax(0,1fr))}}
 /* Tapdoelen minstens 48 × 48 px (ook korte links als "Home", "BYD" en "bron") */
 .crumbs a,table.data a{min-width:48px;text-align:center}
+
+/* Audit 20-10-2026 (snelheid-mobiel-ux): bronlinks breken af, skiplink en consentlink 48 px, partnerlabel en voetnoten >= 15 px */
+.src a,.report a{overflow-wrap:anywhere}
+.skip:focus{min-height:48px}
+.consent a{display:inline-block;padding-block:12px}
+.partner{font-size:.9375rem}
+.fnote{font-size:.9375rem}

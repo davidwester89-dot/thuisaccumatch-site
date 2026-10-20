@@ -17,7 +17,14 @@ export const bron = (...lists) => {
 /** Bron uit kosten.js als [naam, url]. */
 export const B = (...ids) => ids.map((k) => [BRON[k].naam, BRON[k].url]);
 /** Bronnen van de checklist van één of meer merken (unieke URL's). */
-export const featureBronnen = (...ids) => ids.flatMap((id) => [...new Set(Object.values(FEATURES[id]).map((f) => f.s).filter(Boolean))].map((u) => [`${M[id].naam}: ${new URL(u).hostname.replace(/^www\./, '')}${new URL(u).pathname.replace(/\/$/, '')}`, u]));
+export const featureBronnen = (...ids) => ids.flatMap((id) => [...new Set(Object.values(FEATURES[id]).map((f) => f.s).filter(Boolean))].map((u) => [`${M[id].naam}: ${bronTekst(u)}`, u]));
+/** Linktekst van een bron: paginatitel uit de URL als die leesbaar is (3+ woorden), anders domein + pad. */
+export function bronTekst(u) {
+  const url = new URL(u); const host = url.hostname.replace(/^www\./, '');
+  const slug = decodeURIComponent(url.pathname.replace(/\/$/, '').split('/').pop() || '').replace(/\.html?$/, '').replace(/^\d+-/, '');
+  if (slug.split('-').length >= 3) return `${slug.charAt(0).toUpperCase()}${slug.slice(1).replace(/-/g, ' ')} (${host})`;
+  return `${host}${url.pathname.replace(/\/$/, '')}`;
+}
 export const matchCta = (t = 'Twijfel je nog?') => `<div class="cta"><h2>${t}</h2><p>Zes vragen over je zonnepanelen, verbruik, contract en budget. Je krijgt een advies (geen accu, stekkerbatterij of vaste thuisaccu), de capaciteit, de terugverdientijd en de merken die passen.</p><a class="btn" href="/thuisaccu-keuzehulp/" data-cta="match">Start de keuzehulp</a></div>`;
 export const article = ({ path, title, h1, description, og, parents, date = DATE, faq, schemaType = 'Article' }) => ({
   path, title, h1, crumb: h1, description, og, parents, ogType: 'article', lastmod: date,

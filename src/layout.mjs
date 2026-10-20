@@ -1,4 +1,5 @@
 import { readFileSync, readdirSync } from 'node:fs';
+import { a11yTabellen } from './a11y-tabellen.mjs';
 import { GA_ID as GA_CONFIG } from './analytics.config.mjs';
 import { GA_ID_RE } from './lib/consent.js';
 import { networkFor } from './network.mjs';
@@ -135,7 +136,7 @@ ${PREVIEW ? '<p class="preview">Testversie van ThuisaccuMatch.nl, nog niet live<
 </div></header>
 <main id="inhoud"><div class="wrap">
 ${crumbs}
-${withStamp(p.body, p.stamp)}
+${a11yTabellen(withStamp(p.body, p.stamp))}
 ${foutGezien(url)}
 </div></main>
 <footer class="site"><div class="wrap">
@@ -149,7 +150,7 @@ ${networkFooter()}
 <p class="fine">© 2026 ${SITE.name}. Partnerlinks hebben nooit invloed op de score, de volgorde of het advies.</p>
 </div></footer>
 ${hasCta ? `<a class="stickycta" href="/thuisaccu-keuzehulp/" data-cta="sticky_match">${ICONS.match}<span>Past een thuisaccu bij jou? Start de keuzehulp</span></a>` : ''}
-${[...(GA_ID ? ['/js/consent.js'] : []), ...(p.scripts || [])].map((s) => `<script type="module" src="${s}"></script>`).join('\n')}
+${['/js/menu.js', ...(GA_ID ? ['/js/consent.js'] : []), ...(p.scripts || [])].map((s) => `<script type="module" src="${s}"></script>`).join('\n')}
 </body>
 </html>`;
   return withBase(html.replace('{{CSS}}', () => cssFor(html)));
