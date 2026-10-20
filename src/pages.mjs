@@ -2,6 +2,7 @@ import { SITE, esc, ORG, GA_ID, ICONS, fmtDate } from './layout.mjs';
 import { PRIVACY_UPDATED, cookieTabel, partnerNetwerk, grondslag, doorgifte, bewaartermijnen, rechten } from './privacy-avg.mjs';
 import { CONSENT_KEY } from './lib/consent.js';
 import { PARTNERLINKS } from './lib/partnerlinks.js';
+import { HERO_ART } from './hero-art.mjs';
 import { IDS, CHECKED, FEATURES, STERK_IN } from './lib/merken.js';
 import { knop } from './lib/partnerlinks.js';
 import { VRAGEN } from './lib/match.js';
@@ -40,51 +41,67 @@ const homeFaq = [
   ['Verdient ThuisaccuMatch aan de merken?', 'Nu niet. Komt er later een partnerlink of offertepartner, dan heeft die altijd het label "partnerlink" en telt die nooit mee in de score, de volgorde of het advies.'],
 ];
 const miniRows = RANG.map((id) => `<tr><th scope="row"><span class="rowlogo">${logo(id, 'sm')}</span><a href="/merken/${M[id].slug}/">${esc(M[id].naam)}</a></th><td data-l="Score">${scoreBadge(id)}</td>${[['stekker', 'Stekker'], ['bestaand', 'Bestaande omvormer'], ['noodstroom', 'Noodstroom'], ['garantie', 'Garantie 10 jaar'], ['prijs', 'Prijs openbaar']].map(([k, l]) => `<td data-l="${l}">${fv(FEATURES[id][k], false)}</td>`).join('')}</tr>`).join('');
+// Lijn-iconen voor de rekentoolkaarten (redesign-v1, Lucide-stijl): klok (terugverdientijd), batterij (capaciteit), zon (einde salderen).
+const svgI = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+const TOOL_ICO = [svgI('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'), svgI('<rect x="2" y="7" width="17" height="10" rx="2"/><path d="M22 11v2"/><path d="M6 10v4M10 10v4"/>'), svgI('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>')];
 // Kopniveau volgt de pagina: op /rekentools/ staan de kaarten direct onder de H1 (dus H2), op de homepage onder de H2 "Rekentools" (dus H3).
-const toolCards = (h = 'h3') => `<div class="grid cards">${TOOLS.map(([href, t, d]) => `<a class="card" href="${href}"><${h}${h === 'h2' ? ' class="h3"' : ''}>${esc(t)}</${h}><p>${esc(d)}</p><span class="more">Naar de rekentool →</span></a>`).join('')}</div>`;
+const toolCards = (h = 'h3') => `<div class="grid cards">${TOOLS.map(([href, t, d], i) => `<a class="card" href="${href}"><span class="ci" aria-hidden="true">${TOOL_ICO[i] || ''}</span><${h}${h === 'h2' ? ' class="h3"' : ''}>${esc(t)}</${h}><p>${esc(d)}</p><span class="more">Naar de rekentool →</span></a>`).join('')}</div>`;
 
 export const home = {
   lastmod: '2026-10-19',
   path: '/', title: 'Thuisaccu kiezen: keuzehulp, merken, kosten | ThuisaccuMatch', ogTitle: 'ThuisaccuMatch: past een thuisaccu bij jou?', h1: 'Thuisaccu kiezen? Reken eerst.', og: 'home',
   description: 'Past een thuisaccu bij jou? Doe de keuzehulp, vergelijk 6 merken op een vaste checklist en reken uit wat een accu oplevert als de saldering in 2027 stopt.',
   schema: [faqSchema(homeFaq)],
-  body: `<section class="hero"><div>
+  full: true,
+  body: `<section class="hero"><div class="wrap hero-in"><div class="hero-txt">
 <p class="h1-brand">Thuisaccu<b>Match</b>.nl</p>
 <h1 class="tagline">Thuisaccu kiezen? Reken eerst.</h1>
 <p class="lead">Op 1 januari 2027 <a href="/salderingsregeling-stopt-2027/">stopt de salderingsregeling</a>. Is een thuisaccu dan slim, hoe groot moet hij zijn en welk merk past? Zes vragen en je krijgt een advies met capaciteit en terugverdientijd. Zes merken naast elkaar op 10 vaste punten.</p>
 <div class="actions"><a class="btn" href="/thuisaccu-keuzehulp/" data-cta="home_hero">Start de keuzehulp</a><a class="btn ghost" href="/vergelijken/">Vergelijk alle 6 merken</a></div>
-</div>
-<div class="hero-q"><p class="hero-q-step">Vraag 1 van ${VRAGEN.length}</p><p class="hero-q-title" id="hq">${esc(VRAGEN[0].vraag)}</p><div class="hero-q-opts" role="group" aria-labelledby="hq">${VRAGEN[0].opties.map(([v, l]) => `<a class="choice" href="/thuisaccu-keuzehulp/?panelen=${v}" rel="nofollow">${esc(l)}<span aria-hidden="true">→</span></a>`).join('')}</div><p class="hero-q-foot">Daarna nog ${VRAGEN.length - 1} korte vragen. Gratis, zonder account.</p></div>
-</section>
 <ul class="trustbar">
 <li>${ICONS.kalender}<span>Gegevens gecontroleerd op <time datetime="${CHECKED}">${fmtDate(CHECKED)}</time></span></li>
 <li>${ICONS.bron}<span>Bron bij elk bedrag en elk punt</span></li>
 <li>${ICONS.schild}<span>Volgorde nooit betaald</span></li>
 <li>${ICONS.gratis}<span>Gratis, zonder account</span></li>
 </ul>
-<section class="logobar" aria-labelledby="h-pl"><h2 id="h-pl">Deze 6 merken vergelijken we</h2><div class="logos six">${[...IDS].sort((a, b) => M[a].naam.localeCompare(M[b].naam, 'nl')).map((id) => `<a class="logo-tile" href="/merken/${M[id].slug}/">${logo(id, 'lg')}</a>`).join('')}</div></section>
+</div>
+<div class="hero-art">${HERO_ART}</div></div></section>
+<div class="wrap qwrap"><div class="hero-q"><p class="hero-q-step">Vraag 1 van ${VRAGEN.length}</p><p class="hero-q-title" id="hq">${esc(VRAGEN[0].vraag)}</p><div class="hero-q-opts" role="group" aria-labelledby="hq">${VRAGEN[0].opties.map(([v, l]) => `<a class="choice" href="/thuisaccu-keuzehulp/?panelen=${v}" rel="nofollow">${esc(l)}<span aria-hidden="true">→</span></a>`).join('')}</div><p class="hero-q-foot">Daarna nog ${VRAGEN.length - 1} korte vragen. Gratis, zonder account.</p></div></div>
+<section class="logobar" aria-labelledby="h-pl"><div class="wrap"><h2 id="h-pl">Deze 6 merken vergelijken we</h2><div class="logos six">${[...IDS].sort((a, b) => M[a].naam.localeCompare(M[b].naam, 'nl')).map((id) => `<a class="logo-tile" href="/merken/${M[id].slug}/">${logo(id, 'lg')}</a>`).join('')}</div></div></section>
+<section class="sec tint"><div class="wrap split-txt">
 <h2>Wat verandert er in 2027?</h2>
 <p>Tot en met 2026 streep je teruggeleverde zonnestroom weg tegen de stroom die je op andere momenten van het net haalt. Vanaf 1 januari 2027 kan dat niet meer (Rijksoverheid). Voor teruggeleverde stroom krijg je dan een vergoeding van je leverancier, maar na aftrek van terugleverkosten is dat bij een vast of variabel contract netto rond de halve cent per kWh (Milieu Centraal). Stroom die je inkoopt kost gemiddeld zo'n € ${komma(STROOMPRIJS, 2)} per kWh (CBS, september 2026). Elke kWh zonnestroom die je zelf gebruikt in plaats van teruglevert, is dus veel meer waard. Een thuisaccu is één manier om dat te doen, maar niet de enige en niet altijd de goedkoopste.</p>
 <p>In het rekenvoorbeeld van 10 zonnepanelen (${EX.opwek.toLocaleString('nl-NL')} kWh per jaar) leveren je panelen vanaf 2027 ongeveer ${eur(SAL.verschil)} per jaar minder op. Een thuisaccu van 5 kWh voor € 3.550 wint daarvan ongeveer ${eur(T5.besparing)} per jaar terug: terugverdiend in ${jr(T5)}. Met je eigen verbruik en accu <a href="/terugverdientijd-thuisaccu-berekenen/">bereken je de terugverdientijd van je thuisaccu</a>. <a href="/einde-salderen-berekenen/">Of reken uit wat het einde van salderen jouw dak kost →</a></p>
+</div></section>
+<section class="sec"><div class="wrap">
 <h2>Rekentools</h2>
 <p class="sub">Vul je eigen cijfers in. Standaardwaarden komen van Milieu Centraal, het CBS en de prijzen van de merken. Uitleg en aannames per tool staan op <a href="/rekentools/">alle rekentools voor je thuisaccu</a>.</p>
 ${toolCards()}
+</div></section>
+<section class="sec tint"><div class="wrap">
 <h2>De merken op een rij</h2>
 <p class="sub">Gesorteerd op checklistscore, bij gelijke stand op naam. De score telt wat het merk zelf op de eigen site noemt.</p>
 <div class="table-wrap"><table class="data stack"><thead><tr><th scope="col">Merk</th><th scope="col">Score</th><th scope="col">Stekker</th><th scope="col">Bestaande omvormer</th><th scope="col">Noodstroom</th><th scope="col">Garantie 10 jaar</th><th scope="col">Prijs openbaar</th></tr></thead><tbody>${miniRows}</tbody></table></div>
 <p><a href="/vergelijken/">Alle 10 checklistpunten, met filters →</a></p>
-<section class="band method-band">
-<h2>Zo vergelijken we</h2>
-<ol class="steps">
+</div></section>
+<section class="sec warm method-band"><div class="wrap">
+<div class="sec-head"><p class="eyebrow">Onze werkwijze</p><h2>Zo vergelijken we</h2></div>
+<ol class="steps how">
 <li><strong>Bron bij alles.</strong> Merkgegevens komen van de site van het merk, stroomprijzen van het CBS, regels van de Rijksoverheid, de ACM en de Belastingdienst.</li>
 <li><strong>Een vaste checklist.</strong> Tien punten, van LFP-cellen en noodstroom tot garantie. De score telt wat het merk zelf noemt.</li>
 <li><strong>Partners veranderen niets.</strong> Partnerlinks en offertepartners tellen nooit mee in de score, de volgorde of het advies.</li>
 </ol>
 <p class="author">Door <a href="/over/">${SITE.owner}</a> · <a href="/over/#methode">Hoe de score werkt</a></p>
-</section>
+</div></section>
+<section class="sec"><div class="wrap split2"><div>
 <h2>Gidsen</h2><ul class="gidslijst">${GIDSLINKS.map(([h, t]) => `<li><a href="${h}">${esc(t)}</a></li>`).join('')}</ul>
+</div><div>
 {{latest}}
-${faqHtml(homeFaq)}`,
+</div></div></section>
+<section class="sec tint"><div class="wrap faq">
+${faqHtml(homeFaq)}
+<div class="cta-band"><div><h2>Past een thuisaccu bij jou?</h2><p>Zes vragen en je krijgt een advies met capaciteit en terugverdientijd.</p></div><a class="btn" href="/thuisaccu-keuzehulp/" data-cta="home_band">Start de keuzehulp</a></div>
+</div></section>`,
 };
 
 // ---- Keuzehulp ----

@@ -134,17 +134,19 @@ ${PREVIEW ? '<p class="preview">Testversie van ThuisaccuMatch.nl, nog niet live<
 <nav class="main" aria-label="Hoofdmenu">${navLinks(navPath)}</nav>
 <details class="menu"><summary><span class="burger" aria-hidden="true"></span><span class="menu-txt">Menu</span></summary><nav aria-label="Hoofdmenu">${navLinks(navPath)}</nav></details>
 </div></header>
-<main id="inhoud"><div class="wrap">
+${p.full ? `<main id="inhoud" class="full">
+${a11yTabellen(p.body)}
+<div class="wrap">${foutGezien(url)}</div>
+</main>` : `<main id="inhoud"><div class="wrap">
 ${crumbs}
 ${a11yTabellen(withStamp(p.body, p.stamp))}
 ${foutGezien(url)}
-</div></main>
+</div></main>`}
 <footer class="site"><div class="wrap">
 <div class="cols">
 <div><a class="logo" href="/">${LOGO}<span>${BRAND}</span></a><p>Onafhankelijke hulp bij het kiezen van een thuisaccu: of hij past, hoe groot, welk merk en wat hij oplevert na het einde van de saldering.</p></div>
-<div><p class="fh">Kiezen</p><ul><li><a href="/thuisaccu-keuzehulp/">Thuisaccu keuzehulp</a></li><li><a href="/vergelijken/">Alle merken vergelijken</a></li><li><a href="/merken/">Merken</a></li><li><a href="/terugverdientijd-thuisaccu-berekenen/">Terugverdientijd berekenen</a></li><li><a href="/capaciteit-thuisaccu-berekenen/">Capaciteit berekenen</a></li><li><a href="/einde-salderen-berekenen/">Einde salderen berekenen</a></li></ul></div>
+<div class="fcol"><div><p class="fh">Kiezen</p><ul><li><a href="/thuisaccu-keuzehulp/">Thuisaccu keuzehulp</a></li><li><a href="/vergelijken/">Alle merken vergelijken</a></li><li><a href="/merken/">Merken</a></li><li><a href="/terugverdientijd-thuisaccu-berekenen/">Terugverdientijd berekenen</a></li><li><a href="/capaciteit-thuisaccu-berekenen/">Capaciteit berekenen</a></li><li><a href="/einde-salderen-berekenen/">Einde salderen berekenen</a></li></ul></div><div><p class="fh">Over ons</p><ul><li><a href="/over/">Over ThuisaccuMatch</a></li><li><a href="/over/#methode">Zo vergelijken we</a></li><li><a href="/privacy/">Privacy en cookies</a></li>${GA_ID ? '<li><a href="/privacy/#cookies" data-consent-open>Cookie-instellingen</a></li>' : ''}<li><a href="mailto:${SITE.email}">Contact</a></li></ul></div></div>
 <div><p class="fh">Gidsen</p><ul><li><a href="/thuisaccu-kosten/">Wat kost een thuisaccu?</a></li><li><a href="/salderingsregeling-stopt-2027/">Saldering stopt in 2027</a></li><li><a href="/thuisaccu-dynamisch-energiecontract/">Thuisaccu en dynamisch contract</a></li><li><a href="/stekkerbatterij-of-vaste-thuisaccu/">Stekkerbatterij of vaste accu</a></li><li><a href="/thuisaccu-veiligheid/">Veilig plaatsen</a></li><li><a href="/btw-thuisaccu/">Btw op een thuisaccu</a></li><li><a href="/gidsen/">Alle gidsen</a></li>${NAV_OPT.blog ? '<li><a href="/blog/">Blog</a></li>' : ''}</ul></div>
-<div><p class="fh">Over ons</p><ul><li><a href="/over/">Over ThuisaccuMatch</a></li><li><a href="/over/#methode">Zo vergelijken we</a></li><li><a href="/privacy/">Privacy en cookies</a></li>${GA_ID ? '<li><a href="/privacy/#cookies" data-consent-open>Cookie-instellingen</a></li>' : ''}<li><a href="mailto:${SITE.email}">Contact</a></li></ul></div>
 </div>
 ${networkFooter()}
 <p class="fine">© 2026 ${SITE.name}. Partnerlinks hebben nooit invloed op de volgorde of het advies.</p>
