@@ -1,6 +1,6 @@
 ---
 title: Thuisbatterij dynamisch contract: welke combinatie werkt?
-seo_title: Thuisbatterij dynamisch contract: welke combinatie werkt?
+seo_title: Welke thuisbatterij past bij een dynamisch contract?
 description: Welke thuisbatterij werkt met jouw dynamische contract? Merkonafhankelijk overzicht van sturing, EMS en btw-teruggave. Vergelijk thuisbatterijen.
 date: 2026-10-19
 updated: 2026-10-19

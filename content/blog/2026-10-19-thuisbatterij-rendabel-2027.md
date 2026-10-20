@@ -34,7 +34,7 @@ Drie getallen tellen:
 2. **Netto terugleververgoeding.** Vanaf 2027 krijg je een vergoeding, maar betaal je vaak ook terugleverkosten. Milieu Centraal noemt netto rond de halve cent per kWh. Per leverancier: [thuisbatterij en terugleverkosten 2027](/blog/thuisbatterij-terugleverkosten-2027/).
 3. **Verschoven kWh.** Een batterij raakt niet elke dag vol; wij rekenen met 200 volle dagen per jaar en 90 procent rendement. Volgens Milieu Centraal leveren 10 panelen op een decemberdag ongeveer 2,5 kWh, tegen 15 kWh op een junidag.
 
-Twee voorbeelden uit onze [rekentool voor de terugverdientijd](/terugverdientijd-thuisaccu-berekenen/), met prijzen van de merken zelf:
+Hoe de terugverdientijd van een thuisaccu werkt, lees je in de gids [verdien je een thuisaccu terug?](/thuisaccu-terugverdientijd/). Twee voorbeelden uit onze [rekentool voor de terugverdientijd](/terugverdientijd-thuisaccu-berekenen/), met prijzen van de merken zelf:
 
 | Batterij | Prijs (incl. btw) | kWh per jaar uit de batterij | Besparing per jaar | Terugverdientijd |
 |---|---|---|---|---|
