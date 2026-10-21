@@ -633,3 +633,6 @@ footer.site .fine{color:var(--foot-c);border-top:1px solid rgba(255,255,255,.14)
 @media(min-width:1040px){.split-txt{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);column-gap:72px;align-items:start}.split-txt>h2{grid-column:1;grid-row:span 3;margin:0}.split-txt>*{grid-column:2;max-width:none}}
 .split-txt p{max-width:68ch}
 .consent p a{display:inline-flex;align-items:center;min-height:48px;padding-block:0}
+
+/* Partnerzin per blok met partnerlinks (vervangt het label per knop) */
+.pnoot{font-size:.875rem;color:var(--muted);margin:6px 0 0}
