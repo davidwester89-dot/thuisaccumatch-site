@@ -4,7 +4,7 @@ seo_title: Thuisbatterij met noodstroom: welke merken kunnen het?
 description: Welke thuisbatterij geeft stroom bij een storing? Het verschil tussen noodstroom en back-up, per merk wat het kan, wat je extra nodig hebt en wat het kost.
 date: 2026-10-20
 updated: 2026-10-20
-checked: 2026-10-19
+checked: 2026-10-20
 image: thuisbatterij-met-noodstroom
 image_alt: Een rij brandende kaarsen in het donker, zoals tijdens een stroomstoring
 tools: /thuisaccu-keuzehulp/, /vergelijken/, /capaciteit-thuisaccu-berekenen/
