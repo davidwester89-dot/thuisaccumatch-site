@@ -135,7 +135,7 @@ const RELATED = {
   byd: [['/stekkerbatterij-of-vaste-thuisaccu/', 'AC- of DC-gekoppeld: wat is het verschil?'], ['/thuisaccu-terugverdientijd/', 'Verdien je een thuisaccu terug?']],
 };
 const ALG_PRIJS = `Ter vergelijking: Milieu Centraal noemt voor een gemiddelde thuisaccu van 6 kWh, inclusief omvormer en installatie, "een paar duizend euro". Bij de merken die wel prijzen tonen, ligt de prijs per kWh opslag tussen € ${PRIJS_KWH.stekker} (HomeWizard) en € 710 (Sessy 5 kWh), inclusief btw. Zie <a href="/thuisaccu-kosten/">wat kost een thuisaccu</a>.`;
-export const merkPages = IDS.map((id) => {
+const merkPagesRaw = IDS.map((id) => {
   const p = M[id];
   const path = `/merken/${p.slug}/`;
   const h1 = `${p.naam}-thuisaccu: aanbod, checklist en voor wie`;
@@ -149,7 +149,8 @@ export const merkPages = IDS.map((id) => {
     : `<h2>Prijzen</h2><p>${esc(p.naam)} noemt geen consumentenprijzen op de eigen site; je koopt via een installateur en de prijs staat in je offerte. Vraag altijd naar de bruikbare capaciteit in kWh, zodat je de prijs per kWh kunt vergelijken.</p><p>${ALG_PRIJS}</p>`;
   const f = FEATURES[id];
   return {
-    ...article({ path, title: t, h1, description: d, og: `merk-${id}`, parents: [['/merken/', 'Merken']] }),
+    ...article({ path, title: t, h1, description: d, og: `merk-${id}`, parents: [['/merken/', 'Merken']], faq: p.faq }),
+    ...(p.extraChecked ? { stamp: { checked: p.extraChecked }, lastmod: p.extraChecked } : {}),
     navPath: '/merken/',
     body: `<article><div class="phead"><span class="phead-logo">${logoImg(id, { maat: 'lg', eager: true })}</span><span class="tag best">${esc(STERK_IN[id])}</span></div><h1>${esc(h1)}</h1>${by()}<p class="lead">${esc(p.kort)}</p>
 <div class="pcard first"><div class="pc-head"><span class="sc-lbl">Aanbod</span><p class="pc-price"><strong>${esc(aanbodTekst(id))}</strong></p></div>
@@ -157,12 +158,12 @@ export const merkPages = IDS.map((id) => {
 ${scoreBlock(id)}
 <div class="pc-cta">${knop(id, 'merk_top')}<a href="/thuisaccu-keuzehulp/">Past het bij mij? Start de keuzehulp →</a></div></div>
 <h2>Modellen</h2><div class="table-wrap"><table class="data stack"><thead><tr><th scope="col">Model of lijn</th><th scope="col">Wat</th></tr></thead><tbody>${p.lijnen.map(([n, w]) => `<tr><th scope="row">${esc(n)}</th><td data-l="Wat">${esc(w)}</td></tr>`).join('')}</tbody></table></div>
-${prijsBlok}
+${p.extra || ''}${prijsBlok}
 <h2>Checklist: wat biedt ${esc(p.naam)}?</h2><p class="sub">Tien vaste punten, uit de site, het datasheet of het garantiedocument van het merk. Niet vermeld telt als 0. <a href="/over/#methode">Zo tellen we</a></p>${checklistTable(id)}
 <h2>Sterk en let op</h2><div class="pm"><div class="card plus"><h3>Sterk</h3><ul>${p.plus.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div><div class="card min"><h3>Let op</h3><ul>${p.min.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div></div>
 <h2>Voor wie?</h2><p>${esc(p.voor)}</p>
 <p>Of een ${p.soort === 'stekker' ? 'stekkerbatterij' : 'vaste thuisaccu'} van ${esc(p.naam)} zich voor jou terugbetaalt, hangt vooral af van hoeveel zonnestroom je teruglevert en welk energiecontract je hebt. Milieu Centraal verwacht dat je een thuisaccu op dit moment hoogstwaarschijnlijk niet terugverdient. Reken het na met de <a href="/terugverdientijd-thuisaccu-berekenen/">rekentool terugverdientijd</a> en bepaal de grootte met de <a href="/capaciteit-thuisaccu-berekenen/">capaciteitsberekening</a>.</p>
-${p.soort === 'vast' ? leadCta('vast', 'merk') : ''}
+${p.faq ? faqHtml(p.faq) : ''}${p.soort === 'vast' ? leadCta('vast', 'merk') : ''}
 <div class="out">${knop(id, 'merk_bottom')}</div>
 <h2>Alternatieven</h2><ul class="gidslijst">${alt.map((x) => `<li class="withlogo">${logo(x, 'sm')}<a href="/merken/${M[x].slug}/">${esc(M[x].naam)}</a> · ${esc(STERK_IN[x])} · ${fmtScore(score(x).totaal)} van 10 checklistpunten (<a href="/over/#methode">hoe de score werkt</a>)</li>`).join('')}${(RELATED[id] || []).map(([h, tt]) => `<li><a href="${h}">${esc(tt)}</a></li>`).join('')}<li><a href="/vergelijken/">Alle merken naast elkaar</a></li></ul>
 <p class="sub">Alle merken: ${IDS.filter((x) => x !== id).map((x) => `<a href="/merken/${M[x].slug}/">${esc(M[x].naam)}</a>`).join(' · ')}</p>
@@ -171,6 +172,8 @@ ${matchCta(`Past ${esc(p.naam)} bij jou?`)}${bron(p.bronnen, featureBronnen(id),
   };
 });
 
+// Merken met extra uitleg (extraChecked): bijgewerkt-datum in artikel en schema gelijk aan de controledatum. Bij push gelijkzetten aan de pushdatum.
+export const merkPages = merkPagesRaw.map((pg, i) => { const c = M[IDS[i]].extraChecked; if (!c) return pg; return { ...pg, article: { ...pg.article, updated: c }, schema: pg.schema.map((x, j) => (j === 0 ? { ...x, dateModified: c } : x)) }; });
 export const merkHub = {
   path: '/merken/', title: 'Thuisaccu merken 2026: 6 merken op een rij | ThuisaccuMatch', h1: 'Alle thuisaccumerken op een rij', crumb: 'Merken', og: 'merken', stamp: { checked: CHECKED, updated: CHECKED },
   description: 'HomeWizard, Sessy, Zonneplan, Huawei, SolarEdge en BYD: per merk het aanbod, de checklistscore met bron, de prijs als die openbaar is en voor wie het past.',
@@ -363,12 +366,22 @@ const T5D = terugverdien({ prijs: 3550, capaciteit: 5, teruglevering: EX.terug, 
 const tvtToolFaq = [
   ['Welke gegevens heb ik nodig om de terugverdientijd te berekenen?', 'De prijs van de accu inclusief installatie en btw, de bruikbare capaciteit in kWh (datasheet of offerte) en hoeveel stroom je per jaar teruglevert (jaarafrekening). Stroomprijs en terugleververgoeding staan al ingevuld; pas ze aan aan je eigen contract.'],
   ['Waarom geeft de rekentool een lange terugverdientijd?', `Omdat een accu maar een beperkt aantal kWh per jaar verschuift: hooguit capaciteit × ${AANNAMES.volDagen} dagen dat hij vol raakt, keer ${komma(AANNAMES.rendement * 100, 0)}% rendement. Per kWh bespaar je het verschil tussen de stroomprijs (€ ${komma(STROOMPRIJS, 2)}) en de netto terugleververgoeding (${ct(NETTO_TERUG)}). Milieu Centraal schrijft dat je een thuisaccu op dit moment hoogstwaarschijnlijk niet terugverdient.`],
+  ['Verandert de terugverdientijd door het einde van salderen?', 'Ja. Tot en met 2026 streep je teruggeleverde stroom weg tegen je verbruik, dus een accu levert dan weinig extra op. Vanaf 1 januari 2027 krijg je voor teruglevering alleen een vergoeding; tot 2030 minstens 50% van het kale leveringstarief, minus eventuele terugleverkosten (Rijksoverheid). Elke kWh die je dan zelf uit de accu gebruikt, scheelt het verschil met de stroomprijs.'],
   ['Telt een dynamisch contract mee?', 'Alleen als je het vinkje zet. Dan rekent de tool er een opbrengst van slim laden uit het net bij: capaciteit × dagen × rendement × prijsverschil. Die dagen en dat prijsverschil zijn aannames, want dynamische prijzen zijn niet te voorspellen (ACM ConsuWijzer).'],
 ];
+const GEV = [['5 kWh voor € 3.550, ' + EX.terug.toLocaleString('nl-NL') + ' kWh teruglevering', T5], ['Idem, met dynamisch contract', T5D], ['10 kWh voor € 5.500, ' + EX.terug.toLocaleString('nl-NL') + ' kWh teruglevering', T10], ['Idem, met dynamisch contract', T10D], ['10 kWh voor € 5.500, 1.000 kWh teruglevering', terugverdien({ prijs: 5500, capaciteit: 10, teruglevering: 1000 })]];
 const tvtVoorbeeld = `<section id="voorbeeld"><h2>Rekenvoorbeeld met de standaardwaarden</h2>
 <p>Een accu van 5 kWh voor ${eur(3550)} (adviesprijs Sessy 5 kWh), bij ${EX.terug.toLocaleString('nl-NL')} kWh teruglevering per jaar:</p>
 <ol><li><strong>Uit de accu per jaar:</strong> het kleinste van ${EX.terug.toLocaleString('nl-NL')} kWh en 5 × ${AANNAMES.volDagen} = ${(5 * AANNAMES.volDagen).toLocaleString('nl-NL')} kWh, keer ${komma(AANNAMES.rendement * 100, 0)}% = ${T5.kwh.toLocaleString('nl-NL')} kWh.</li><li><strong>Besparing per kWh:</strong> € ${komma(STROOMPRIJS, 2)} die je niet inkoopt, min ${ct(NETTO_TERUG)} die je niet meer krijgt voor teruglevering.</li><li><strong>Besparing per jaar:</strong> ${eur(T5.besparing)}.</li><li><strong>Terugverdientijd:</strong> ${eur(3550)} ÷ ${eur(T5.besparing)} = ${jr(T5)}.</li></ol>
 <p>Met een dynamisch contract en slim laden komt daar volgens de aannames van de tool ${eur(T5D.dyn)} per jaar bij: 5 kWh × ${AANNAMES.dynDagen} dagen × ${komma(AANNAMES.rendement * 100, 0)}% × € ${komma(AANNAMES.spread, 2)}. De besparing wordt dan afgerond ${eur(T5D.besparing)} per jaar en de terugverdientijd ${jr(T5D)}. Pas de waarden hierboven aan voor je eigen offerte en contract.</p></section>
+<section id="salderen"><h2>Waarom 1 januari 2027 de som verandert</h2>
+<p>Tot en met 31 december 2026 mag je de stroom die je teruglevert wegstrepen tegen je verbruik (salderen). Rijksoverheid geeft het voorbeeld: lever je in de zomer 2.500 kWh terug, dan gebruik je in de winter 2.500 kWh zonder stroomkosten, netwerkkosten en energiebelasting. Zolang je saldeert, levert een accu je op teruggeleverde stroom dus weinig extra op.</p>
+<p>Vanaf 1 januari 2027 mag dat niet meer. Voor alles wat je teruglevert krijg je een vergoeding van je leverancier. Tot 2030 is die minstens 50% van het kale leveringstarief, de prijs zonder belastingen. Leveranciers rekenen vaak terugleverkosten, en daar houdt de ACM toezicht op. Over stroom die je zelf opwekt en direct gebruikt betaal je geen belasting en geen leverancierskosten (Rijksoverheid). Daarom rekent deze tool met het verschil tussen de stroomprijs en de netto vergoeding: dat is wat een accu je per verschoven kWh oplevert.</p></section>
+<section id="gevoeligheid"><h2>Wat verandert de uitkomst het meest?</h2>
+<p>Onze rekensom met de aannames van de tool (${AANNAMES.volDagen} volle dagen, ${komma(AANNAMES.rendement * 100, 0)}% rendement, stroom € ${komma(STROOMPRIJS, 2)}, netto teruglevering ${ct(NETTO_TERUG)}). Prijzen: adviesprijzen van Sessy, inclusief btw.</p>
+<div class="table-wrap"><table class="data stack"><thead><tr><th scope="col">Situatie</th><th scope="col">Zonnestroom uit de accu per jaar</th><th scope="col">Besparing per jaar</th><th scope="col">Terugverdientijd</th></tr></thead><tbody>${GEV.map(([l, t]) => `<tr><th scope="row">${l}</th><td class="n" data-l="Uit de accu">${t.kwh.toLocaleString('nl-NL')} kWh</td><td class="n" data-l="Besparing">${eur(t.besparing)}</td><td class="n" data-l="Terugverdientijd">${jr(t)}</td></tr>`).join('')}</tbody></table></div>
+<ul><li><strong>Grootte telt pas als je genoeg teruglevert.</strong> Een accu van 5 kWh verschuift hooguit ${(5 * AANNAMES.volDagen).toLocaleString('nl-NL')} kWh per jaar, wat je ook teruglevert. Lever je minder terug dan capaciteit × ${AANNAMES.volDagen}, dan staat een deel van een grote accu stil.</li><li><strong>Een dynamisch contract</strong> verkort de tijd het meest, maar de opbrengst is een aanname: dynamische prijzen zijn niet te voorspellen (ACM ConsuWijzer).</li><li><strong>De prijs uit je offerte</strong> werkt één op één door: 10% goedkoper is 10% kortere terugverdientijd.</li></ul>
+<p>Controleer in je offerte of het om <strong>bruikbare</strong> capaciteit gaat, en of de prijs inclusief installatie en btw is. Of je de btw kunt terugvragen, lees je in <a href="/btw-thuisaccu/">btw op een thuisaccu</a>. Welke merken een openbare prijs hebben, zie je in <a href="/vergelijken/">de vergelijking</a>.</p><p class="src">Bronnen: <a href="${BRON.rijkSaldering.url}" rel="noopener">${esc(BRON.rijkSaldering.naam)}</a> · <a href="https://www.sessy.nl/prijsinformatie" rel="noopener">Sessy: prijsinformatie</a> · <a href="${BRON.acmAanbod.url}" rel="noopener">${esc(BRON.acmAanbod.naam)}</a></p></section>
 ${faqHtml(tvtToolFaq)}`;
 export const calcTvt = tool({
   path: '/terugverdientijd-thuisaccu-berekenen/', title: 'Terugverdientijd thuisaccu berekenen (2027) | ThuisaccuMatch', h1: 'Terugverdientijd van je thuisaccu berekenen', crumb: 'Terugverdientijd', og: 'rekenhulp',
@@ -393,6 +406,9 @@ ${num('terug', 'Teruglevering per jaar', EX.terug, 'kWh', 'Staat op je jaarafrek
 ${tvtVoorbeeld}
 <p>Meer uitleg: <a href="/thuisaccu-terugverdientijd/">verdien je een thuisaccu terug?</a> · <a href="/thuisaccu-kosten/">wat kost een thuisaccu?</a> · <a href="/thuisaccu-keuzehulp/">past een thuisaccu bij jou?</a></p>`,
 });
+// Uitgebreid 23-10-2026 (Rijksoverheid salderen, Sessy-prijzen opnieuw gecontroleerd). Datum bij push gelijkzetten aan de pushdatum.
+calcTvt.stamp = { checked: '2026-10-23', updated: '2026-10-23' };
+calcTvt.lastmod = '2026-10-23';
 
 export const calcCap = tool({
   path: '/capaciteit-thuisaccu-berekenen/', title: 'Hoeveel kWh thuisaccu heb je nodig? Bereken het', h1: 'Hoeveel kWh thuisaccu heb je nodig?', crumb: 'Capaciteit', og: 'capaciteit',
