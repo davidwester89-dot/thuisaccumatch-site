@@ -1,6 +1,6 @@
 // Offertemodule ThuisaccuMatch (zelfde module als WarmtepompenMatch en VerduurzaamMatch, één categorie: vaste thuisaccu).
 // Regels:
-// - LEADPARTNERS blijft LEEG tot Dave een partner goedkeurt (nog geen partner aangevraagd).
+// - LEADPARTNERS blijft LEEG tot er een partner is goedgekeurd (nog geen partner aangevraagd).
 //   Leeg = geen offertepagina, geen offerteknoppen, geen formulieren.
 // - Elke aanvraag gaat naar precies één partner.
 // - Contactgegevens vult de bezoeker in het formulier van de partner in (iframe of doorverwijzing). Wij ontvangen en bewaren ze niet.
