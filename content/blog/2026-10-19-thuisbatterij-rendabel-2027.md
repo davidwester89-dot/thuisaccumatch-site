@@ -3,7 +3,7 @@ title: Thuisbatterij rendabel in 2027? Zo reken je het uit
 seo_title: Thuisbatterij rendabel in 2027? Zo reken je het uit
 description: Salderen stopt op 1-1-2027. Is een thuisbatterij dan rendabel met of zonder zonnepanelen, warmtepomp of EV? Check per situatie wat past en vergelijk.
 date: 2026-10-19
-updated: 2026-10-19
+updated: 2026-10-27
 checked: 2026-10-19
 image: thuisbatterij-rendabel-2027
 image_alt: Schuin dak van een woning vol zonnepanelen zonder merkopdruk, onder een blauwe lucht
@@ -67,7 +67,7 @@ Je hebt geen eigen stroom om op te slaan, en 's nachts is stroom even duur als '
 
 Met een dynamisch contract betaal je per kwartier of per uur de prijs van de stroombeurs. Onze rekensom met de echte day-ahead-prijzen van 1 januari tot en met 18 oktober 2026 (291 dagen; goedkoopste uren laden, duurste ontladen; 90 procent rendement; energiebelasting en btw bij het laden): zelfs met perfecte voorspelling, meerdere laadrondes per dag en alle stroom zelf verbruikt, levert 5 kWh hooguit **€ 234** op. In januari en februari maar € 7 tot € 9 per maand. In de praktijk minder: niemand voorspelt perfect en je gebruikt 's avonds niet steeds 2,5 kW.
 
-> **Besluit:** alleen rendabel met een goedkope batterij en goede sturing. Lees [welke combinatie van contract en batterij werkt](/blog/thuisbatterij-dynamisch-contract/).
+> **Besluit:** alleen rendabel met een goedkope batterij en goede sturing. Lees [welke combinatie van contract en batterij werkt](/blog/thuisbatterij-dynamisch-contract/). Welke merken zonder panelen werken en wanneer het loont, lees je in [thuisbatterij zonder zonnepanelen](/blog/thuisbatterij-zonder-zonnepanelen/).
 
 ### 5. Zonnepanelen én een dynamisch contract
 

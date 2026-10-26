@@ -16,6 +16,7 @@ sources:
 - HomeWizard: hoe bepaalt de batterij wanneer hij laadt en ontlaadt? | https://helpdesk.homewizard.com/nl/articles/14209959-hoe-bepaalt-de-batterij-wanneer-hij-gaat-laden-en-ontladen
 - Huawei: LUNA2000-S1 | https://solar.huawei.com/nl/products/luna2000-7-14-21-s1/
 - Sessy: thuisbatterij zonder zonnepanelen | https://www.sessy.nl/thuisbatterij-zonder-zonnepanelen/
+- Sessy: als ik geen zonnepanelen heb, heeft een Sessy dan zin? | https://www.sessy.nl/vragen/batterij-zonder-zonnepanelen/
 - Sessy: Dynamische modus | https://www.sessy.nl/dynamische-modus/
 - Sessy: prijsinformatie | https://www.sessy.nl/prijsinformatie
 - SolarEdge: thuisbatterijen | https://www.solaredge.com/nl/producten/thuis/batterijen
@@ -36,7 +37,7 @@ Ja. Een thuisbatterij hoeft niet alleen zonnestroom op te slaan. Hij kan ook str
 
 Zonder dynamisch contract werkt dit niet. Bij een vast of variabel contract betaal je de hele dag dezelfde prijs, dus er valt niets te verdienen met laden en ontladen. Sessy zegt het zelf: zonder zonnepanelen en met een vast tarief heeft een Sessy geen directe financiële impact.
 
-De salderingsregeling stopt volgens de Rijksoverheid op 1 januari 2027. Dat raakt jou zonder panelen niet: je levert geen zonnestroom terug. Voor jou draait het alleen om de prijsverschillen op je dynamische contract.
+De salderingsregeling stopt volgens de Rijksoverheid op 1 januari 2027. Zonder panelen lever je geen zonnestroom terug, maar het stoppen raakt je wel als je stroom uit de batterij teruglevert: vanaf 2027 mag je teruglevering niet meer verrekenen met je verbruik. Voor jou draait het dus om de prijsverschillen op je dynamische contract en om zoveel mogelijk zelf gebruiken.
 
 ## Zo verdient hij iets: laden bij lage prijs, gebruiken bij hoge prijs
 
@@ -44,7 +45,7 @@ Bij een dynamisch contract verandert de stroomprijs door de dag heen. Volgens de
 
 Twee dingen bepalen wat dat oplevert:
 
-- **Zelf gebruiken of terugleveren.** Gebruik je de stroom uit de batterij zelf, dan bespaar je de volle prijs. Lever je hem terug, dan betaal je bij het laden energiebelasting die je bij het terugleveren niet terugkrijgt.
+- **Zelf gebruiken of terugleveren.** Gebruik je de stroom uit de batterij zelf, dan bespaar je de volle prijs. Lever je hem terug, dan betaal je bij het laden energiebelasting die je vanaf 2027 bij het terugleveren niet terugkrijgt.
 - **De sturing.** Er is een energiemanagementsysteem (EMS) nodig dat de prijzen ophaalt en de batterij daarop laat laden en ontladen.
 
 Hoe dat precies werkt, en welke combinaties van contract en sturing iets opleveren, lees je bij [thuisaccu met een dynamisch energiecontract](/thuisaccu-dynamisch-energiecontract/) en in [thuisbatterij en dynamisch contract](/blog/thuisbatterij-dynamisch-contract/).
