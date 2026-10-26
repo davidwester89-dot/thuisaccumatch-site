@@ -27,7 +27,7 @@ sources:
 ---
 Je hebt geen zonnepanelen, bijvoorbeeld omdat je dak niet geschikt is of je appartement geen eigen dak heeft. Toch zie je overal thuisbatterijen voorbijkomen. Heeft zo'n batterij voor jou zin? Hier lees je wanneer het kan, welke merken het ondersteunen, wat het kost en wanneer het niet loont.
 
-> **Kort gezegd:** ja, een thuisbatterij kan zonder zonnepanelen, maar alleen met een **dynamisch energiecontract** en een batterij die op de stroomprijs stuurt. Met een vast of variabel contract levert hij niets op. Sessy en Zonneplan zeggen op hun site dat hun batterij zonder panelen werkt. Milieu Centraal verwacht dat je ook zo'n batterij op dit moment hoogstwaarschijnlijk niet terugverdient.
+> **Kort gezegd:** ja, een thuisbatterij kan zonder zonnepanelen, maar alleen met een **dynamisch energiecontract** en een batterij die op de stroomprijs stuurt. Met een vast of variabel contract levert hij niets op. Sessy, SolarEdge en Zonneplan zeggen op hun site dat een thuisbatterij ook zonder panelen kan werken of interessant kan zijn. Milieu Centraal verwacht dat je ook zo'n batterij op dit moment hoogstwaarschijnlijk niet terugverdient.
 
 Twijfel je of een thuisaccu bij jou past? Doe de [thuisaccu-keuzehulp](/thuisaccu-keuzehulp/).
 
@@ -35,7 +35,7 @@ Twijfel je of een thuisaccu bij jou past? Doe de [thuisaccu-keuzehulp](/thuisacc
 
 Ja. Een thuisbatterij hoeft niet alleen zonnestroom op te slaan. Hij kan ook stroom uit het net laden. Milieu Centraal schrijft dat sommige (grotere) thuisbatterijen zonder zonnepanelen worden gebruikt om te handelen op de elektriciteitsmarkt: met een dynamisch energiecontract koop je stroom in als de prijs laag is, en gebruik of verkoop je die als de prijs hoog is.
 
-Zonder dynamisch contract werkt dit niet. Bij een vast of variabel contract betaal je de hele dag dezelfde prijs, dus er valt niets te verdienen met laden en ontladen. Sessy zegt het zelf: zonder zonnepanelen en met een vast tarief heeft een Sessy geen directe financiële impact.
+Zonder dynamisch contract werkt dit niet. Bij een vast of variabel contract beweegt je prijs niet per uur mee met de markt. Hooguit heb je een dal- en normaaltarief, dus valt er met laden en ontladen nauwelijks iets te verdienen. Sessy zegt het zelf: zonder zonnepanelen en met een vast tarief heeft een Sessy geen directe financiële impact.
 
 De salderingsregeling stopt volgens de Rijksoverheid op 1 januari 2027. Zonder panelen lever je geen zonnestroom terug, maar het stoppen raakt je wel als je stroom uit de batterij teruglevert: vanaf 2027 mag je teruglevering niet meer verrekenen met je verbruik. Voor jou draait het dus om de prijsverschillen op je dynamische contract en om zoveel mogelijk zelf gebruiken.
 
@@ -60,7 +60,7 @@ Dit staat op de eigen sites van de zes merken in onze vergelijking, op alfabet. 
 | [HomeWizard](/merken/homewizard/) | Nee, panelen staan bij de vereisten | Met de strategie "slim met dynamisch tarief" laadt de stekkerbatterij uit het net als er weinig eigen opwek wordt verwacht |
 | [Huawei](/merken/huawei/) | Niet vermeld | DC-gekoppeld, werkt met een Huawei-omvormer; in de app is een stand voor laden en ontladen op tijd |
 | [Sessy](/merken/sessy/) | Ja | De Dynamische modus is volgens Sessy "zeer geschikt voor huishoudens zonder zonnepanelen"; je hebt een dynamisch contract nodig |
-| [SolarEdge](/merken/solaredge/) | Niet vermeld | Werkt met een SolarEdge-omvormer; modus Dynamisch Tarief in SolarEdge ONE |
+| [SolarEdge](/merken/solaredge/) | Ja, al noemt SolarEdge de combinatie met panelen voor de meeste huishoudens het interessantst | Werkt met een SolarEdge-omvormer; modus Dynamisch Tarief in SolarEdge ONE |
 | [Zonneplan](/merken/zonneplan/) | Ja | Handelen met stroom "werkt los van zonnepanelen"; bij Zonneplan kan dat alleen met een dynamisch contract |
 
 Staat het er niet, vraag het dan vóór de aankoop na bij het merk of de installateur.
@@ -77,14 +77,14 @@ De prijzen die de merken zelf noemen:
 
 Wat levert het op? Onze eigen rekensom met de echte day-ahead-prijzen van 1 januari tot en met 18 oktober 2026 kwam voor een batterij van 5 kWh op **hooguit € 234** bij eigen gebruik. Dat is een bovengrens: we kenden alle prijzen vooraf en de opslag van je leverancier telde niet mee. Zelfs dan verdien je een batterij van € 3.550 met alleen slim laden niet binnen tien jaar terug. De berekening staat in [thuisbatterij en dynamisch contract](/blog/thuisbatterij-dynamisch-contract/).
 
-Onze [rekentool voor de terugverdientijd](/terugverdientijd-thuisaccu-berekenen/) rekent voorzichtiger. Zet je teruglevering op 0 en het dynamische contract aan, dan rekent hij met de aannames van ThuisaccuMatch: 150 dagen per jaar met 10 cent prijsverschil en 90 procent rendement. Voor 5 kWh is dat **ongeveer € 68 per jaar**. Met de Sessy van € 3.550 kom je dan op ruim 52 jaar (onze rekensom: 3.550 / 67,50). Vul je eigen prijsverschil en offerteprijs in om je eigen situatie te zien. Meer over prijzen lees je bij [wat kost een thuisaccu](/thuisaccu-kosten/).
+Onze [rekentool voor de terugverdientijd](/terugverdientijd-thuisaccu-berekenen/) rekent voorzichtiger. Zet je teruglevering op 0 en het dynamische contract aan, dan rekent hij met de aannames van ThuisaccuMatch: 150 dagen per jaar met 10 cent prijsverschil en 90 procent rendement. Voor 5 kWh is dat **ongeveer € 68 per jaar**. De rekentool toont dan een terugverdientijd van meer dan 30 jaar. Met de Sessy van € 3.550 is het ruim 52 jaar (onze rekensom: 3.550 / 67,50). Vul je eigen prijsverschil en offerteprijs in om je eigen situatie te zien. Meer over prijzen lees je bij [wat kost een thuisaccu](/thuisaccu-kosten/).
 
 Er is volgens Milieu Centraal geen rijkssubsidie voor een thuisbatterij. Wel kun je soms de btw terugvragen. Volgens de Belastingdienst heb je daarvoor onder meer een dynamisch contract en een EMS nodig om te handelen in stroom, en word je btw-ondernemer. Lees eerst [btw op een thuisaccu](/btw-thuisaccu/).
 
 ## Stekkerbatterij of vaste thuisaccu
 
 - **Stekkerbatterij.** Je steekt hem zelf in het stopcontact. HomeWizard noemt zonnepanelen bij de dingen die je nodig hebt, dus zonder panelen is deze niet bedoeld. Milieu Centraal wijst bij stekkerbatterijen ook op mogelijk brandrisico: stroom kan op één groep van twee kanten komen, waardoor de bedrading te heet kan worden.
-- **Vaste thuisaccu.** Een installateur sluit hem aan op een eigen groep in de meterkast. Sessy en Zonneplan, de twee merken die zonder panelen werken, zijn vaste batterijen.
+- **Vaste thuisaccu.** Een installateur sluit hem aan op een eigen groep in de meterkast. Sessy, SolarEdge en Zonneplan, de merken die zeggen dat het zonder panelen kan, zijn vaste batterijen.
 
 De verschillen op een rij zie je bij [stekkerbatterij of vaste thuisaccu](/stekkerbatterij-of-vaste-thuisaccu/).
 
@@ -102,7 +102,7 @@ Kun je nog isoleren, de ventilatie verbeteren of een warmtepomp nemen? Volgens M
 ## Veelgestelde vragen
 
 ### Kan een thuisbatterij zonder zonnepanelen?
-Ja, als je een dynamisch energiecontract hebt en de batterij op de stroomprijs stuurt. Sessy en Zonneplan zeggen op hun site dat hun batterij zonder panelen werkt.
+Ja, als je een dynamisch energiecontract hebt en de batterij op de stroomprijs stuurt. Sessy, SolarEdge en Zonneplan zeggen op hun site dat een thuisbatterij ook zonder panelen kan werken of interessant kan zijn.
 
 ### Is een thuisbatterij zonder zonnepanelen rendabel?
 Volgens Milieu Centraal hoogstwaarschijnlijk niet. Met de echte prijzen van 2026 leverde 5 kWh tot 18 oktober hooguit € 234 op, met perfecte voorspelling (onze rekensom).
