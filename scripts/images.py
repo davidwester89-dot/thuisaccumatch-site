@@ -31,10 +31,11 @@ cards={
  'blog-thuisbatterij-dynamisch-contract':('Thuisbatterij en dynamisch contract','Sturing, EMS en btw-teruggave'),
  'blog-thuisbatterij-terugleverkosten-2027':('Terugleverkosten 2027 en je thuisbatterij','Wat je per kWh bespaart'),
  'blog-thuisbatterij-met-noodstroom':('Thuisbatterij met noodstroom','Welke merken het kunnen'),
+ 'blog-thuisbatterij-zonder-zonnepanelen':('Thuisbatterij zonder zonnepanelen','Wanneer het loont en welke merken het kunnen'),
  'gidsen':('Gidsen over thuisaccu’s','Saldering, kosten, btw en veiligheid'),
 }
 # blogkaarten met kopfoto: kaart -> WebP in src/assets/img/blog
-photo={k:k[5:]+'-1200.webp' for k in cards if k.startswith('blog-')}
+photo={k:k[5:]+'-1200.webp' for k in cards if k.startswith('blog-') and os.path.exists('src/assets/img/blog/'+k[5:]+'-1200.webp')}  # blogkaart zonder kopfoto: gewone kaart
 art=f'<svg viewBox="0 0 300 300" width="300" height="300"><rect x="50" y="70" width="180" height="190" rx="18" fill="#fff" stroke="{D}" stroke-width="6"/><rect x="110" y="48" width="60" height="24" rx="6" fill="{D}"/><rect x="74" y="190" width="132" height="48" rx="8" fill="{G}"/><rect x="74" y="132" width="132" height="48" rx="8" fill="{B}"/><rect x="74" y="94" width="132" height="28" rx="8" fill="{P}"/><circle cx="244" cy="66" r="28" fill="#e7a33e"/><g stroke="#e7a33e" stroke-width="6" stroke-linecap="round"><path d="M244 22v-10M244 120v-10M200 66h-10M298 66h-10"/></g></svg>'
 tmp=tempfile.mkdtemp()
 def shot(html,out,w,h):
