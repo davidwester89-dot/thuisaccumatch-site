@@ -2,7 +2,6 @@
 import { advies, compleet, VRAGEN, label, TYPES } from './lib/match.js';
 import { MERKEN, STERK_IN } from './lib/merken.js';
 import { eur, komma, jaarTekst } from './lib/kosten.js';
-import { score as checklist, fmtScore } from './lib/checklist.js';
 import { logoImg } from './lib/logos.js';
 import { LEADS, ROUTING } from './lib/leads.config.js';
 import { categorieVan } from './lib/leads.js';
@@ -47,13 +46,13 @@ function toon(a, scroll) {
   if (r.type === 'geen') html += `<p><a class="btn ghost" href="${BASE}/salderingsregeling-stopt-2027/">Wat verandert er in 2027?</a></p>`;
   else if (merken.length) {
     html += `<h3>Merken: ${esc(r.naam.toLowerCase())}</h3><ol class="mtop">${merken.map((id, i) => {
-      const p = MERKEN[id]; const s = checklist(id);
-      return `<li${i === 0 ? ' class="first"' : ''}><div class="mhead">${logoImg(id, { maat: 'sm', base: BASE })}<h3>${esc(p.naam)}</h3></div><p class="pc-price">${esc(STERK_IN[id])} · checklistscore ${fmtScore(s.totaal)}/${s.max}</p><div class="mini-cta"><a href="${BASE}/merken/${p.slug}/">Alles over ${esc(p.naam)}</a></div></li>`;
+      const p = MERKEN[id];
+      return `<li${i === 0 ? ' class="first"' : ''}><div class="mhead">${logoImg(id, { maat: 'sm', base: BASE })}<h3>${esc(p.naam)}</h3></div><p class="pc-price">${esc(STERK_IN[id])}</p><div class="mini-cta"><a href="${BASE}/merken/${p.slug}/">Alles over ${esc(p.naam)}</a></div></li>`;
     }).join('')}</ol>`;
     if (r.merken.length > merken.length) html += `<p><a href="${BASE}/vergelijken/">Alle ${r.merken.length} merken vergelijken</a></p>`;
   } else html += `<p>Geen van de 6 merken noemt noodstroom bij deze soort. <a href="${BASE}/vergelijken/">Vergelijk alle merken</a></p>`;
   html += `<p class="mlinks"><button type="button" class="linkbtn" id="m-reset">Opnieuw beginnen</button><button type="button" class="linkbtn" id="m-share">Deel of bewaar: kopieer de link</button></p>`
-    + `<p class="sub">Merken op checklistscore, bij gelijke stand op naam. Partnerlinks tellen niet mee.${Object.keys(LEADS).length ? ' Offertes lopen via een offertepartner (partnerlink); die vergoeding heeft geen invloed op dit advies.' : ''}</p>`;
+    + `<p class="sub">Merken op het aantal checklistpunten, bij gelijke stand op naam. Partnerlinks tellen niet mee.${Object.keys(LEADS).length ? ' Offertes lopen via een offertepartner (partnerlink); die vergoeding heeft geen invloed op dit advies.' : ''}</p>`;
   out.innerHTML = html;
   history.replaceState(null, '', `${location.pathname}?${new URLSearchParams(a)}`);
   document.getElementById('m-reset').addEventListener('click', () => { form.reset(); history.replaceState(null, '', location.pathname); update(); out.innerHTML = WACHT; form.querySelector('input').focus(); });

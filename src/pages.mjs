@@ -7,10 +7,13 @@ import { IDS, CHECKED, FEATURES, STERK_IN } from './lib/merken.js';
 import { knop } from './lib/partnerlinks.js';
 import { VRAGEN } from './lib/match.js';
 import { BRON, STROOMPRIJS, LEVERING, ENERGIEBELASTING, KAAL, MIN_VERGOEDING, NETTO_TERUG, OPWEK_PANEEL, ZOMERDAG_PANEEL, WINTERDAG_PANEEL, ZELFVERBRUIK, PRIJS_KWH, AANNAMES, terugverdien, saldering, capaciteit, komma } from './lib/kosten.js';
-import { GROEPEN, PUNTEN, IDS_PUNTEN, score, fmtScore, ranglijst } from './lib/checklist.js';
-import { M, by, bron, B, featureBronnen, matchCta, article, faqHtml, pcard, matrix, methodBox, scoreBlock, scoreBadge, bars, fv, checklistTable, aanbodTekst, logoImg, eur } from './parts.mjs';
+import { GROEPEN, PUNTEN, IDS_PUNTEN, ranglijst } from './lib/checklist.js';
+import { M, by, bron, B, featureBronnen, matchCta, article, faqHtml, pcard, matrix, methodBox, fv, checklistTable, aanbodTekst, logoImg, eur } from './parts.mjs';
 import { leadCta, privacyOffertes } from './offerte.mjs';
 import { LEADS_AAN } from './leads.config.mjs';
+// Checklistscores weggehaald (29-10-2026): bijgewerkt-datum, lastmod en dateModified van alle pagina's die een score toonden.
+export const SCORE_WEG = '2026-10-29';
+const bijgewerkt = (pg, upd) => ({ ...pg, lastmod: upd, stamp: { ...pg.stamp, updated: upd }, ...(pg.article ? { article: { ...pg.article, updated: upd } } : {}), ...(pg.schema ? { schema: pg.schema.map((x, j) => (j === 0 && 'dateModified' in x ? { ...x, dateModified: upd } : x)) } : {}) });
 
 const RANG = ranglijst();
 const logo = (id, maat = 'md') => logoImg(id, { maat });
@@ -37,10 +40,10 @@ const homeFaq = [
   ['Is een thuisaccu nu al slim?', 'Milieu Centraal verwacht dat je een thuisaccu op dit moment hoogstwaarschijnlijk niet terugverdient met wat je bespaart op je stroomrekening. Wel kun je er meer van je eigen zonnestroom mee gebruiken en ben je wat minder afhankelijk van het net. Reken het voor jouw situatie uit met de <a href="/terugverdientijd-thuisaccu-berekenen/">rekentool</a>.'],
   ['Wat verandert er op 1 januari 2027?', 'De salderingsregeling stopt. Teruggeleverde zonnestroom mag je dan niet meer wegstrepen tegen je verbruik. Je krijgt een terugleververgoeding die tot 2030 minstens de helft van het kale leveringstarief is, maar veel leveranciers rekenen ook terugleverkosten. Zie <a href="/salderingsregeling-stopt-2027/">saldering stopt in 2027</a>.'],
   ['Is er subsidie op een thuisaccu?', 'Nee. Volgens Milieu Centraal is er geen rijkssubsidie op een thuisbatterij. Je betaalt 21% btw; het 0%-tarief van zonnepanelen geldt niet voor een thuisaccu (Belastingdienst). In sommige gevallen kun je de btw terugvragen, zie <a href="/btw-thuisaccu/">btw op een thuisaccu</a>.'],
-  ['Hoe komt de checklistscore tot stand?', 'We tellen 10 vaste punten, zoals LFP-cellen, uitbreidbaarheid, noodstroom, garantie en of de prijs openbaar is. Ja is 1 punt, deels een half punt, nee of niet vermeld 0. Zie <a href="/over/#methode">zo vergelijken we</a>.'],
-  ['Verdient ThuisaccuMatch aan de merken?', 'Nu niet. Komt er later een partnerlink of offertepartner, dan wordt die bij de knoppen vermeld en telt die nooit mee in de score, de volgorde of het advies.'],
+  ['Hoe komt de volgorde tot stand?', 'We kijken naar 10 vaste punten, zoals LFP-cellen, uitbreidbaarheid, noodstroom, garantie en of de prijs openbaar is. Merken die meer van die punten zelf noemen, staan hoger. Zie <a href="/over/#methode">zo vergelijken we</a>.'],
+  ['Verdient ThuisaccuMatch aan de merken?', 'Nu niet. Komt er later een partnerlink of offertepartner, dan wordt die bij de knoppen vermeld en telt die nooit mee in de volgorde of het advies.'],
 ];
-const miniRows = RANG.map((id) => `<tr><th scope="row"><span class="rowlogo">${logo(id, 'sm')}</span><a href="/merken/${M[id].slug}/">${esc(M[id].naam)}</a></th><td data-l="Score">${scoreBadge(id)}</td>${[['stekker', 'Stekker'], ['bestaand', 'Bestaande omvormer'], ['noodstroom', 'Noodstroom'], ['garantie', 'Garantie 10 jaar'], ['prijs', 'Prijs openbaar']].map(([k, l]) => `<td data-l="${l}">${fv(FEATURES[id][k], false)}</td>`).join('')}</tr>`).join('');
+const miniRows = RANG.map((id) => `<tr><th scope="row"><span class="rowlogo">${logo(id, 'sm')}</span><a href="/merken/${M[id].slug}/">${esc(M[id].naam)}</a></th>${[['stekker', 'Stekker'], ['bestaand', 'Bestaande omvormer'], ['noodstroom', 'Noodstroom'], ['garantie', 'Garantie 10 jaar'], ['prijs', 'Prijs openbaar']].map(([k, l]) => `<td data-l="${l}">${fv(FEATURES[id][k], false)}</td>`).join('')}</tr>`).join('');
 // Lijn-iconen voor de rekentoolkaarten (redesign-v1, Lucide-stijl): klok (terugverdientijd), batterij (capaciteit), zon (einde salderen).
 const svgI = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
 const TOOL_ICO = [svgI('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'), svgI('<rect x="2" y="7" width="17" height="10" rx="2"/><path d="M22 11v2"/><path d="M6 10v4M10 10v4"/>'), svgI('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>')];
@@ -49,7 +52,7 @@ const toolCards = (h = 'h3') => `<div class="grid cards">${TOOLS.map(([href, t, 
 
 export const home = {
   lastmod: '2026-10-19',
-  path: '/', title: 'Thuisaccu kiezen: keuzehulp, merken, kosten | ThuisaccuMatch', ogTitle: 'ThuisaccuMatch: past een thuisaccu bij jou?', h1: 'Thuisaccu kiezen? Reken eerst.', og: 'home',
+  path: '/', title: 'Thuisaccu kiezen: keuzehulp, merken, kosten | ThuisaccuMatch', ogTitle: 'ThuisaccuMatch: past een thuisaccu bij jou?', h1: 'Thuisaccu kiezen? Reken eerst.', og: 'home', lastmod: SCORE_WEG,
   description: 'Past een thuisaccu bij jou? Doe de keuzehulp, vergelijk 6 merken op een vaste checklist en reken uit wat een accu oplevert als de saldering in 2027 stopt.',
   schema: [faqSchema(homeFaq)],
   full: true,
@@ -80,18 +83,18 @@ ${toolCards()}
 </div></section>
 <section class="sec tint"><div class="wrap">
 <h2>De merken op een rij</h2>
-<p class="sub">Gesorteerd op checklistscore, bij gelijke stand op naam. De score telt wat het merk zelf op de eigen site noemt.</p>
-<div class="table-wrap"><table class="data stack"><thead><tr><th scope="col">Merk</th><th scope="col">Score</th><th scope="col">Stekker</th><th scope="col">Bestaande omvormer</th><th scope="col">Noodstroom</th><th scope="col">Garantie 10 jaar</th><th scope="col">Prijs openbaar</th></tr></thead><tbody>${miniRows}</tbody></table></div>
+<p class="sub">Gesorteerd op het aantal checklistpunten dat het merk zelf op de eigen site noemt, bij gelijke stand op naam.</p>
+<div class="table-wrap"><table class="data stack"><thead><tr><th scope="col">Merk</th><th scope="col">Stekker</th><th scope="col">Bestaande omvormer</th><th scope="col">Noodstroom</th><th scope="col">Garantie 10 jaar</th><th scope="col">Prijs openbaar</th></tr></thead><tbody>${miniRows}</tbody></table></div>
 <p><a href="/vergelijken/">Alle 10 checklistpunten, met filters →</a></p>
 </div></section>
 <section class="sec warm method-band"><div class="wrap">
 <div class="sec-head"><p class="eyebrow">Onze werkwijze</p><h2>Zo vergelijken we</h2></div>
 <ol class="steps how">
 <li><strong>Bron bij alles.</strong> Merkgegevens komen van de site van het merk, stroomprijzen van het CBS, regels van de Rijksoverheid, de ACM en de Belastingdienst.</li>
-<li><strong>Een vaste checklist.</strong> Tien punten, van LFP-cellen en noodstroom tot garantie. De score telt wat het merk zelf noemt.</li>
-<li><strong>Partners veranderen niets.</strong> Partnerlinks en offertepartners tellen nooit mee in de score, de volgorde of het advies.</li>
+<li><strong>Een vaste checklist.</strong> Tien punten, van LFP-cellen en noodstroom tot garantie. We tellen alleen wat het merk zelf noemt.</li>
+<li><strong>Partners veranderen niets.</strong> Partnerlinks en offertepartners tellen nooit mee in de volgorde of het advies.</li>
 </ol>
-<p class="author">Door <a href="/over/">${SITE.owner}</a> · <a href="/over/#methode">Hoe de score werkt</a></p>
+<p class="author">Door <a href="/over/">${SITE.owner}</a> · <a href="/over/#methode">Hoe we vergelijken</a></p>
 </div></section>
 <section class="sec"><div class="wrap split2"><div>
 <h2>Gidsen</h2><ul class="gidslijst">${GIDSLINKS.map(([h, t]) => `<li><a href="${h}">${esc(t)}</a></li>`).join('')}</ul>
@@ -107,7 +110,7 @@ ${faqHtml(homeFaq)}
 // ---- Keuzehulp ----
 export const quiz = {
   lastmod: '2026-10-19',
-  path: '/thuisaccu-keuzehulp/', title: 'Thuisaccu keuzehulp: past een thuisbatterij bij jou?', h1: 'Past een thuisaccu bij jou?', crumb: 'Keuzehulp', og: 'match', noCta: true,
+  path: '/thuisaccu-keuzehulp/', title: 'Thuisaccu keuzehulp: past een thuisbatterij bij jou?', h1: 'Past een thuisaccu bij jou?', crumb: 'Keuzehulp', og: 'match', noCta: true, lastmod: SCORE_WEG,
   description: 'Zes vragen over je zonnepanelen, verbruik, contract en budget. Advies: geen accu, stekkerbatterij of vaste thuisaccu, met capaciteit en merken.',
   scripts: ['/js/keuzehulp.js'],
   schema: [app('ThuisaccuMatch keuzehulp', '/thuisaccu-keuzehulp/')],
@@ -122,7 +125,7 @@ ${VRAGEN.map((v, i) => `<fieldset class="q"><legend>${i + 1}. ${esc(v.vraag)}</l
 </div>
 <p>Wil je liever zelf rekenen met je eigen cijfers? Met de <a href="/terugverdientijd-thuisaccu-berekenen/">rekentool terugverdientijd</a> zie je wat een thuisaccu jou per jaar oplevert. Wil je ook weten hoeveel kWh je nodig hebt of wat het einde van salderen kost? Kijk bij de <a href="/rekentools/">rekentools voor je thuisaccu</a>.</p>
 <noscript><p class="alert">De keuzehulp werkt met JavaScript. Zonder JavaScript lees je de regels in <a href="/stekkerbatterij-of-vaste-thuisaccu/">stekkerbatterij of vaste thuisaccu</a>.</p></noscript>
-<section class="method" id="methode"><h2>Zo werkt de keuzehulp</h2><ol><li><strong>Eerst: heb je iets om op te slaan?</strong> Milieu Centraal ziet een thuisaccu vooral als manier om meer eigen zonnestroom te gebruiken, of om met een dynamisch contract goedkoop in te kopen. Zonder zonnepanelen en zonder dynamisch contract raden we nog geen accu aan.</li><li><strong>Dan de grootte.</strong> Milieu Centraal: kies niet te groot, de accu hoeft alleen je avond- en nachtverbruik te dekken. We nemen aan dat de helft van je verbruik 's avonds en 's nachts valt, en rekenen met het zomeroverschot van je panelen (${komma(ZOMERDAG_PANEEL)} kWh per paneel op een junidag, waarvan je 30% direct zelf gebruikt).</li><li><strong>Dan de soort.</strong> Wil je zelf aansluiten, is je budget tot € 1.500 of is de benodigde capaciteit kleiner dan 3 kWh, dan wordt het een stekkerbatterij. Anders een vaste thuisaccu door een installateur.</li><li><strong>Dan de cijfers.</strong> Prijs per kWh opslag: stekkerbatterij € ${PRIJS_KWH.stekker} (HomeWizard, € 1.195 voor 2,7 kWh), vaste accu € ${PRIJS_KWH.vast} (Sessy 10 kWh, € 5.500), met als minimum € 3.550 (Sessy 5 kWh, de kleinste vaste accu met een openbare prijs). Stroom € ${komma(STROOMPRIJS, 2)} per kWh (CBS), teruglevering netto ${ct(NETTO_TERUG)} per kWh (Milieu Centraal).</li><li><strong>Merken:</strong> alleen merken van de juiste soort, in de vaste volgorde (checklistscore, dan naam). Wil je noodstroom, dan alleen merken die dat noemen.</li></ol><p>Het advies is een indicatie. Je eigen verbruiksprofiel meet je met een P1-meter op je slimme meter; een installateur kan je meterkast en de plek voor de accu beoordelen. De keuzehulp verandert nooit door partners: er zijn nu geen partnerlinks en geen offertepartners.</p><p class="src">Bronnen: <a href="${BRON.mcAccu.url}" rel="noopener">${BRON.mcAccu.naam}</a> · <a href="${BRON.cbs.url}" rel="noopener">${BRON.cbs.naam}</a> · <a href="${BRON.mcNa2027.url}" rel="noopener">${BRON.mcNa2027.naam}</a> · <a href="${BRON.brandweerStekker.url}" rel="noopener">${BRON.brandweerStekker.naam}</a> · <a href="${BRON.bdBtw.url}" rel="noopener">${BRON.bdBtw.naam}</a></p></section>`,
+<section class="method" id="methode"><h2>Zo werkt de keuzehulp</h2><ol><li><strong>Eerst: heb je iets om op te slaan?</strong> Milieu Centraal ziet een thuisaccu vooral als manier om meer eigen zonnestroom te gebruiken, of om met een dynamisch contract goedkoop in te kopen. Zonder zonnepanelen en zonder dynamisch contract raden we nog geen accu aan.</li><li><strong>Dan de grootte.</strong> Milieu Centraal: kies niet te groot, de accu hoeft alleen je avond- en nachtverbruik te dekken. We nemen aan dat de helft van je verbruik 's avonds en 's nachts valt, en rekenen met het zomeroverschot van je panelen (${komma(ZOMERDAG_PANEEL)} kWh per paneel op een junidag, waarvan je 30% direct zelf gebruikt).</li><li><strong>Dan de soort.</strong> Wil je zelf aansluiten, is je budget tot € 1.500 of is de benodigde capaciteit kleiner dan 3 kWh, dan wordt het een stekkerbatterij. Anders een vaste thuisaccu door een installateur.</li><li><strong>Dan de cijfers.</strong> Prijs per kWh opslag: stekkerbatterij € ${PRIJS_KWH.stekker} (HomeWizard, € 1.195 voor 2,7 kWh), vaste accu € ${PRIJS_KWH.vast} (Sessy 10 kWh, € 5.500), met als minimum € 3.550 (Sessy 5 kWh, de kleinste vaste accu met een openbare prijs). Stroom € ${komma(STROOMPRIJS, 2)} per kWh (CBS), teruglevering netto ${ct(NETTO_TERUG)} per kWh (Milieu Centraal).</li><li><strong>Merken:</strong> alleen merken van de juiste soort, in de vaste volgorde (meeste checklistpunten, dan naam). Wil je noodstroom, dan alleen merken die dat noemen.</li></ol><p>Het advies is een indicatie. Je eigen verbruiksprofiel meet je met een P1-meter op je slimme meter; een installateur kan je meterkast en de plek voor de accu beoordelen. De keuzehulp verandert nooit door partners: er zijn nu geen partnerlinks en geen offertepartners.</p><p class="src">Bronnen: <a href="${BRON.mcAccu.url}" rel="noopener">${BRON.mcAccu.naam}</a> · <a href="${BRON.cbs.url}" rel="noopener">${BRON.cbs.naam}</a> · <a href="${BRON.mcNa2027.url}" rel="noopener">${BRON.mcNa2027.naam}</a> · <a href="${BRON.brandweerStekker.url}" rel="noopener">${BRON.brandweerStekker.naam}</a> · <a href="${BRON.bdBtw.url}" rel="noopener">${BRON.bdBtw.naam}</a></p></section>`,
 };
 
 // ---- Merkpagina's ----
@@ -155,7 +158,6 @@ const merkPagesRaw = IDS.map((id) => {
     body: `<article><div class="phead"><span class="phead-logo">${logoImg(id, { maat: 'lg', eager: true })}</span><span class="tag best">${esc(STERK_IN[id])}</span></div><h1>${esc(h1)}</h1>${by()}<p class="lead">${esc(p.kort)}</p>
 <div class="pcard first"><div class="pc-head"><span class="sc-lbl">Aanbod</span><p class="pc-price"><strong>${esc(aanbodTekst(id))}</strong></p></div>
 <ul class="pc-facts"><li><span>LFP-cellen</span><span>${fv(f.lfp, false)}</span></li><li><span>Noodstroom</span><span>${fv(f.noodstroom, false)}</span></li><li><span>Garantie 10 jaar</span><span>${fv(f.garantie, false)}</span></li><li><span>Plek in de vergelijking</span><span>${pos} van ${IDS.length}</span></li></ul>
-${scoreBlock(id)}
 <div class="pc-cta">${knop(id, 'merk_top')}<a href="/thuisaccu-keuzehulp/">Past het bij mij? Start de keuzehulp →</a></div></div>
 <h2>Modellen</h2><div class="table-wrap"><table class="data stack"><thead><tr><th scope="col">Model of lijn</th><th scope="col">Wat</th></tr></thead><tbody>${p.lijnen.map(([n, w]) => `<tr><th scope="row">${esc(n)}</th><td data-l="Wat">${esc(w)}</td></tr>`).join('')}</tbody></table></div>
 ${p.extra || ''}${prijsBlok}
@@ -165,20 +167,20 @@ ${p.extra || ''}${prijsBlok}
 <p>Of een ${p.soort === 'stekker' ? 'stekkerbatterij' : 'vaste thuisaccu'} van ${esc(p.naam)} zich voor jou terugbetaalt, hangt vooral af van hoeveel zonnestroom je teruglevert en welk energiecontract je hebt. Milieu Centraal verwacht dat je een thuisaccu op dit moment hoogstwaarschijnlijk niet terugverdient. Reken het na met de <a href="/terugverdientijd-thuisaccu-berekenen/">rekentool terugverdientijd</a> en bepaal de grootte met de <a href="/capaciteit-thuisaccu-berekenen/">capaciteitsberekening</a>.</p>
 ${p.faq ? faqHtml(p.faq) : ''}${p.soort === 'vast' ? leadCta('vast', 'merk') : ''}
 <div class="out">${knop(id, 'merk_bottom')}</div>
-<h2>Alternatieven</h2><ul class="gidslijst">${alt.map((x) => `<li class="withlogo">${logo(x, 'sm')}<a href="/merken/${M[x].slug}/">${esc(M[x].naam)}</a> · ${esc(STERK_IN[x])} · ${fmtScore(score(x).totaal)} van 10 checklistpunten (<a href="/over/#methode">hoe de score werkt</a>)</li>`).join('')}${(RELATED[id] || []).map(([h, tt]) => `<li><a href="${h}">${esc(tt)}</a></li>`).join('')}<li><a href="/vergelijken/">Alle merken naast elkaar</a></li></ul>
+<h2>Alternatieven</h2><ul class="gidslijst">${alt.map((x) => `<li class="withlogo">${logo(x, 'sm')}<a href="/merken/${M[x].slug}/">${esc(M[x].naam)}</a> · ${esc(STERK_IN[x])}</li>`).join('')}${(RELATED[id] || []).map(([h, tt]) => `<li><a href="${h}">${esc(tt)}</a></li>`).join('')}<li><a href="/vergelijken/">Alle merken naast elkaar</a></li></ul>
 <p class="sub">Alle merken: ${IDS.filter((x) => x !== id).map((x) => `<a href="/merken/${M[x].slug}/">${esc(M[x].naam)}</a>`).join(' · ')}</p>
 <h2>Voor je koopt</h2><ul class="gidslijst"><li><a href="/thuisaccu-veiligheid/">Een thuisaccu veilig plaatsen</a></li><li><a href="/btw-thuisaccu/">Btw op een thuisaccu</a></li><li><a href="/salderingsregeling-stopt-2027/">Saldering stopt in 2027</a></li></ul>
 ${matchCta(`Past ${esc(p.naam)} bij jou?`)}${bron(p.bronnen, featureBronnen(id), B('mcAccu'))}</article>`,
   };
 });
 
-// Merken met extra uitleg (extraChecked): bijgewerkt-datum in artikel en schema gelijk aan de controledatum. Bij push gelijkzetten aan de pushdatum.
-export const merkPages = merkPagesRaw.map((pg, i) => { const c = M[IDS[i]].extraChecked; if (!c) return pg; return { ...pg, article: { ...pg.article, updated: c }, schema: pg.schema.map((x, j) => (j === 0 ? { ...x, dateModified: c } : x)) }; });
+// Alle merkpagina's: bijgewerkt-datum, lastmod en dateModified = SCORE_WEG (scores weg). De controledatum (stamp.checked) blijft.
+export const merkPages = merkPagesRaw.map((pg) => bijgewerkt(pg, SCORE_WEG));
 export const merkHub = {
-  path: '/merken/', title: 'Thuisaccu merken 2026: 6 merken op een rij | ThuisaccuMatch', h1: 'Alle thuisaccumerken op een rij', crumb: 'Merken', og: 'merken', stamp: { checked: CHECKED, updated: CHECKED },
-  description: 'HomeWizard, Sessy, Zonneplan, Huawei, SolarEdge en BYD: per merk het aanbod, de checklistscore met bron, de prijs als die openbaar is en voor wie het past.',
+  path: '/merken/', title: 'Thuisaccu merken 2026: 6 merken op een rij | ThuisaccuMatch', h1: 'Alle thuisaccumerken op een rij', crumb: 'Merken', og: 'merken', stamp: { checked: CHECKED, updated: SCORE_WEG }, lastmod: SCORE_WEG,
+  description: 'HomeWizard, Sessy, Zonneplan, Huawei, SolarEdge en BYD: per merk het aanbod, de checklist met bron, de prijs als die openbaar is en voor wie het past.',
   schema: [{ '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: RANG.map((id, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE.domain}/merken/${M[id].slug}/`, name: M[id].naam })) }],
-  body: `<h1>Alle thuisaccumerken op een rij</h1><p class="lead">Zes merken die in Nederland thuisaccu's leveren: een stekkerbatterij en vijf vaste systemen. Gesorteerd op checklistscore, bij gelijke stand op naam.</p>
+  body: `<h1>Alle thuisaccumerken op een rij</h1><p class="lead">Zes merken die in Nederland thuisaccu's leveren: een stekkerbatterij en vijf vaste systemen. Gesorteerd op het aantal checklistpunten, bij gelijke stand op naam.</p>
 <div class="actions"><a class="btn" href="/thuisaccu-keuzehulp/">Liever advies op maat? Start de keuzehulp</a><a class="btn ghost" href="/vergelijken/">Filter en vergelijk</a></div>
 <ol class="plist">${RANG.map((id, i) => pcard(id, { rank: i + 1, pos: 'lijst' })).join('')}</ol>
 <section class="prose"><h2>Hoe kies je een merk?</h2><p>Begin niet bij het merk, maar bij je situatie. Heb je al zonnepanelen met een gewone omvormer, dan zoek je een accu die op die bestaande omvormer past (AC-gekoppeld), zoals HomeWizard en Sessy. Laat je zonnepanelen en accu tegelijk plaatsen, of heb je al een hybride omvormer, dan kan een DC-gekoppeld systeem van hetzelfde merk passen, zoals SolarEdge of Huawei. BYD levert alleen de batterij en werkt met een compatibele hybride omvormer van een ander merk.</p><p>Let daarna op de bruikbare capaciteit in kWh, de garantie op de batterij (en apart op de omvormer), of noodstroom mogelijk is en wat de totaalprijs inclusief installatie is. De checklist hierboven telt wat elk merk daarover zelf zegt, met link naar de bron. Het is geen oordeel over kwaliteit of betrouwbaarheid en geen review.</p></section>
@@ -189,18 +191,18 @@ ${methodBox()}`,
 const FILTERS = ['stekker', 'bestaand', 'noodstroom', 'lfp', 'modulair', 'groot', 'app', 'dynamisch', 'garantie', 'prijs'];
 const sel = (id, label, opts) => `<div class="field"><label for="${id}">${label}</label><select id="${id}" name="${id}">${opts.map(([v, t]) => `<option value="${v}">${esc(t)}</option>`).join('')}</select></div>`;
 export const vsHub = {
-  path: '/vergelijken/', title: 'Beste thuisaccu 2026? 6 merken vergeleken | ThuisaccuMatch', h1: 'Thuisaccu’s vergelijken: welke past het best?', crumb: 'Vergelijken', og: 'vergelijken', stamp: { checked: CHECKED, updated: CHECKED },
+  path: '/vergelijken/', title: 'Beste thuisaccu 2026? 6 merken vergeleken | ThuisaccuMatch', h1: 'Thuisaccu’s vergelijken: welke past het best?', crumb: 'Vergelijken', og: 'vergelijken', stamp: { checked: CHECKED, updated: SCORE_WEG }, lastmod: SCORE_WEG,
   scripts: ['/js/vergelijk.js'],
   description: 'Welke thuisaccu is de beste voor jou? Zes merken in één tabel: stekker of vast, noodstroom, LFP, garantie en prijs. Filter op wat je nodig hebt.',
   body: `<h1>Thuisaccu’s vergelijken: welke past het best?</h1><p class="lead">Zes merken op 10 vaste punten. Filter op wat jij zoekt.</p>
-<p>Zoek je de beste thuisaccu? Die bestaat niet voor iedereen. Een stekkerbatterij is de beste keus als je hem zelf wilt aansluiten en weinig wilt uitgeven; een grote vaste thuisaccu als je veel zonnepanelen hebt of noodstroom wilt. De checklistscore telt hoeveel van de 10 punten een merk zelf noemt. Het is geen beoordeling. Wat bij jou past, hangt af van je zonnepanelen, je verbruik en je contract: de <a href="/thuisaccu-keuzehulp/">keuzehulp</a> rekent het uit, en in <a href="/stekkerbatterij-of-vaste-thuisaccu/">stekkerbatterij of vaste thuisaccu</a> lees je de verschillen.</p>
+<p>Zoek je de beste thuisaccu? Die bestaat niet voor iedereen. Een stekkerbatterij is de beste keus als je hem zelf wilt aansluiten en weinig wilt uitgeven; een grote vaste thuisaccu als je veel zonnepanelen hebt of noodstroom wilt. De volgorde volgt hoeveel van de 10 checklistpunten een merk zelf noemt. Het is geen beoordeling. Wat bij jou past, hangt af van je zonnepanelen, je verbruik en je contract: de <a href="/thuisaccu-keuzehulp/">keuzehulp</a> rekent het uit, en in <a href="/stekkerbatterij-of-vaste-thuisaccu/">stekkerbatterij of vaste thuisaccu</a> lees je de verschillen.</p>
 <div class="actions"><a class="btn" href="/thuisaccu-keuzehulp/">Liever advies op maat? Start de keuzehulp</a></div>
 <form class="filters card" id="filters" aria-labelledby="h-f"><h2 id="h-f">Filter de merken</h2>
 <fieldset class="q"><legend>Moet het merk hebben</legend><div class="fchecks">${FILTERS.map((k) => `<label class="check"><input type="checkbox" name="need" value="${k}"><span>${esc(PUNTEN[k].lang)}</span></label>`).join('')}</div></fieldset>
 <p class="sub">"Deels" telt mee. Niet vermeld telt niet mee.</p>
 <p class="count" id="f-count" aria-live="polite">${IDS.length} van ${IDS.length} merken</p>
 </form>
-<div class="sortbar"><h2 style="margin:0">Alle merken naast elkaar</h2>${sel('f-sort', 'Sorteer op', [['score', 'Checklistscore'], ['naam', 'Naam']])}</div>
+<div class="sortbar"><h2 style="margin:0">Alle merken naast elkaar</h2>${sel('f-sort', 'Sorteer op', [['score', 'Meeste checklistpunten'], ['naam', 'Naam']])}</div>
 ${matrix(RANG)}
 <p class="empty" id="f-empty" hidden>Geen merk voldoet aan alles. Zet een filter uit of <a href="/thuisaccu-keuzehulp/">start de keuzehulp</a>.</p>
 <p class="src">De bron van elk punt staat op de pagina van elk merk.</p>
@@ -472,12 +474,12 @@ export const gidsHub = {
 
 // ---- Statisch ----
 export const over = {
-  path: '/over/', title: 'Over ThuisaccuMatch: wie we zijn en hoe we werken', h1: 'Over ons', crumb: 'Over ons', og: 'home',
+  path: '/over/', title: 'Over ThuisaccuMatch: wie we zijn en hoe we werken', h1: 'Over ons', crumb: 'Over ons', og: 'home', lastmod: SCORE_WEG,
   description: 'ThuisaccuMatch helpt huiseigenaren beslissen of een thuisaccu past, hoe groot en welk merk. Hoe we gegevens controleren en hoe we onafhankelijk blijven.',
   schema: [{ '@context': 'https://schema.org', '@type': 'AboutPage', name: 'Over ThuisaccuMatch', about: ORG }],
   body: `<article class="prose"><h1>Over ons</h1><p class="lead">ThuisaccuMatch komt van het team achter BoekhoudMatch, VerduurzaamMatch, ShopMatch en WarmtepompenMatch. Nu de salderingsregeling in 2027 stopt, horen we steeds dezelfde vragen: is een thuisaccu slim, hoe groot moet hij zijn en welk merk past?</p>
 <p>Veel informatie over thuisaccu's komt van merken en installateurs die je hun eigen product willen verkopen. Wij zetten de merken naast elkaar met wat ze zelf op hun site zetten, en rekenen met de onafhankelijke cijfers van Milieu Centraal en het CBS en de regels van de Rijksoverheid, de ACM en de Belastingdienst. Ook als die zeggen dat een accu zich nu meestal niet terugverdient.</p>
-<h2>Hoe we werken</h2><ul><li><strong>Alleen de bron.</strong> Elk checklistpunt komt van de site, het datasheet of het garantiedocument van het merk, elk bedrag van het CBS, Milieu Centraal of het merk zelf, met link.</li><li><strong>Niets verzonnen.</strong> Staat iets niet op de site van het merk, dan staat er "niet vermeld". We plaatsen geen reviews of beoordelingen. Aannames in de rekentools staan er altijd als aanname bij.</li><li><strong>Onafhankelijk.</strong> We installeren geen thuisaccu's en verkopen niets.</li><li><strong>Partners tellen nooit mee</strong> in de score, de volgorde of het advies. Partnerlinks worden bij de knoppen vermeld met één zin per blok.</li></ul>
+<h2>Hoe we werken</h2><ul><li><strong>Alleen de bron.</strong> Elk checklistpunt komt van de site, het datasheet of het garantiedocument van het merk, elk bedrag van het CBS, Milieu Centraal of het merk zelf, met link.</li><li><strong>Niets verzonnen.</strong> Staat iets niet op de site van het merk, dan staat er "niet vermeld". We plaatsen geen reviews of beoordelingen. Aannames in de rekentools staan er altijd als aanname bij.</li><li><strong>Onafhankelijk.</strong> We installeren geen thuisaccu's en verkopen niets.</li><li><strong>Partners tellen nooit mee</strong> in de volgorde of het advies. Partnerlinks worden bij de knoppen vermeld met één zin per blok.</li></ul>
 </article>${methodBox()}<article class="prose"><h2>Wat telt de checklist?</h2><ul>${GROEPEN.map((x) => `<li><strong>${esc(x.naam)}:</strong> ${x.punten.map((k) => esc(/^[A-Z][a-z]/.test(PUNTEN[k].lang) ? PUNTEN[k].lang[0].toLowerCase() + PUNTEN[k].lang.slice(1) : PUNTEN[k].lang)).join(', ')}.</li>`).join('')}</ul><p>"Minstens 10 jaar garantie op de batterij" is ja als het merk dat noemt, deels als het alleen met een voorwaarde kan en nee als de standaardgarantie korter is. "Noodstroom" is deels als het een uitbreiding of extra product vraagt. Noemt een merk een punt niet, dan staat er "niet vermeld" en telt het als 0. Mist er iets? Mail ons, dan passen we het aan met bron.</p>
 <h2>Waar begin je?</h2><ul><li><a href="/thuisaccu-keuzehulp/">De keuzehulp</a>: zes vragen, één advies.</li><li><a href="/vergelijken/">Alle merken vergelijken</a> op de 10 punten.</li><li><a href="/rekentools/">De rekentools</a> voor terugverdientijd, capaciteit en het einde van salderen.</li><li><a href="/gidsen/">De gidsen</a>, van kosten tot veiligheid.</li></ul><p>Hoe we met je gegevens omgaan, lees je in <a href="/privacy/">privacy en cookies</a>. Fout gezien? Mail naar <a href="mailto:${SITE.email}">${SITE.email}</a>.</p>${LEADS_AAN ? `<p>Offertes vraag je aan via een offertepartner. ${SITE.name} is geen partij bij de offerte of de opdracht en ontvangt een vergoeding per aanvraag.</p>` : ''}</article>`,
 };
