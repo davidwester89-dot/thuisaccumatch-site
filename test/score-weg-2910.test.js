@@ -25,9 +25,10 @@ test('geen scores in de gebouwde pagina\'s en scripts', () => {
 
 test('pagina\'s die een score toonden: lastmod en dateModified 2026-10-29', () => {
   const sm = read('dist/sitemap.xml');
-  for (const p of ['/', '/thuisaccu-keuzehulp/', '/merken/', '/merken/sessy/', '/merken/homewizard/', '/merken/byd/', '/vergelijken/', '/over/'])
+  // /merken/sessy/ is op 30-10 opnieuw bijgewerkt (logo's in de tabellen); die datum test test/logo-l7.test.js.
+  for (const p of ['/', '/thuisaccu-keuzehulp/', '/merken/', '/merken/homewizard/', '/merken/byd/', '/vergelijken/', '/over/'])
     assert.match(sm, new RegExp(`<loc>https://thuisaccumatch\\.nl${p}</loc><lastmod>2026-10-29</lastmod>`), p);
-  for (const f of ['merken/sessy', 'merken/homewizard', 'merken/byd']) {
+  for (const f of ['merken/homewizard', 'merken/byd']) {
     const h = read(`dist/${f}/index.html`);
     assert.match(h, /"dateModified":"2026-10-29"/, f);
     assert.match(h, /Laatst bijgewerkt <time datetime="2026-10-29">/, f);

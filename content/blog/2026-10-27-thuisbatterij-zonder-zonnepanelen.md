@@ -3,7 +3,7 @@ title: Thuisbatterij zonder zonnepanelen: wanneer loont het?
 seo_title: Thuisbatterij zonder zonnepanelen: wanneer loont het?
 description: Heeft een thuisbatterij zin zonder zonnepanelen? Wat je met een dynamisch contract kunt, welke merken het ondersteunen, wat het kost en wanneer het loont.
 date: 2026-10-27
-updated: 2026-10-27
+updated: 2026-10-30
 checked: 2026-10-27
 tools: /thuisaccu-keuzehulp/, /terugverdientijd-thuisaccu-berekenen/, /vergelijken/
 sources:
