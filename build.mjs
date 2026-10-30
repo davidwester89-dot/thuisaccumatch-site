@@ -22,8 +22,10 @@ const { offertePages } = await import('./src/offerte.mjs');
 const home = { ...P.home, body: P.home.body.replace('{{latest}}', latestHtml(posts)) };
 export const pages = [home, P.quiz, P.toolHub, P.calcTvt, P.calcCap, P.calcSal, P.merkHub, ...P.merkPages, P.vsHub, P.gidsHub, ...P.guides, ...(posts.length ? [blogIndex(posts), ...posts.map((x) => postPage(x, posts))] : []), ...offertePages, P.over, P.privacy, P.notfound].map((p) => (P.LOGO_PADEN.has(p.path) ? P.bijgewerkt(p, P.LOGO_UPD) : p));
 for (const p of pages) write(p.path.endsWith('.html') ? join(OUT, p.path) : join(OUT, p.path, 'index.html'), partnerNoten(layout(p)));
-cpSync('src/assets/js', join(OUT, 'js'), { recursive: true });
-cpSync('src/lib', join(OUT, 'js/lib'), { recursive: true, filter: (p) => !/logo-(rechten|cellen)\.m?js$/.test(p) }); // alleen build-time, niet publiceren
+// Offertemodule uit (geen offertepagina's): offerte.js, offerte-bedankt.js en partnerlinks.js niet publiceren (SC 30-10, geen slapende scripts).
+const OFFERTE_AAN = offertePages.length > 0;
+cpSync('src/assets/js', join(OUT, 'js'), { recursive: true, filter: (p) => OFFERTE_AAN || !/[\\/]offerte(-bedankt)?\.js$/.test(p) });
+cpSync('src/lib', join(OUT, 'js/lib'), { recursive: true, filter: (p) => !/logo-(rechten|cellen)\.m?js$/.test(p) && (OFFERTE_AAN || !/[\\/]partnerlinks\.js$/.test(p)) }); // alleen build-time, niet publiceren
 // Lichte minificatie van de scripts: commentaarregels, blokcommentaar en inspringing eruit (geen bundler nodig).
 for (const f of readdirSync(join(OUT, 'js'), { recursive: true })) {
   if (!String(f).endsWith('.js')) continue;
