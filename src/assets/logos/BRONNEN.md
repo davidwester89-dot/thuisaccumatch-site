@@ -12,13 +12,13 @@ Officiële logo's, gehaald van de eigen website van elk merk op 19-10-2026. Omge
 
 ## Gebruiksrecht (nagekeken 30-10-2026)
 
-Per maker de merkrichtlijn of perskit en de status. Besluit Dave 30-10: elk merk toont zijn logo, ook bij strenge merkregels; een logo gaat er alleen uit als het merk daarom vraagt (dan ZONDER_LOGO in src/lib/logo-rechten.js).
+Per maker de merkrichtlijn of perskit en de status. Besluit 30-10: elk merk toont zijn logo, ook bij strenge merkregels; een logo gaat er alleen uit als het merk daarom vraagt (dan ZONDER_LOGO in src/lib/logo-rechten.js).
 
 | Merk | Richtlijn | Status |
 |---|---|---|
-| byd | https://www.byd.com/eu/terms-of-use | logo: getoond op besluit Dave 30-10; weghalen op verzoek merk. Richtlijn: merken en logo's alleen met voorafgaande schriftelijke toestemming |
+| byd | https://www.byd.com/eu/terms-of-use | logo: getoond op besluit 30-10; weghalen op verzoek merk. Richtlijn: merken en logo's alleen met voorafgaande schriftelijke toestemming |
 | homewizard | geen merkrichtlijn gevonden (homewizard.com, 30-10) | logo: geen gepubliceerde beperking gevonden |
-| huawei | https://consumer.huawei.com/en/legal/intellectual-property/huawei-trademark-policy/ | logo: getoond op besluit Dave 30-10; weghalen op verzoek merk. Richtlijn: elk gebruik van merk of logo met voorafgaande schriftelijke toestemming |
+| huawei | https://consumer.huawei.com/en/legal/intellectual-property/huawei-trademark-policy/ | logo: getoond op besluit 30-10; weghalen op verzoek merk. Richtlijn: elk gebruik van merk of logo met voorafgaande schriftelijke toestemming |
 | sessy | geen merkrichtlijn gevonden (sessy.nl, 30-10) | logo: geen gepubliceerde beperking gevonden |
-| solaredge | https://www.solaredge.com/en/terms-and-conditions | logo: getoond op besluit Dave 30-10; weghalen op verzoek merk. Richtlijn: naam, merken en logo's alleen met voorafgaande schriftelijke toestemming |
+| solaredge | https://www.solaredge.com/en/terms-and-conditions | logo: getoond op besluit 30-10; weghalen op verzoek merk. Richtlijn: naam, merken en logo's alleen met voorafgaande schriftelijke toestemming |
 | zonneplan | geen merkrichtlijn gevonden (zonneplan.nl, 30-10) | logo: geen gepubliceerde beperking gevonden |
