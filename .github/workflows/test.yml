@@ -18,7 +18,8 @@ jobs:
           node-version: 20
       - run: npm test
         env:
-          L7_BASE: ${{ github.event.before }} # L7 vergelijkt met wat live stond, niet HEAD met zichzelf
+          # PR (ook Dependabot): basis = base-commit van de PR; push: wat live stond. Ontbreekt die basis in de clone, dan faalt L7 (zo bedoeld).
+          L7_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
       - run: npm run build
         env:
           BASE: /thuisaccumatch-site
