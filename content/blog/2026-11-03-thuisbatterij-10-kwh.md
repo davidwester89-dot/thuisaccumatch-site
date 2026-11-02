@@ -45,6 +45,8 @@ Alleen Sessy, Zonneplan en HomeWizard zetten een prijs op hun site. Let goed op 
 
 **Voorbeeld:** vier Plug-In Batteries geven 10,8 kWh. 4 × € 1.195 = € 4.780, plus € 24,95 voor de P1 Meter. Voor vier batterijen eist HomeWizard wel een eigen zekeringgroep; wat die kost, staat niet op de site.
 
+Zet de drie bedragen dus niet zomaar naast elkaar: Sessy noemt een prijs inclusief btw zonder installatie, Zonneplan een prijs inclusief installatie na teruggave van de btw.
+
 Huawei, SolarEdge en BYD noemen geen prijzen; die koop je via een installateur. Prijzen voor andere maten en wat er nog bij kan komen (meterkast, noodstroom) lees je bij [wat kost een thuisaccu](/thuisaccu-kosten/).
 
 ## 1-fase of 3-fase
