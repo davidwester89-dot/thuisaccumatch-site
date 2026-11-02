@@ -16,11 +16,12 @@ export const SCORE_WEG = '2026-10-29';
 // Logo's van de merken in de tabellen (30-10-2026): bijgewerkt-datum, lastmod en dateModified van die pagina's (L7). Blogs: updated in de frontmatter.
 export const LOGO_UPD = '2026-10-30';
 export const LOGO_PADEN = new Set(['/thuisaccu-terugverdientijd/', '/merken/sessy/', '/thuisaccu-kosten/']);
+// /thuisaccu-kosten/ hoofdschakelaar € 250 volgens Zonneplan (3-11-2026): zelfde pushdatum, daarom in EF_PADEN (L7).
 // 'Niet vermeld' overal dezelfde uitleg (externe feedback nov): /vergelijken/, /over/, de merkpagina's (checklistzin) en hub /merken/ (L7, pushdatum).
 export const EF_UPD = '2026-11-03';
-// Hub /gidsen/ (L7-hubregel D, SC 02-11): max(deploy eigen laatste bodywijziging, deploy nieuwste kind) = 2026-10-30 (kinderen live 30-10 12:51 CET).
-export const GIDSEN_UPD = '2026-10-30';
-export const EF_PADEN = new Set(['/vergelijken/', '/over/', '/merken/', '/merken/byd/', '/merken/homewizard/', '/merken/huawei/', '/merken/sessy/', '/merken/solaredge/', '/merken/zonneplan/']);
+// Hub /gidsen/ (L7-hubregel D, SC 02-11): max(deploy eigen laatste bodywijziging, deploy nieuwste kind) = 2026-11-03 (kind /thuisaccu-kosten/ gewijzigd 3-11).
+export const GIDSEN_UPD = '2026-11-03';
+export const EF_PADEN = new Set(['/thuisaccu-kosten/', '/vergelijken/', '/over/', '/merken/', '/merken/byd/', '/merken/homewizard/', '/merken/huawei/', '/merken/sessy/', '/merken/solaredge/', '/merken/zonneplan/']);
 export const bijgewerkt = (pg, upd) => ({ ...pg, lastmod: upd, stamp: { ...pg.stamp, updated: upd }, ...(pg.article ? { article: { ...pg.article, updated: upd } } : {}), ...(pg.schema ? { schema: pg.schema.map((x, j) => (j === 0 && 'dateModified' in x ? { ...x, dateModified: upd } : x)) } : {}) });
 
 const RANG = ranglijst();
@@ -259,7 +260,7 @@ export const kostenGids = g('/thuisaccu-kosten/', 'Thuisaccu kosten 2026: prijze
 </tbody></table></div>
 <p>Huawei, SolarEdge en BYD noemen geen consumentenprijzen; je koopt via een installateur. Let op het verschil tussen prijzen inclusief btw en prijzen "na teruggave van de btw". Die teruggave kan alleen onder voorwaarden, zie <a href="/btw-thuisaccu/">btw op een thuisaccu</a>.</p>
 <h2>Reken met de prijs per kWh</h2><p>Een grote accu kost meer, maar vaak minder per kWh. Deel de totaalprijs inclusief installatie en btw door de bruikbare capaciteit. Zo vergelijk je offertes eerlijk. Vraag de installateur daarom altijd naar de bruikbare capaciteit, niet alleen naar de nominale capaciteit.</p>
-<h2>Wat komt er nog bij?</h2><ul><li><strong>Installatie.</strong> Zonneplan noemt voor de installatie van een thuisaccu € 850 tot € 1.450 (bij Zonneplan zit die in de prijs). Een stekkerbatterij sluit je zelf aan.</li><li><strong>Meterkast.</strong> Een eigen groep, een hoofdschakelaar (circa € 200 volgens Zonneplan) of een nieuwe groepenkast voor 3-fase (circa € 600 tot € 900).</li><li><strong>Noodstroom.</strong> Zit niet standaard op een thuisaccu. Zonneplan noemt vanaf ongeveer € 200 voor één stopcontact tot circa € 3.000 voor de hele woning.</li><li><strong>Btw.</strong> 21%. Het 0%-tarief voor zonnepanelen geldt niet voor een thuisaccu (Belastingdienst).</li></ul>
+<h2>Wat komt er nog bij?</h2><ul><li><strong>Installatie.</strong> Zonneplan noemt voor de installatie van een thuisaccu € 850 tot € 1.450 (bij Zonneplan zit die in de prijs). Een stekkerbatterij sluit je zelf aan.</li><li><strong>Meterkast.</strong> Een eigen groep, een hoofdschakelaar (circa € 250 volgens Zonneplan) of een nieuwe groepenkast voor 3-fase (circa € 600 tot € 900).</li><li><strong>Noodstroom.</strong> Zit niet standaard op een thuisaccu. Zonneplan noemt vanaf ongeveer € 200 voor één stopcontact tot circa € 3.000 voor de hele woning.</li><li><strong>Btw.</strong> 21%. Het 0%-tarief voor zonnepanelen geldt niet voor een thuisaccu (Belastingdienst).</li></ul>
 <h2>Geen subsidie</h2><p>Er is geen rijkssubsidie op een thuisbatterij (Milieu Centraal). Milieu Centraal verwacht wel dat de aanschafkosten de komende jaren dalen. Kijk ook naar je gemeente of provincie, maar reken er niet op.</p>
 <p><a class="btn" href="/terugverdientijd-thuisaccu-berekenen/" data-tool="terugverdientijd">Bereken je terugverdientijd</a></p>
 ${leadCta('vast', 'gids_kosten')}${end('Welke thuisaccu past bij jouw budget?', B('mcAccu', 'bdZon'), M.homewizard.bronnen, M.sessy.bronnen, M.zonneplan.bronnen)}`);
