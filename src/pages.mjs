@@ -18,6 +18,8 @@ export const LOGO_UPD = '2026-10-30';
 export const LOGO_PADEN = new Set(['/thuisaccu-terugverdientijd/', '/merken/sessy/', '/thuisaccu-kosten/']);
 // 'Niet vermeld' overal dezelfde uitleg (externe feedback nov): /vergelijken/, /over/, de merkpagina's (checklistzin) en hub /merken/ (L7, pushdatum).
 export const EF_UPD = '2026-11-03';
+// Hub /gidsen/ (L7-hubregel D, SC 02-11): max(deploy eigen laatste bodywijziging, deploy nieuwste kind) = 2026-10-30 (kinderen live 30-10 12:51 CET).
+export const GIDSEN_UPD = '2026-10-30';
 export const EF_PADEN = new Set(['/vergelijken/', '/over/', '/merken/', '/merken/byd/', '/merken/homewizard/', '/merken/huawei/', '/merken/sessy/', '/merken/solaredge/', '/merken/zonneplan/']);
 export const bijgewerkt = (pg, upd) => ({ ...pg, lastmod: upd, stamp: { ...pg.stamp, updated: upd }, ...(pg.article ? { article: { ...pg.article, updated: upd } } : {}), ...(pg.schema ? { schema: pg.schema.map((x, j) => (j === 0 && 'dateModified' in x ? { ...x, dateModified: upd } : x)) } : {}) });
 
@@ -474,8 +476,8 @@ export const toolHub = {
 
 export const gidsHub = {
   path: '/gidsen/', title: 'Thuisaccu gidsen: saldering, kosten, btw | ThuisaccuMatch', h1: 'Thuisaccu kiezen: alle gidsen', crumb: 'Gidsen', og: 'gidsen',
-  // L7-hubregel 03-11: zichtbare bijgewerkt-regel erbij; hubdatum = max(eigen bodywijziging 2026-11-03, nieuwste kind 2026-10-30). BEKEND_HUB /gidsen/ kan weg.
-  stamp: { updated: EF_UPD }, lastmod: EF_UPD,
+  // L7-hubregel D: zichtbare bijgewerkt-regel + lastmod = deploydatum nieuwste kind (2026-10-30), niet de pushdatum: de hub zelf verandert niet.
+  stamp: { updated: GIDSEN_UPD }, lastmod: GIDSEN_UPD,
   description: 'Gidsen over het einde van salderen in 2027, kosten en terugverdientijd van een thuisaccu, dynamische contracten, terugleverkosten, btw en veiligheid.',
   body: `<h1>Thuisaccu kiezen: alle gidsen</h1><p class="lead">Alles wat je wilt weten voordat je een thuisaccu koopt, met bronnen van Milieu Centraal, de Rijksoverheid, de ACM, de Belastingdienst en de Brandweer.</p><div class="grid cards two">${guides.map((x) => `<a class="card" href="${x.path}"><h2 class="h3">${esc(x.h1)}</h2><p>${esc(x.description)}</p><span class="more">Lees de gids →</span></a>`).join('')}${TOOLS.map(([h, t, d]) => `<a class="card" href="${h}"><h2 class="h3">${esc(t)}</h2><p>${esc(d)}</p><span class="more">Naar de rekentool →</span></a>`).join('')}</div>${matchCta()}`,
 };
