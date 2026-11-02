@@ -3,7 +3,7 @@ title: Thuisbatterij rendabel in 2027? Zo reken je het uit
 seo_title: Thuisbatterij rendabel in 2027? Zo reken je het uit
 description: Salderen stopt op 1-1-2027. Is een thuisbatterij dan rendabel met of zonder zonnepanelen, warmtepomp of EV? Check per situatie wat past en vergelijk.
 date: 2026-10-19
-updated: 2026-10-27
+updated: 2026-11-03
 checked: 2026-10-19
 image: thuisbatterij-rendabel-2027
 image_alt: Schuin dak van een woning vol zonnepanelen zonder merkopdruk, onder een blauwe lucht

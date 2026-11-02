@@ -3,7 +3,7 @@ title: Thuisbatterij en terugleverkosten 2027: wat bespaar je?
 seo_title: Thuisbatterij en terugleverkosten 2027: wat bespaar je?
 description: Salderen stopt op 1-1-2027 en terugleverkosten verschillen per leverancier. Zo reken je uit wat een thuisbatterij jou bespaart. Doe de match.
 date: 2026-10-19
-updated: 2026-10-19
+updated: 2026-11-03
 checked: 2026-10-19
 image: thuisbatterij-terugleverkosten-2027
 image_alt: Dak met zonnepanelen zonder merkopdruk achter een graanveld, met bossen op de achtergrond

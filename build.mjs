@@ -1,6 +1,6 @@
 import { mkdirSync, writeFileSync, cpSync, rmSync, readdirSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-import { layout, SITE, BASE, PREVIEW, NAV_OPT } from './src/layout.mjs';
+import { layout, SITE, BASE, PREVIEW, NAV_OPT, fmtDate } from './src/layout.mjs';
 import { partnerNoten } from './src/lib/partnerlinks.js';
 import { loadPosts, postPage, blogIndex, latestHtml, feed } from './src/blog.mjs';
 import { LEADS, ROUTING, LEADS_PREVIEW } from './src/leads.config.mjs';
@@ -19,7 +19,10 @@ const posts = loadPosts();
 NAV_OPT.blog = posts.length > 0;
 const P = await import('./src/pages.mjs');
 const { offertePages } = await import('./src/offerte.mjs');
-const home = { ...P.home, body: P.home.body.replace('{{latest}}', latestHtml(posts)) };
+// L7-hubregel D: 'Nieuw op de blog' op home toont de 3 nieuwste posts, dus home-datum = nieuwste van SCORE_WEG en die posts.
+const homeUpd = [P.SCORE_WEG, ...posts.slice(0, 3).map((x) => x.date)].sort().at(-1);
+const homeBody = P.home.body.replace('{{latest}}', latestHtml(posts)).replace(`bijgewerkt op <time datetime="${P.SCORE_WEG}">${fmtDate(P.SCORE_WEG)}</time>`, `bijgewerkt op <time datetime="${homeUpd}">${fmtDate(homeUpd)}</time>`);
+const home = { ...P.home, body: homeBody, lastmod: homeUpd };
 export const pages = [home, P.quiz, P.toolHub, P.calcTvt, P.calcCap, P.calcSal, P.merkHub, ...P.merkPages, P.vsHub, P.gidsHub, ...P.guides, ...(posts.length ? [blogIndex(posts), ...posts.map((x) => postPage(x, posts))] : []), ...offertePages, P.over, P.privacy, P.notfound].map((p) => (P.LOGO_PADEN.has(p.path) ? P.bijgewerkt(p, P.LOGO_UPD) : p)).map((p) => (P.EF_PADEN.has(p.path) ? P.bijgewerkt(p, P.EF_UPD) : p));
 for (const p of pages) write(p.path.endsWith('.html') ? join(OUT, p.path) : join(OUT, p.path, 'index.html'), partnerNoten(layout(p)));
 // Offertemodule uit (geen offertepagina's): offerte.js, offerte-bedankt.js en partnerlinks.js niet publiceren (SC 30-10, geen slapende scripts).
