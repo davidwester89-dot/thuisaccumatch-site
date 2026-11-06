@@ -1,7 +1,7 @@
-// Goedgekeurde partnerlinks per merk-id. LEEG zolang er geen goedgekeurd programma is (Quatt: aangevraagd, nog niet goedgekeurd).
-// Pas invullen na goedkeuring en akkoord. De keuzehulp en de checklist lezen dit bestand NOOIT: geen invloed op advies, score of volgorde.
+// Goedgekeurde partnerlinks per merk-id. Alleen invullen na goedkeuring (SC + MM) en akkoord Dave.
+// De keuzehulp en de checklist lezen dit bestand NOOIT: geen invloed op advies, score of volgorde.
 import { MERKEN } from './merken.js';
-export const PARTNERLINKS = {};
+export const PARTNERLINKS = { anker: 'https://ankersolixnl.sjv.io/AgOYVR' };
 
 /** Uitgaande link: partnerlink (rel sponsored nofollow, zonder zichtbaar label) als die er is, anders de officiële site. */
 export function uitgaand(id, partnerlinks = PARTNERLINKS) {

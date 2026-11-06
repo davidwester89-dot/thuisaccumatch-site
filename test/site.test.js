@@ -45,11 +45,21 @@ test('build (productie): pagina’s, sitemap, robots, IndexNow, CNAME, huisregel
       assert.ok(existsSync(t), `${f}: kapotte link ${p}`);
     }
     for (const m of s.matchAll(/<a [^>]*data-partner-slot="([^"]+)"[^>]*>/g)) {
+      const id = m[1];
       const href = m[0].match(/href="([^"]+)"/)[1];
-      assert.equal(href, MERKEN[m[1]].url, `${f}: ${m[1]}`); assert.match(m[0], /rel="noopener"/);
+      if (PARTNERLINKS[id]) {
+        assert.equal(href, PARTNERLINKS[id], `${f}: ${id}`);
+        assert.match(m[0], /rel="sponsored nofollow noopener"/);
+      } else {
+        assert.equal(href, MERKEN[id].url, `${f}: ${id}`);
+        assert.match(m[0], /rel="noopener"/);
+      }
     }
     assert.ok(!/class="partner"/.test(s), `${f}: partnerlabel zonder goedgekeurde partner`);
-    assert.ok(!/rel="[^"]*sponsored/.test(s), `${f}: sponsored link zonder goedgekeurde partner`);
+    for (const m of s.matchAll(/<a [^>]*rel="[^"]*\bsponsored\b[^"]*"[^>]*>/g)) {
+      const id = (m[0].match(/data-partner-slot="([^"]+)"/) || [])[1];
+      assert.ok(id && PARTNERLINKS[id], `${f}: sponsored alleen voor PARTNERLINKS`);
+    }
     if (/<article/.test(s) && /class="src">Door/.test(s)) assert.match(s, /Door Redactie ThuisaccuMatch/);
     // Minstens 300 woorden zichtbare tekst in <main>.
     if (!f.endsWith('404.html')) { const main = s.split('<main')[1].split('</main>')[0].replace(/<script[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' '); const w = main.split(/\s+/).filter((x) => /[a-zà-ü0-9]/i.test(x)).length; assert.ok(w >= 300, `${f}: ${w} woorden`); }
@@ -113,7 +123,7 @@ test('build: componenten, vergelijking in vaste volgorde, keuzehulp en rekentool
   assert.ok(existsSync('dist/site.webmanifest') && existsSync('dist/icon-512.png'), 'manifest');
   assert.match(read('dist/site.webmanifest'), /ThuisaccuMatch/);
   assert.match(h, /<link rel="manifest" href="\/site\.webmanifest">/);
-  assert.equal(Object.keys(PARTNERLINKS).length, 0);
+  assert.deepEqual(Object.keys(PARTNERLINKS), ['anker']);
   // Cookiemelding en GA4 alleen na toestemming.
   const consent = read('dist/js/consent.js');
   assert.match(consent, /Cookies voor statistieken\?/);

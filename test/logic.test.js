@@ -77,9 +77,21 @@ test('score = som van de punten; volgorde = score, dan naam', () => {
   }
 });
 
-test('partnerlinks leeg; gevuld = sponsored nofollow, geen zichtbaar label; nooit in keuzehulp of checklist', () => {
-  assert.deepEqual(PARTNERLINKS, {});
-  for (const id of IDS) { const o = uitgaand(id); assert.equal(o.partner, false); assert.equal(o.href, MERKEN[id].url); assert.ok(!knop(id, 't').includes('partner"')); }
+test('partnerlinks: Anker SOLIX; gevuld = sponsored nofollow, geen zichtbaar label; nooit in keuzehulp of checklist', () => {
+  assert.deepEqual(PARTNERLINKS, { anker: 'https://ankersolixnl.sjv.io/AgOYVR' });
+  for (const id of IDS) {
+    const o = uitgaand(id);
+    if (id === 'anker') {
+      assert.equal(o.partner, true);
+      assert.equal(o.href, 'https://ankersolixnl.sjv.io/AgOYVR');
+      assert.match(knop(id, 't'), /rel="sponsored nofollow noopener"/);
+    } else {
+      assert.equal(o.partner, false);
+      assert.equal(o.href, MERKEN[id].url);
+      assert.match(knop(id, 't'), /rel="noopener"/);
+    }
+    assert.ok(!knop(id, 't').includes('partner"'));
+  }
   const k = knop('sessy', 't', 'btn', { sessy: 'https://example.com/aff' });
   assert.match(k, /rel="sponsored nofollow noopener"/); assert.match(k, /<\/a>$/); assert.ok(!/<span class="partner"|>\s*partnerlink\s*</i.test(k));
   for (const f of ['../src/lib/checklist.js', '../src/lib/match.js', '../src/lib/kosten.js']) {
