@@ -17,10 +17,24 @@ export const S = {
   sdDyn: 'https://marketing.solaredge.com/nl/dynamisch-tarief',
   sd48: 'https://www.solaredge.com/en/products/residential/storage-and-backup/solaredge-home-battery-48v',
   bydDs: 'https://bydbatterybox.com/uploads/downloads/BCU2.0_BBOX_HVS_Datasheet_EN_V1.0_250328-67ee42d4ced21.pdf',
+  ankSb3: 'https://www.ankersolix.com/nl/plug-and-play-thuisbatterij/thuisbatterij-a17c5',
+  ankSerie: 'https://www.ankersolix.com/nl/collections/solarbank-3-pro-serie',
   bydGarantie: 'https://bydbatterybox.com/uploads/downloads/BYD%20Battery-Box%20Premium%20HVS&HVM%20Limited%20Warranty-Europe-EN%20V1.2-61a729716cbb5.pdf',
 };
 
 export const MERKEN = {
+  anker: {
+    naam: 'Anker SOLIX', slug: 'anker-solix', url: 'https://www.ankersolix.com/nl/', soort: 'stekker',
+    kort: 'Merk van Anker met de Solarbank 3 Pro: een plug-in thuisbatterij van 2,688 kWh, met extra accupakketten uit te breiden tot 16 kWh per groep.',
+    lijnen: [['Solarbank 3 Pro (Solarbank 3 E2700 Pro)', '2,688 kWh, tot 3.600 W bidirectioneel opladen en ontladen, 4 MPPT’s voor zonnepanelen'], ['BP2700-accupakket', 'Tot vijf extra accupakketten: 16 kWh per groep; tot drie groepen parallel, 48 kWh'], ['Off-grid-stopcontact', '1200 W, als noodstroomoplossing']],
+    plus: ['Plug-in: aan te sluiten op een stopcontact', 'LiFePO4-cellen en 10 jaar kwaliteitsgarantie', 'Anker Intelligence gebruikt dynamische tarieven'],
+    min: ['Boven 800 W totaal uitgangsvermogen raadt Anker installatie door vakmensen aan', 'Eén accu is 2,688 kWh; voor 10 kWh of meer heb je extra accupakketten nodig'],
+    prijzen: [['Solarbank 3 E2700 Pro (2,688 kWh)', '€ 1.599', 'Prijs in de webshop van Anker SOLIX'], ['Solarbank 3 E2700 Pro + 4 bifaciale zonnepanelen', '€ 2.999', 'Pakket in de webshop van Anker SOLIX']],
+    voor: 'Wie een stekkerbatterij zoekt die later uit te breiden is, met zonnepanelen direct op de batterij.',
+    // Nieuw merk op 6-11-2026: publicatie- en controledatum van deze pagina.
+    datum: '2026-11-06', extraChecked: '2026-11-06',
+    bronnen: [['Anker SOLIX Solarbank 3 Pro', S.ankSb3], ['Anker SOLIX Solarbank 3-serie (veelgestelde vragen)', S.ankSerie]],
+  },
   homewizard: {
     naam: 'HomeWizard', slug: 'homewizard', url: 'https://www.homewizard.com/nl/plug-in-battery/', soort: 'stekker',
     kort: 'Nederlands merk met een stekkerbatterij van 2,7 kWh die je zelf in het stopcontact steekt. Werkt samen met de HomeWizard P1 Meter.',
@@ -91,11 +105,24 @@ export const IDS = Object.keys(MERKEN);
 
 /** Waar het merk volgens de eigen site in uitblinkt (korte, feitelijke typering, geen oordeel). */
 export const STERK_IN = {
-  homewizard: 'Stekkerbatterij', sessy: 'Past op bestaande omvormer', zonneplan: 'Groot, met installatie',
+  anker: 'Uitbreidbare stekkerbatterij', homewizard: 'Stekkerbatterij', sessy: 'Past op bestaande omvormer', zonneplan: 'Groot, met installatie',
   huawei: 'Modulair, ook buiten', solaredge: 'Bij een SolarEdge-omvormer', byd: 'Voor een hybride omvormer',
 };
 
 export const FEATURES = {
+  // Anker SOLIX: gecontroleerd 06-11-2026 op ankersolix.com/nl (productpagina Solarbank 3 Pro).
+  anker: {
+    stekker: { v: 'ja', t: 'Plug-in thuisbatterij voor een stopcontact; boven 800 W raadt Anker een vakman aan', s: S.ankSb3 },
+    bestaand: { v: 'ja', t: 'AC-koppeling; volgens Anker 100% compatibel met alle PV-systemen', s: S.ankSb3 },
+    lfp: { v: 'ja', t: 'LiFePO4-thuisbatterij', s: S.ankSb3 },
+    modulair: { v: 'ja', t: 'Tot vijf extra accupakketten', s: S.ankSb3 },
+    groot: { v: 'ja', t: '16 kWh per groep, drie groepen parallel tot 48 kWh', s: S.ankSb3 },
+    noodstroom: { v: 'deels', t: '1200 W off-grid-stopcontact als noodstroomoplossing', s: S.ankSb3 },
+    app: { v: 'ja', t: 'Anker-app', s: S.ankSb3 },
+    dynamisch: { v: 'ja', t: 'Anker Intelligence gebruikt dynamische tarieven', s: S.ankSb3 },
+    garantie: { v: 'ja', t: 'Kwaliteitsgarantie van 10 jaar', s: S.ankSb3 },
+    prijs: { v: 'ja', t: '€ 1.599 (Solarbank 3 E2700 Pro) in de eigen webshop', s: S.ankSerie },
+  },
   homewizard: {
     stekker: { v: 'ja', t: 'Stekker in een bestaand stopcontact', s: S.hwBat },
     bestaand: { v: 'ja', t: 'Werkt met alle merken zonnepanelen en omvormers', s: S.hwBat },

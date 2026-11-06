@@ -50,7 +50,7 @@ function toon(a, scroll) {
       return `<li${i === 0 ? ' class="first"' : ''}><div class="mhead">${logoImg(id, { maat: 'sm', base: BASE })}<h3>${esc(p.naam)}</h3></div><p class="pc-price">${esc(STERK_IN[id])}</p><div class="mini-cta"><a href="${BASE}/merken/${p.slug}/">Alles over ${esc(p.naam)}</a></div></li>`;
     }).join('')}</ol>`;
     if (r.merken.length > merken.length) html += `<p><a href="${BASE}/vergelijken/">Alle ${r.merken.length} merken vergelijken</a></p>`;
-  } else html += `<p>Geen van de 6 merken noemt noodstroom bij deze soort. <a href="${BASE}/vergelijken/">Vergelijk alle merken</a></p>`;
+  } else html += `<p>Geen van de 7 merken noemt noodstroom bij deze soort. <a href="${BASE}/vergelijken/">Vergelijk alle merken</a></p>`;
   html += `<p class="mlinks"><button type="button" class="linkbtn" id="m-reset">Opnieuw beginnen</button><button type="button" class="linkbtn" id="m-share">Deel of bewaar: kopieer de link</button></p>`
     + `<p class="sub">Merken op het aantal checklistpunten, bij gelijke stand op naam. Partnerlinks tellen niet mee.${Object.keys(LEADS).length ? ' Offertes lopen via een offertepartner (partnerlink); die vergoeding heeft geen invloed op dit advies.' : ''}</p>`;
   out.innerHTML = html;

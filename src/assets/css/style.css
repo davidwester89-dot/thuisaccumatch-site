@@ -500,10 +500,10 @@ input[aria-invalid=true]{border-color:var(--bad)!important}
 .post-thumb{display:block;width:100%;height:auto;aspect-ratio:1200/630;object-fit:cover;border-radius:var(--r-sm);background:var(--sand)}
 @media (max-width:640px){.postlist a.card.has-img{grid-template-columns:1fr;gap:var(--s3)}}
 
-/* ThuisaccuMatch: 6 merken */
+/* ThuisaccuMatch: 7 merken */
 .logos.six{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media(min-width:600px){.logos.six{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(min-width:900px){.logos.six{grid-template-columns:repeat(6,minmax(0,1fr))}}
+@media(min-width:900px){.logos.six{grid-template-columns:repeat(7,minmax(0,1fr))}}
 /* Tapdoelen minstens 48 × 48 px (ook korte links als "Home", "BYD" en "bron") */
 .crumbs a,table.data a{min-width:48px;text-align:center}
 

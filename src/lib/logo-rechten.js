@@ -3,6 +3,7 @@
 // ZONDER_LOGO: merken die om weghalen vroegen (dan alleen de naam, net als bij elk merk zonder logo). Nu leeg.
 export const ZONDER_LOGO = new Set([]);
 export const LOGO_RECHTEN = {
+  'anker': { richtlijn: 'geen merkrichtlijn gevonden (ankersolix.com, 06-11)', status: 'logo: nog geen logobestand; woordmerk (naam in tekst)' },
   'byd': { richtlijn: 'https://www.byd.com/eu/terms-of-use', status: "logo: getoond op besluit 30-10; weghalen op verzoek merk. Richtlijn: merken en logo's alleen met voorafgaande schriftelijke toestemming" },
   'homewizard': { richtlijn: 'geen merkrichtlijn gevonden (homewizard.com, 30-10)', status: 'logo: geen gepubliceerde beperking gevonden' },
   'huawei': { richtlijn: 'https://consumer.huawei.com/en/legal/intellectual-property/huawei-trademark-policy/', status: 'logo: getoond op besluit 30-10; weghalen op verzoek merk. Richtlijn: elk gebruik van merk of logo met voorafgaande schriftelijke toestemming' },

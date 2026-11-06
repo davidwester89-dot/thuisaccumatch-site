@@ -1,4 +1,5 @@
 import { test } from 'node:test';
+import { LOGO_BESTANDEN } from '../src/lib/logos.js';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
@@ -15,7 +16,7 @@ const NEP = [/★/, /aggregateRating/, /reviewCount/, /ratingValue/, /sterren/i,
 test('build (productie): pagina’s, sitemap, robots, IndexNow, CNAME, huisregels', () => {
   buildLive();
   const html = htmlFiles();
-  assert.equal(html.length, 27 + loadPosts().length); // 25 pagina's + blogindex + 404 + gepubliceerde blogposts (datum <= vandaag)
+  assert.equal(html.length, 28 + loadPosts().length); // 26 pagina's + blogindex + 404 + gepubliceerde blogposts (datum <= vandaag)
   const sm = read('dist/sitemap.xml');
   assert.equal((sm.match(/<loc>/g) || []).length, html.length - 1);
   assert.match(read('dist/robots.txt'), /Sitemap: https:\/\/thuisaccumatch.nl\/sitemap.xml/);
@@ -59,7 +60,7 @@ test('build (productie): pagina’s, sitemap, robots, IndexNow, CNAME, huisregel
     }
     assert.ok(!/<img(?![^>]*\balt=)/.test(s), `${f}: img zonder alt`);
   }
-  for (const id of IDS) assert.ok(existsSync(`dist/logos/${id}.webp`), `logo ${id}`);
+  for (const id of IDS.filter((x) => LOGO_BESTANDEN.has(x))) assert.ok(existsSync(`dist/logos/${id}.webp`), `logo ${id}`); // zonder logobestand: woordmerk (logos.js)
 });
 
 test('build: componenten, vergelijking in vaste volgorde, keuzehulp en rekentools', () => {
@@ -73,7 +74,7 @@ test('build: componenten, vergelijking in vaste volgorde, keuzehulp en rekentool
   for (const [, id, sc] of rows) assert.equal(Number(sc), score(id).totaal);
   const h = read('dist/index.html');
   for (const k of ['class="hero-q"', 'class="trustbar"', 'class="logobar"', 'method-band']) assert.ok(h.includes(k), k);
-  assert.equal((h.match(/class="logo-tile"/g) || []).length, 6);
+  assert.equal((h.match(/class="logo-tile"/g) || []).length, 7);
   // Echte H1 op de homepage (geen logo).
   assert.match(h, /<h1 class="tagline">Thuisaccu kiezen\? Reken eerst\.<\/h1>/);
   assert.ok(!/<h1[^>]*>[^<]*<(svg|b)/.test(h));

@@ -5,19 +5,20 @@ from PIL import Image
 B='#1f5fa8';D='#141d2b';S='#ecf1f7';BG='#f7f9fc';G='#173a63';P='#b9cde6'
 LOGO='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect width="40" height="40" rx="11" fill="#1f5fa8"/><rect x="7" y="13" width="22" height="15" rx="3" fill="#fff"/><rect x="29" y="17.5" width="3.5" height="6" rx="1.2" fill="#fff"/><path d="m12.5 20.5 3.5 3.5 6.5-7" fill="none" stroke="#1f5fa8" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="8" r="4" fill="#e7a33e"/></svg>'
 cards={
- 'home':('Past een thuisaccu bij jou?','Keuzehulp · 6 merken · saldering stopt 2027'),
+ 'home':('Past een thuisaccu bij jou?','Keuzehulp · 7 merken · saldering stopt 2027'),
  'match':('Doe de thuisaccu keuzehulp','6 vragen: soort, capaciteit en merken'),
  'rekenhulp':('Terugverdientijd thuisaccu','Besparing per jaar en terugverdientijd'),
  'capaciteit':('Hoeveel kWh heb je nodig?','Niet groter dan je avondverbruik'),
  'saldering':('Wat kost het einde van salderen?','Vóór en na 1 januari 2027'),
  'merken':('Alle thuisaccumerken','Aanbod, checklistscore en voor wie het past'),
- 'vergelijken':('Thuisaccu’s vergelijken','6 merken op 10 vaste punten'),
+ 'vergelijken':('Thuisaccu’s vergelijken','7 merken op 10 vaste punten'),
  'merk-homewizard':('HomeWizard','Stekkerbatterij en checklist'),
  'merk-sessy':('Sessy','Aanbod, prijzen en checklist'),
  'merk-zonneplan':('Zonneplan','Aanbod, prijzen en checklist'),
  'merk-huawei':('Huawei','Aanbod en checklist'),
  'merk-solaredge':('SolarEdge','Aanbod en checklist'),
  'merk-byd':('BYD','Aanbod en checklist'),
+ 'merk-anker':('Anker SOLIX','Aanbod en checklist'),
  'salderingsregeling-stopt-2027':('Saldering stopt in 2027','Wat er verandert en wat het kost'),
  'thuisaccu-kosten':('Wat kost een thuisaccu?','Prijzen per kWh, btw en installatie'),
  'thuisaccu-terugverdientijd':('Verdien je een thuisaccu terug?','Zo reken je het uit'),

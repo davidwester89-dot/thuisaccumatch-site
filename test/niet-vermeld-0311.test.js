@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { execSync } from 'node:child_process';
-import { EF_UPD, EF_PADEN, GIDSEN_UPD } from '../src/pages.mjs';
+import { EF_UPD, EF_PADEN, GIDSEN_UPD, ANKER_PADEN, ANKER_UPD } from '../src/pages.mjs'; // 6-11: pagina's in ANKER_PADEN opnieuw bijgewerkt (test/anker-solix-0611.test.js)
 import { punt } from '../src/lib/checklist.js';
 
 const read = (p) => readFileSync(p, 'utf8');
@@ -26,7 +26,7 @@ test('Niet vermeld: één uitleg die klopt met de code', () => {
 
 test('L7 3-11: lastmod, zichtbare bijgewerkt-regel en dateModified', () => {
   const sm = read('dist/sitemap.xml');
-  for (const p of EF_PADEN) {
+  for (const p of [...EF_PADEN].filter((x) => !ANKER_PADEN.has(x))) {
     assert.ok(sm.includes(`<loc>https://thuisaccumatch.nl${p}</loc><lastmod>${EF_UPD}</lastmod>`), p);
     const h = read(`dist${p}index.html`);
     assert.match(h, new RegExp(`bijgewerkt (op )?<time datetime="${EF_UPD}">`, 'i'), p);
@@ -36,6 +36,7 @@ test('L7 3-11: lastmod, zichtbare bijgewerkt-regel en dateModified', () => {
 
 test('L7-hubregel D: /gidsen/ met zichtbare bijgewerkt-regel en lastmod op 2026-10-30 (deploy nieuwste kind)', () => {
   const h = read('dist/gidsen/index.html');
-  assert.match(h, new RegExp(`bijgewerkt <time datetime="${GIDSEN_UPD}">`));
-  assert.ok(read('dist/sitemap.xml').includes(`<loc>https://thuisaccumatch.nl/gidsen/</loc><lastmod>${GIDSEN_UPD}</lastmod>`));
+  const g = ANKER_PADEN.has('/gidsen/') ? ANKER_UPD : GIDSEN_UPD; // hubregel D: kind /thuisaccu-keuzehulp/ gewijzigd 6-11
+  assert.match(h, new RegExp(`bijgewerkt <time datetime="${g}">`));
+  assert.ok(read('dist/sitemap.xml').includes(`<loc>https://thuisaccumatch.nl/gidsen/</loc><lastmod>${g}</lastmod>`));
 });

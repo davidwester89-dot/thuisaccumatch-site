@@ -54,7 +54,7 @@ test('keuzehulp: regels', () => {
 });
 
 test('checklist: 10 punten per merk, alleen ja/deels/nee/niet vermeld, met bron', () => {
-  assert.equal(MAX, 10); assert.equal(IDS.length, 6);
+  assert.equal(MAX, 10); assert.equal(IDS.length, 7);
   for (const id of IDS) {
     assert.deepEqual(Object.keys(FEATURES[id]).sort(), [...IDS_PUNTEN].sort(), id);
     for (const k of IDS_PUNTEN) {

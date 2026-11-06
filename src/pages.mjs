@@ -22,6 +22,9 @@ export const EF_UPD = '2026-11-03';
 // Hub /gidsen/ (L7-hubregel D, SC 02-11): max(deploy eigen laatste bodywijziging, deploy nieuwste kind) = 2026-11-03 (kind /thuisaccu-kosten/ gewijzigd 3-11).
 export const GIDSEN_UPD = '2026-11-03';
 export const EF_PADEN = new Set(['/thuisaccu-kosten/', '/vergelijken/', '/over/', '/merken/', '/merken/byd/', '/merken/homewizard/', '/merken/huawei/', '/merken/sessy/', '/merken/solaredge/', '/merken/zonneplan/']);
+// Anker SOLIX als 7e merk (6-11-2026): nieuwe merkpagina, en elke pagina die de merken opsomt of telt (merkpagina's: alternatieven en 'Alle merken'; hubs /merken/ en /gidsen/, /vergelijken/, keuzehulp, home) krijgt de pushdatum (L7).
+export const ANKER_UPD = '2026-11-06';
+export const ANKER_PADEN = new Set(['/merken/', '/vergelijken/', '/thuisaccu-keuzehulp/', '/gidsen/', '/merken/anker-solix/', '/merken/byd/', '/merken/homewizard/', '/merken/huawei/', '/merken/sessy/', '/merken/solaredge/', '/merken/zonneplan/']);
 export const bijgewerkt = (pg, upd) => ({ ...pg, lastmod: upd, stamp: { ...pg.stamp, updated: upd }, ...(pg.article ? { article: { ...pg.article, updated: upd } } : {}), ...(pg.schema ? { schema: pg.schema.map((x, j) => (j === 0 && 'dateModified' in x ? { ...x, dateModified: upd } : x)) } : {}) });
 
 const RANG = ranglijst();
@@ -62,14 +65,14 @@ const toolCards = (h = 'h3') => `<div class="grid cards">${TOOLS.map(([href, t, 
 export const home = {
   lastmod: '2026-10-19',
   path: '/', title: 'Thuisaccu kiezen: keuzehulp, merken, kosten | ThuisaccuMatch', ogTitle: 'ThuisaccuMatch: past een thuisaccu bij jou?', h1: 'Thuisaccu kiezen? Reken eerst.', og: 'home', lastmod: SCORE_WEG,
-  description: 'Past een thuisaccu bij jou? Doe de keuzehulp, vergelijk 6 merken op een vaste checklist en reken uit wat een accu oplevert als de saldering in 2027 stopt.',
+  description: 'Past een thuisaccu bij jou? Doe de keuzehulp, vergelijk 7 merken op een vaste checklist en reken uit wat een accu oplevert als de saldering in 2027 stopt.',
   schema: [faqSchema(homeFaq)],
   full: true,
   body: `<section class="hero"><div class="wrap hero-in"><div class="hero-txt">
 <p class="h1-brand">Thuisaccu<b>Match</b>.nl</p>
 <h1 class="tagline">Thuisaccu kiezen? Reken eerst.</h1>
-<p class="lead">Op 1 januari 2027 <a href="/salderingsregeling-stopt-2027/">stopt de salderingsregeling</a>. Is een thuisaccu dan slim, hoe groot moet hij zijn en welk merk past? Zes vragen en je krijgt een advies met capaciteit en terugverdientijd. Zes merken naast elkaar op 10 vaste punten.</p>
-<div class="actions"><a class="btn" href="/thuisaccu-keuzehulp/" data-cta="home_hero">Start de keuzehulp</a><a class="btn ghost" href="/vergelijken/">Vergelijk alle 6 merken</a></div>
+<p class="lead">Op 1 januari 2027 <a href="/salderingsregeling-stopt-2027/">stopt de salderingsregeling</a>. Is een thuisaccu dan slim, hoe groot moet hij zijn en welk merk past? Zes vragen en je krijgt een advies met capaciteit en terugverdientijd. Zeven merken naast elkaar op 10 vaste punten.</p>
+<div class="actions"><a class="btn" href="/thuisaccu-keuzehulp/" data-cta="home_hero">Start de keuzehulp</a><a class="btn ghost" href="/vergelijken/">Vergelijk alle 7 merken</a></div>
 <ul class="trustbar">
 <li>${ICONS.kalender}<span>Gegevens gecontroleerd op <time datetime="${CHECKED}">${fmtDate(CHECKED)}</time>, bijgewerkt op <time datetime="${SCORE_WEG}">${fmtDate(SCORE_WEG)}</time></span></li>
 <li>${ICONS.bron}<span>Bron bij elk bedrag en elk punt</span></li>
@@ -79,7 +82,7 @@ export const home = {
 </div>
 <div class="hero-art">${HERO_ART}</div></div></section>
 <div class="wrap qwrap"><div class="hero-q"><p class="hero-q-step">Vraag 1 van ${VRAGEN.length}</p><p class="hero-q-title" id="hq">${esc(VRAGEN[0].vraag)}</p><div class="hero-q-opts" role="group" aria-labelledby="hq">${VRAGEN[0].opties.map(([v, l]) => `<a class="choice" href="/thuisaccu-keuzehulp/?panelen=${v}" rel="nofollow">${esc(l)}<span aria-hidden="true">→</span></a>`).join('')}</div><p class="hero-q-foot">Daarna nog ${VRAGEN.length - 1} korte vragen. Gratis, zonder account.</p></div></div>
-<section class="logobar" aria-labelledby="h-pl"><div class="wrap"><h2 id="h-pl">Deze 6 merken vergelijken we</h2><div class="logos six">${[...IDS].sort((a, b) => M[a].naam.localeCompare(M[b].naam, 'nl')).map((id) => `<a class="logo-tile" href="/merken/${M[id].slug}/">${logo(id, 'lg')}</a>`).join('')}</div></div></section>
+<section class="logobar" aria-labelledby="h-pl"><div class="wrap"><h2 id="h-pl">Deze 7 merken vergelijken we</h2><div class="logos six">${[...IDS].sort((a, b) => M[a].naam.localeCompare(M[b].naam, 'nl')).map((id) => `<a class="logo-tile" href="/merken/${M[id].slug}/">${logo(id, 'lg')}</a>`).join('')}</div></div></section>
 <section class="sec tint"><div class="wrap split-txt">
 <h2>Wat verandert er in 2027?</h2>
 <p>Tot en met 2026 streep je teruggeleverde zonnestroom weg tegen de stroom die je op andere momenten van het net haalt. Vanaf 1 januari 2027 kan dat niet meer (Rijksoverheid). Voor teruggeleverde stroom krijg je dan een vergoeding van je leverancier, maar na aftrek van terugleverkosten is dat bij een vast of variabel contract netto rond de halve cent per kWh (Milieu Centraal). Stroom die je inkoopt kost gemiddeld zo'n € ${komma(STROOMPRIJS, 2)} per kWh (CBS, september 2026). Elke kWh zonnestroom die je zelf gebruikt in plaats van teruglevert, is dus veel meer waard. Een thuisaccu is één manier om dat te doen, maar niet de enige en niet altijd de goedkoopste.</p>
@@ -122,7 +125,7 @@ export const quiz = {
   path: '/thuisaccu-keuzehulp/', title: 'Thuisaccu keuzehulp: past een thuisbatterij bij jou?', h1: 'Past een thuisaccu bij jou?', crumb: 'Keuzehulp', og: 'match', noCta: true, lastmod: SCORE_WEG,
   description: 'Zes vragen over je zonnepanelen, verbruik, contract en budget. Advies: geen accu, stekkerbatterij of vaste thuisaccu, met capaciteit en merken.',
   scripts: ['/js/keuzehulp.js'],
-  schema: [app('ThuisaccuMatch keuzehulp', '/thuisaccu-keuzehulp/')],
+  schema: [{ ...app('ThuisaccuMatch keuzehulp', '/thuisaccu-keuzehulp/'), dateModified: SCORE_WEG }],
   body: `<h1>Past een thuisaccu bij jou?</h1><p class="lead">Beantwoord ${VRAGEN.length} korte vragen. Je ziet meteen of een thuisaccu zin heeft, welke soort en hoe groot, wat hij ongeveer kost en wanneer je hem terugverdient.</p>
 <div class="mgrid">
 <form id="form" class="quiz card" novalidate>
@@ -130,7 +133,7 @@ export const quiz = {
 ${VRAGEN.map((v, i) => `<fieldset class="q"><legend>${i + 1}. ${esc(v.vraag)}</legend>${v.hint ? `<p class="hint">${esc(v.hint)}</p>` : ''}<div class="opts">${v.opties.map(([val, t]) => `<label><input type="radio" name="${v.id}" value="${val}" required><span>${esc(t)}</span></label>`).join('')}</div></fieldset>`).join('')}
 <div class="qdone"><button class="btn" type="submit">Toon mijn advies</button><p class="sub">Gratis, zonder account. Je antwoorden blijven in je browser.</p></div>
 </form>
-<aside class="card mpanel" id="result" aria-live="polite"><h2>Jouw advies</h2><p class="mwait">Beantwoord de vragen. Je advies verschijnt hier, met de capaciteit, de terugverdientijd en de merken die passen.</p><p class="sub">Of bekijk <a href="/vergelijken/">alle 6 merken naast elkaar</a>.</p></aside>
+<aside class="card mpanel" id="result" aria-live="polite"><h2>Jouw advies</h2><p class="mwait">Beantwoord de vragen. Je advies verschijnt hier, met de capaciteit, de terugverdientijd en de merken die passen.</p><p class="sub">Of bekijk <a href="/vergelijken/">alle 7 merken naast elkaar</a>.</p></aside>
 </div>
 <p>Wil je liever zelf rekenen met je eigen cijfers? Met de <a href="/terugverdientijd-thuisaccu-berekenen/">rekentool terugverdientijd</a> zie je wat een thuisaccu jou per jaar oplevert. Wil je ook weten hoeveel kWh je nodig hebt of wat het einde van salderen kost? Kijk bij de <a href="/rekentools/">rekentools voor je thuisaccu</a>.</p>
 <noscript><p class="alert">De keuzehulp werkt met JavaScript. Zonder JavaScript lees je de regels in <a href="/stekkerbatterij-of-vaste-thuisaccu/">stekkerbatterij of vaste thuisaccu</a>.</p></noscript>
@@ -161,10 +164,10 @@ const merkPagesRaw = IDS.map((id) => {
     : `<h2>Prijzen</h2><p>${esc(p.naam)} noemt geen consumentenprijzen op de eigen site; je koopt via een installateur en de prijs staat in je offerte. Vraag altijd naar de bruikbare capaciteit in kWh, zodat je de prijs per kWh kunt vergelijken.</p><p>${ALG_PRIJS}</p>`;
   const f = FEATURES[id];
   return {
-    ...article({ path, title: t, h1, description: d, og: `merk-${id}`, parents: [['/merken/', 'Merken']], faq: p.faq }),
+    ...article({ path, title: t, h1, description: d, og: `merk-${id}`, parents: [['/merken/', 'Merken']], faq: p.faq, ...(p.datum ? { date: p.datum } : {}) }),
     ...(p.extraChecked ? { stamp: { checked: p.extraChecked }, lastmod: p.extraChecked } : {}),
     navPath: '/merken/',
-    body: `<article><div class="phead"><span class="phead-logo">${logoImg(id, { maat: 'lg', eager: true })}</span><span class="tag best">${esc(STERK_IN[id])}</span></div><h1>${esc(h1)}</h1>${by()}<p class="lead">${esc(p.kort)}</p>
+    body: `<article><div class="phead"><span class="phead-logo">${logoImg(id, { maat: 'lg', eager: true })}</span><span class="tag best">${esc(STERK_IN[id])}</span></div><h1>${esc(h1)}</h1>${by(p.datum)}<p class="lead">${esc(p.kort)}</p>
 <div class="pcard first"><div class="pc-head"><span class="sc-lbl">Aanbod</span><p class="pc-price"><strong>${esc(aanbodTekst(id))}</strong></p></div>
 <ul class="pc-facts"><li><span>LFP-cellen</span><span>${fv(f.lfp, false)}</span></li><li><span>Noodstroom</span><span>${fv(f.noodstroom, false)}</span></li><li><span>Garantie 10 jaar</span><span>${fv(f.garantie, false)}</span></li><li><span>Plek in de vergelijking</span><span>${pos} van ${IDS.length}</span></li></ul>
 <div class="pc-cta">${knop(id, 'merk_top')}<a href="/thuisaccu-keuzehulp/">Past het bij mij? Start de keuzehulp →</a></div></div>
@@ -186,10 +189,10 @@ ${matchCta(`Past ${esc(p.naam)} bij jou?`)}${bron(p.bronnen, featureBronnen(id),
 // Alle merkpagina's: bijgewerkt-datum, lastmod en dateModified = SCORE_WEG (scores weg). De controledatum (stamp.checked) blijft.
 export const merkPages = merkPagesRaw.map((pg) => bijgewerkt(pg, SCORE_WEG));
 export const merkHub = {
-  path: '/merken/', title: 'Thuisaccu merken 2026: 6 merken op een rij | ThuisaccuMatch', h1: 'Alle thuisaccumerken op een rij', crumb: 'Merken', og: 'merken', stamp: { checked: CHECKED, updated: SCORE_WEG }, lastmod: SCORE_WEG,
+  path: '/merken/', title: 'Thuisaccu merken 2026: 7 merken op een rij | ThuisaccuMatch', h1: 'Alle thuisaccumerken op een rij', crumb: 'Merken', og: 'merken', stamp: { checked: CHECKED, updated: SCORE_WEG }, lastmod: SCORE_WEG,
   description: 'HomeWizard, Sessy, Zonneplan, Huawei, SolarEdge en BYD: per merk het aanbod, de checklist met bron, de prijs als die openbaar is en voor wie het past.',
   schema: [{ '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: RANG.map((id, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE.domain}/merken/${M[id].slug}/`, name: M[id].naam })) }],
-  body: `<h1>Alle thuisaccumerken op een rij</h1><p class="lead">Zes merken die in Nederland thuisaccu's leveren: een stekkerbatterij en vijf vaste systemen. Gesorteerd op het aantal checklistpunten, bij gelijke stand op naam.</p>
+  body: `<h1>Alle thuisaccumerken op een rij</h1><p class="lead">Zeven merken die in Nederland thuisaccu’s leveren: twee stekkerbatterijen en vijf vaste systemen. Gesorteerd op het aantal checklistpunten, bij gelijke stand op naam.</p>
 <div class="actions"><a class="btn" href="/thuisaccu-keuzehulp/">Liever advies op maat? Start de keuzehulp</a><a class="btn ghost" href="/vergelijken/">Filter en vergelijk</a></div>
 <ol class="plist">${RANG.map((id, i) => pcard(id, { rank: i + 1, pos: 'lijst' })).join('')}</ol>
 <section class="prose"><h2>Hoe kies je een merk?</h2><p>Begin niet bij het merk, maar bij je situatie. Heb je al zonnepanelen met een gewone omvormer, dan zoek je een accu die op die bestaande omvormer past (AC-gekoppeld), zoals HomeWizard en Sessy. Laat je zonnepanelen en accu tegelijk plaatsen, of heb je al een hybride omvormer, dan kan een DC-gekoppeld systeem van hetzelfde merk passen, zoals SolarEdge of Huawei. BYD levert alleen de batterij en werkt met een compatibele hybride omvormer van een ander merk.</p><p>Let daarna op de bruikbare capaciteit in kWh, de garantie op de batterij (en apart op de omvormer), of noodstroom mogelijk is en wat de totaalprijs inclusief installatie is. De checklist hierboven telt wat elk merk daarover zelf zegt, met link naar de bron. Het is geen oordeel over kwaliteit of betrouwbaarheid en geen review.</p></section>
@@ -200,10 +203,10 @@ ${methodBox()}`,
 const FILTERS = ['stekker', 'bestaand', 'noodstroom', 'lfp', 'modulair', 'groot', 'app', 'dynamisch', 'garantie', 'prijs'];
 const sel = (id, label, opts) => `<div class="field"><label for="${id}">${label}</label><select id="${id}" name="${id}">${opts.map(([v, t]) => `<option value="${v}">${esc(t)}</option>`).join('')}</select></div>`;
 export const vsHub = {
-  path: '/vergelijken/', title: 'Beste thuisaccu 2026? 6 merken vergeleken | ThuisaccuMatch', h1: 'Thuisaccu’s vergelijken: welke past het best?', crumb: 'Vergelijken', og: 'vergelijken', stamp: { checked: CHECKED, updated: SCORE_WEG }, lastmod: SCORE_WEG,
+  path: '/vergelijken/', title: 'Beste thuisaccu 2026? 7 merken vergeleken | ThuisaccuMatch', h1: 'Thuisaccu’s vergelijken: welke past het best?', crumb: 'Vergelijken', og: 'vergelijken', stamp: { checked: CHECKED, updated: SCORE_WEG }, lastmod: SCORE_WEG,
   scripts: ['/js/vergelijk.js'],
-  description: 'Welke thuisaccu is de beste voor jou? Zes merken in één tabel: stekker of vast, noodstroom, LFP, garantie en prijs. Filter op wat je nodig hebt.',
-  body: `<h1>Thuisaccu’s vergelijken: welke past het best?</h1><p class="lead">Zes merken op 10 vaste punten. Filter op wat jij zoekt.</p>
+  description: 'Welke thuisaccu is de beste voor jou? Zeven merken in één tabel: stekker of vast, noodstroom, LFP, garantie en prijs. Filter op wat je nodig hebt.',
+  body: `<h1>Thuisaccu’s vergelijken: welke past het best?</h1><p class="lead">Zeven merken op 10 vaste punten. Filter op wat jij zoekt.</p>
 <p>Zoek je de beste thuisaccu? Die bestaat niet voor iedereen. Een stekkerbatterij is de beste keus als je hem zelf wilt aansluiten en weinig wilt uitgeven; een grote vaste thuisaccu als je veel zonnepanelen hebt of noodstroom wilt. De volgorde volgt hoeveel van de 10 checklistpunten een merk zelf noemt. Het is geen beoordeling. Wat bij jou past, hangt af van je zonnepanelen, je verbruik en je contract: de <a href="/thuisaccu-keuzehulp/">keuzehulp</a> rekent het uit, en in <a href="/stekkerbatterij-of-vaste-thuisaccu/">stekkerbatterij of vaste thuisaccu</a> lees je de verschillen.</p>
 <div class="actions"><a class="btn" href="/thuisaccu-keuzehulp/">Liever advies op maat? Start de keuzehulp</a></div>
 <form class="filters card" id="filters" aria-labelledby="h-f"><h2 id="h-f">Filter de merken</h2>
