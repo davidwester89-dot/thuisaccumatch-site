@@ -150,17 +150,37 @@ const RELATED = {
   byd: [['/stekkerbatterij-of-vaste-thuisaccu/', 'AC- of DC-gekoppeld: wat is het verschil?'], ['/thuisaccu-terugverdientijd/', 'Verdien je een thuisaccu terug?']],
 };
 const ALG_PRIJS = `Ter vergelijking: Milieu Centraal noemt voor een gemiddelde thuisaccu van 6 kWh, inclusief omvormer en installatie, "een paar duizend euro". Bij de merken die wel prijzen tonen, ligt de prijs per kWh opslag tussen € ${PRIJS_KWH.stekker} (HomeWizard) en € 710 (Sessy 5 kWh), inclusief btw. Zie <a href="/thuisaccu-kosten/">wat kost een thuisaccu</a>.`;
+// Deep-dive Anker SOLIX (SEO wk46, push 12-11-2026): Solarbank Max AC erbij, title en meta uit de briefing.
+// Staat hier en niet in src/lib/merken.js: merken.js gaat mee naar de keuzehulp (client-side), dit is alleen tekst op /merken/anker-solix/.
+// Checklist (FEATURES), telling en ranking ongewijzigd. Feiten van ankersolix.com/nl, gecontroleerd 09-11-2026.
+export const DD_UPD = '2026-11-12';
+export const DD_PADEN = new Set(['/merken/anker-solix/', '/merken/']);
+const ANK_MAX = 'https://www.ankersolix.com/nl/plug-and-play-thuisbatterij/thuisbatterij-a17e2';
+const DEEPDIVE = {
+  anker: {
+    title: 'Anker SOLIX thuisbatterij 2026: Solarbank-modellen en prijs',
+    meta: 'Anker SOLIX thuisbatterij: Solarbank 3 Pro, Solarbank Max AC en uitbreiden naar meer kWh. Prijzen van ankersolix.com, checklist en voor wie hij past.',
+    checked: '2026-11-09',
+    kort: 'Merk van Anker met plug-in thuisbatterijen: de Solarbank 3 Pro van 2,688 kWh, uit te breiden tot 16 kWh per groep, en de Solarbank Max AC van 7 kWh, uit te breiden tot 42 kWh.',
+    lijnen: [['Solarbank Max AC', '7 kWh in één unit, voor zonnepanelen die je al hebt; tot 3.500 W op een aparte groep, off-grid-uitgang van 3.680 W'], ['BP7000-uitbreidingsbatterij', 'Voor de Solarbank Max AC: tot vijf extra, samen tot 42 kWh']],
+    prijzen: [['Solarbank Max AC (7 kWh)', '€ 2.499', 'Adviesprijs in de webshop van Anker SOLIX'], ['Solarbank Max AC + BP7000 (14 kWh)', '€ 4.498', 'Pakket in de webshop van Anker SOLIX'], ['Twee Solarbank Max AC (14 kWh, 7.000 W)', '€ 4.998', 'Complete set in de webshop van Anker SOLIX'], ['Drie Solarbank Max AC (21 kWh, 10.500 W)', '€ 7.497', 'Complete set in de webshop van Anker SOLIX']],
+    prijsNoot: '<p>Per kWh opslag: € 2.499 / 7 kWh is zo’n € 357 voor de Solarbank Max AC, en € 1.599 / 2,688 kWh is zo’n € 595 voor de Solarbank 3 Pro. Installatie door een elektricien, een Wieland-stekker of een vaste aansluiting zitten daar niet bij. Wat een thuisaccu in totaal kost, lees je bij <a href="/thuisaccu-kosten/">thuisaccu kosten</a>.</p>',
+    extra: `<h2>Solarbank 3 Pro of Solarbank Max AC?</h2><p>Allebei zijn het plug-in thuisbatterijen die je kunt uitbreiden. Het verschil zit in de capaciteit per unit en in hoe je zonnepanelen erop aansluit.</p><ul><li><strong>Solarbank 3 Pro:</strong> 2,688 kWh per accu. Je kunt zonnepanelen direct op de batterij aansluiten (4 MPPT’s). Uitbreiden doe je met BP2700-accupakketten: tot vijf extra, 16 kWh per groep, en tot drie groepen parallel samen 48 kWh.</li><li><strong>Solarbank Max AC:</strong> 7 kWh in één unit, bedoeld voor zonnepanelen die je al hebt. Volgens Anker werkt hij met zonnepanelensystemen van andere merken. Uitbreiden doe je met BP7000-uitbreidingsbatterijen: tot vijf extra, samen tot 42 kWh. Twee units naast elkaar geven 14 kWh en 7.000 W, drie units 21 kWh en 10.500 W.</li></ul><p>Standaard levert de Solarbank Max AC 800 W, net als een gewoon stopcontact. Zit hij op een aparte groep, dan kun je dat in de Anker-app verhogen tot 3.500 W. Een Wieland-stekker of vaste aansluiting laat je door een erkend elektricien aanleggen. Met een vaste aansluiting en de Anker SOLIX Backup Auto-Switch noemt Anker tot 5.000 W en noodstroom voor het hele huis bij een eenfaseaansluiting. Zonder die schakelaar werken bij een stroomuitval alleen de apparaten op de off-grid-uitgang (3.680 W).</p><p>Anker noemt voor de Max AC 10.000 cycli, 10 jaar garantie en 100% ontladingsdiepte. Na installatie meld je hem aan op energieleveren.nl. Twijfel je tussen stekker en vast? Lees <a href="/stekkerbatterij-of-vaste-thuisaccu/">stekkerbatterij of vaste thuisaccu</a>. Zoek je 10 kWh of meer, kijk dan bij <a href="/blog/thuisbatterij-10-kwh/">een thuisbatterij van 10 kWh</a>.</p>`,
+    bronnen: [['Anker SOLIX Solarbank Max AC', ANK_MAX]],
+  },
+};
 const merkPagesRaw = IDS.map((id) => {
-  const p = M[id];
+  const dd = DEEPDIVE[id] || {};
+  const p = { ...M[id], ...(dd.kort ? { kort: dd.kort } : {}), ...(dd.extra ? { extra: (M[id].extra || '') + dd.extra } : {}), lijnen: [...M[id].lijnen, ...(dd.lijnen || [])], ...(M[id].prijzen ? { prijzen: [...M[id].prijzen, ...(dd.prijzen || [])] } : {}), bronnen: [...M[id].bronnen, ...(dd.bronnen || [])], ...(dd.checked ? { extraChecked: dd.checked } : {}) };
   const path = `/merken/${p.slug}/`;
   const h1 = `${p.naam}-thuisaccu: aanbod, checklist en voor wie`;
   const pos = RANG.indexOf(id) + 1;
   const alt = RANG.filter((x) => x !== id).slice(0, 3);
-  const t = [`${p.naam}-thuisaccu 2026: aanbod en checklist`, `${p.naam}-thuisaccu 2026`].find((x) => x.length <= 60);
+  const t = dd.title || [`${p.naam}-thuisaccu 2026: aanbod en checklist`, `${p.naam}-thuisaccu 2026`].find((x) => x.length <= 60);
   const lc = (x) => (/^[A-Z][a-z]/.test(x) ? x[0].toLowerCase() + x.slice(1) : x);
-  const d = [`${p.naam}-thuisaccu: ${lc(aanbodTekst(id))}. Checklist van 10 punten met bron, prijs, sterke punten en voor wie hij past.`, `${p.naam}-thuisaccu: ${lc(aanbodTekst(id))}. Checklist van 10 punten met bron en voor wie hij past.`, `${p.naam}-thuisaccu: aanbod, prijs, checklist van 10 punten met bron, sterke punten, aandachtspunten en voor wie hij past.`].find((x) => x.length <= 155 && x.length >= 70);
+  const d = dd.meta || [`${p.naam}-thuisaccu: ${lc(aanbodTekst(id))}. Checklist van 10 punten met bron, prijs, sterke punten en voor wie hij past.`, `${p.naam}-thuisaccu: ${lc(aanbodTekst(id))}. Checklist van 10 punten met bron en voor wie hij past.`, `${p.naam}-thuisaccu: aanbod, prijs, checklist van 10 punten met bron, sterke punten, aandachtspunten en voor wie hij past.`].find((x) => x.length <= 155 && x.length >= 70);
   const prijsBlok = p.prijzen
-    ? `<h2>Prijzen</h2><p class="sub">Zoals ${esc(p.naam)} ze op de eigen site toont.</p><div class="table-wrap"><table class="data stack"><thead><tr><th scope="col">Model</th><th scope="col">Prijs</th><th scope="col">Toelichting</th></tr></thead><tbody>${p.prijzen.map(([n, pr, w]) => `<tr><th scope="row">${esc(n)}</th><td data-l="Prijs"><strong>${esc(pr)}</strong></td><td data-l="Toelichting">${esc(w)}</td></tr>`).join('')}</tbody></table></div><p>${ALG_PRIJS}</p>`
+    ? `<h2>Prijzen</h2><p class="sub">Zoals ${esc(p.naam)} ze op de eigen site toont.</p><div class="table-wrap"><table class="data stack"><thead><tr><th scope="col">Model</th><th scope="col">Prijs</th><th scope="col">Toelichting</th></tr></thead><tbody>${p.prijzen.map(([n, pr, w]) => `<tr><th scope="row">${esc(n)}</th><td data-l="Prijs"><strong>${esc(pr)}</strong></td><td data-l="Toelichting">${esc(w)}</td></tr>`).join('')}</tbody></table></div>${dd.prijsNoot || ''}<p>${ALG_PRIJS}</p>`
     : `<h2>Prijzen</h2><p>${esc(p.naam)} noemt geen consumentenprijzen op de eigen site; je koopt via een installateur en de prijs staat in je offerte. Vraag altijd naar de bruikbare capaciteit in kWh, zodat je de prijs per kWh kunt vergelijken.</p><p>${ALG_PRIJS}</p>`;
   const f = FEATURES[id];
   return {
