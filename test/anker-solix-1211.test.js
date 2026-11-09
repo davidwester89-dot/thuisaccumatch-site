@@ -30,5 +30,9 @@ test('Anker SOLIX 12-11: title, meta, Solarbank Max AC met prijs en bron, checkl
   assert.match(h, /href="https:\/\/www\.ankersolix\.com\/nl\/plug-and-play-thuisbatterij\/thuisbatterij-a17e2"/);
   for (const l of ['/stekkerbatterij-of-vaste-thuisaccu/', '/thuisaccu-kosten/', '/blog/thuisbatterij-10-kwh/']) assert.ok(h.includes(`href="${l}"`), l);
   assert.equal(FEATURES.anker.noodstroom.v, 'deels');
+  // SEO-B1 2dce507: checklist verduidelijkt (Solarbank 3 Pro), kaart 'Noodstroom (Solarbank 3 Pro)'.
+  assert.match(h, /Checklist: wat biedt Anker SOLIX\?<\/h2><p>De checklist en de telling gaan over de Solarbank 3 Pro\. De Solarbank Max AC staat hierboven bij Modellen en Prijzen\.<\/p>/);
+  assert.match(h, /<li><span>Noodstroom \(Solarbank 3 Pro\)<\/span>/);
+  assert.doesNotMatch(read('dist/merken/sessy/index.html'), /Solarbank 3 Pro\)<\/span>|gaan over de Solarbank/);
   assert.equal(FEATURES.anker.prijs.t, '€ 1.599 (Solarbank 3 E2700 Pro) in de eigen webshop');
 });

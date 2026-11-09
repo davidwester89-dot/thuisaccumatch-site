@@ -161,6 +161,9 @@ const DEEPDIVE = {
     title: 'Anker SOLIX thuisbatterij 2026: Solarbank-modellen en prijs',
     meta: 'Anker SOLIX thuisbatterij: Solarbank 3 Pro, Solarbank Max AC en uitbreiden naar meer kWh. Prijzen van ankersolix.com, checklist en voor wie hij past.',
     checked: '2026-11-09',
+    // SEO-B1 2dce507: checklist en telling gaan over de Solarbank 3 Pro (score ongewijzigd; noodstroom 'deels' -> 'ja' alleen met MM-OK).
+    checklistNoot: 'De checklist en de telling gaan over de Solarbank 3 Pro. De Solarbank Max AC staat hierboven bij Modellen en Prijzen.',
+    kaartModel: 'Solarbank 3 Pro',
     kort: 'Merk van Anker met plug-in thuisbatterijen: de Solarbank 3 Pro van 2,688 kWh, uit te breiden tot 16 kWh per groep, en de Solarbank Max AC van 7 kWh, uit te breiden tot 42 kWh.',
     lijnen: [['Solarbank Max AC', '7 kWh in één unit, voor zonnepanelen die je al hebt; tot 3.500 W op een aparte groep, off-grid-uitgang van 3.680 W'], ['BP7000-uitbreidingsbatterij', 'Voor de Solarbank Max AC: tot vijf extra, samen tot 42 kWh']],
     prijzen: [['Solarbank Max AC (7 kWh)', '€ 2.499', 'Adviesprijs in de webshop van Anker SOLIX'], ['Solarbank Max AC + BP7000 (14 kWh)', '€ 4.498', 'Pakket in de webshop van Anker SOLIX'], ['Twee Solarbank Max AC (14 kWh, 7.000 W)', '€ 4.998', 'Complete set in de webshop van Anker SOLIX'], ['Drie Solarbank Max AC (21 kWh, 10.500 W)', '€ 7.497', 'Complete set in de webshop van Anker SOLIX']],
@@ -189,11 +192,11 @@ const merkPagesRaw = IDS.map((id) => {
     navPath: '/merken/',
     body: `<article><div class="phead"><span class="phead-logo">${logoImg(id, { maat: 'lg', eager: true })}</span><span class="tag best">${esc(STERK_IN[id])}</span></div><h1>${esc(h1)}</h1>${by(p.datum)}<p class="lead">${esc(p.kort)}</p>
 <div class="pcard first"><div class="pc-head"><span class="sc-lbl">Aanbod</span><p class="pc-price"><strong>${esc(aanbodTekst(id))}</strong></p></div>
-<ul class="pc-facts"><li><span>LFP-cellen</span><span>${fv(f.lfp, false)}</span></li><li><span>Noodstroom</span><span>${fv(f.noodstroom, false)}</span></li><li><span>Garantie 10 jaar</span><span>${fv(f.garantie, false)}</span></li><li><span>Plek in de vergelijking</span><span>${pos} van ${IDS.length}</span></li></ul>
+<ul class="pc-facts"><li><span>LFP-cellen</span><span>${fv(f.lfp, false)}</span></li><li><span>Noodstroom${dd.kaartModel ? ` (${esc(dd.kaartModel)})` : ''}</span><span>${fv(f.noodstroom, false)}</span></li><li><span>Garantie 10 jaar</span><span>${fv(f.garantie, false)}</span></li><li><span>Plek in de vergelijking</span><span>${pos} van ${IDS.length}</span></li></ul>
 <div class="pc-cta">${knop(id, 'merk_top')}<a href="/thuisaccu-keuzehulp/">Past het bij mij? Start de keuzehulp →</a></div></div>
 <h2>Modellen</h2><div class="table-wrap"><table class="data stack"><thead><tr><th scope="col">Model of lijn</th><th scope="col">Wat</th></tr></thead><tbody>${p.lijnen.map(([n, w]) => `<tr><th scope="row">${esc(n)}</th><td data-l="Wat">${esc(w)}</td></tr>`).join('')}</tbody></table></div>
 ${p.extra || ''}${prijsBlok}
-<h2>Checklist: wat biedt ${esc(p.naam)}?</h2><p class="sub">Tien vaste punten, uit de site, het datasheet of het garantiedocument van het merk. Niet vermeld levert geen punt op, net als nee. <a href="/over/#methode">Zo tellen we</a></p>${checklistTable(id)}
+<h2>Checklist: wat biedt ${esc(p.naam)}?</h2>${dd.checklistNoot ? `<p>${dd.checklistNoot}</p>` : ''}<p class="sub">Tien vaste punten, uit de site, het datasheet of het garantiedocument van het merk. Niet vermeld levert geen punt op, net als nee. <a href="/over/#methode">Zo tellen we</a></p>${checklistTable(id)}
 <h2>Sterk en let op</h2><div class="pm"><div class="card plus"><h3>Sterk</h3><ul>${p.plus.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div><div class="card min"><h3>Let op</h3><ul>${p.min.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div></div>
 <h2>Voor wie?</h2><p>${esc(p.voor)}</p>
 <p>Of een ${p.soort === 'stekker' ? 'stekkerbatterij' : 'vaste thuisaccu'} van ${esc(p.naam)} zich voor jou terugbetaalt, hangt vooral af van hoeveel zonnestroom je teruglevert en welk energiecontract je hebt. Milieu Centraal verwacht dat je een thuisaccu op dit moment hoogstwaarschijnlijk niet terugverdient. Reken het na met de <a href="/terugverdientijd-thuisaccu-berekenen/">rekentool terugverdientijd</a> en bepaal de grootte met de <a href="/capaciteit-thuisaccu-berekenen/">capaciteitsberekening</a>.</p>
