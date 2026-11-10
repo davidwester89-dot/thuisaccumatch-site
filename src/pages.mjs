@@ -28,6 +28,10 @@ export const ANKER_UPD = '2026-11-06';
 export const ANKER_PADEN = new Set(['/merken/', '/vergelijken/', '/thuisaccu-keuzehulp/', '/gidsen/', '/merken/anker-solix/', '/merken/byd/', '/merken/homewizard/', '/merken/huawei/', '/merken/sessy/', '/merken/solaredge/', '/merken/zonneplan/']);
 export const bijgewerkt = (pg, upd) => ({ ...pg, lastmod: upd, stamp: { ...pg.stamp, updated: upd }, ...(pg.article ? { article: { ...pg.article, updated: upd } } : {}), ...(pg.schema ? { schema: pg.schema.map((x, j) => (j === 0 && 'dateModified' in x ? { ...x, dateModified: upd } : x)) } : {}) });
 
+// L7 17-11: onbetaalde merken-CTA's (Sessy, HomeWizard, Zonneplan, SolarEdge, BYD, Huawei) → bronlink. Alleen pagina's met echte bodywijziging.
+export const NEUTRAAL_DATUM = '2026-11-17';
+export const NEUTRAAL_PADEN = new Set(['/merken/', '/merken/sessy/', '/merken/homewizard/', '/merken/zonneplan/', '/merken/solaredge/', '/merken/byd/', '/merken/huawei/']);
+
 export const ONDERZOEK_PADEN = new Set(['/salderingsregeling-stopt-2027/', '/gidsen/', '/terugverdientijd-thuisaccu-berekenen/']);
 const RANG = ranglijst();
 const logo = (id, maat = 'md') => logoImg(id, { maat });
