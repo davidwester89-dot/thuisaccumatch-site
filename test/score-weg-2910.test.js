@@ -1,3 +1,4 @@
+import { TVT_DATUM } from '../src/tvt2027.mjs';
 import { ONDERZOEK_DATUM } from '../src/onderzoek.mjs';
 // Scores weg (29-10-2026): geen score-badge, scorebalkjes, "Score"-kolom of "x/10" meer bij de merken, op geen enkele pagina.
 // De volgorde (ranglijst) blijft gelijk; alleen de weergave van de score is weg.
@@ -31,7 +32,7 @@ test('pagina\'s die een score toonden: lastmod en dateModified 2026-10-29', () =
   // /merken/sessy/ is op 30-10 opnieuw bijgewerkt (logo's in de tabellen); die datum test test/logo-l7.test.js.
   // Home toont 'Nieuw op de blog' (3 nieuwste posts): L7-hubregel D, datum = nieuwste van SCORE_WEG en die posts
   // (zelfde regel als build.mjs; loadPosts gebruikt dezelfde BUILD_DATE/vandaag als de build hierboven). Vanaf de post van 3-11 dus 2026-11-03.
-  const homeUpd = [SCORE_WEG, ANKER_UPD, ONDERZOEK_DATUM, ...loadPosts().slice(0, 3).map((x) => x.date)].sort().at(-1);
+  const homeUpd = [SCORE_WEG, ANKER_UPD, ONDERZOEK_DATUM, TVT_DATUM, ...loadPosts().slice(0, 3).map((x) => x.date)].sort().at(-1);
   assert.match(sm, new RegExp(`<loc>https://thuisaccumatch\\.nl/</loc><lastmod>${homeUpd}</lastmod>`), '/');
   assert.match(read('dist/index.html'), new RegExp(`bijgewerkt op <time datetime="${homeUpd}">`), 'home: zichtbare datum');
   for (const p of ['/thuisaccu-keuzehulp/', '/merken/', '/merken/homewizard/', '/merken/byd/', '/vergelijken/', '/over/'].filter((x) => !EF_PADEN.has(x) && !ANKER_PADEN.has(x)))
