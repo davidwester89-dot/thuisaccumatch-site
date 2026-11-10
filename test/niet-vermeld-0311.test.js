@@ -1,3 +1,4 @@
+import { revisieDatum } from './nuchter-datums-helper.mjs';
 import { TVT_DATUM } from '../src/tvt2027.mjs';
 import { ONDERZOEK_DATUM } from '../src/onderzoek.mjs';
 // Externe feedback nov: 'Niet vermeld' overal dezelfde, ware uitleg. Code: checklist.js punt(null) = 0 (net als nee),
@@ -29,10 +30,10 @@ test('Niet vermeld: één uitleg die klopt met de code', () => {
 test('L7 3-11: lastmod, zichtbare bijgewerkt-regel en dateModified', () => {
   const sm = read('dist/sitemap.xml');
   for (const p of [...EF_PADEN].filter((x) => !ANKER_PADEN.has(x))) {
-    assert.ok(sm.includes(`<loc>https://thuisaccumatch.nl${p}</loc><lastmod>${EF_UPD}</lastmod>`), p);
+    assert.ok(sm.includes(`<loc>https://thuisaccumatch.nl${p}</loc><lastmod>${revisieDatum(p, EF_UPD)}</lastmod>`), p);
     const h = read(`dist${p}index.html`);
-    assert.match(h, new RegExp(`bijgewerkt (op )?<time datetime="${EF_UPD}">`, 'i'), p);
-    assert.doesNotMatch(h, new RegExp(`"dateModified": ?"(?!${EF_UPD})`), p);
+    assert.match(h, new RegExp(`bijgewerkt (op )?<time datetime="${revisieDatum(p, EF_UPD)}">`, 'i'), p);
+    assert.doesNotMatch(h, new RegExp(`"dateModified": ?"(?!${revisieDatum(p, EF_UPD)})`), p);
   }
 });
 

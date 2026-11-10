@@ -3,7 +3,7 @@ title: Thuisbatterij rendabel in 2027? Zo reken je het uit
 seo_title: Thuisbatterij rendabel in 2027? Zo reken je het uit
 description: Salderen stopt op 1-1-2027. Is een thuisbatterij dan rendabel met of zonder zonnepanelen, warmtepomp of EV? Check per situatie wat past en vergelijk.
 date: 2026-10-19
-updated: 2026-10-27
+updated: 2026-11-18
 checked: 2026-10-19
 image: thuisbatterij-rendabel-2027
 image_alt: Schuin dak van een woning vol zonnepanelen zonder merkopdruk, onder een blauwe lucht
@@ -30,9 +30,9 @@ Op 1 januari 2027 stopt de salderingsregeling: teruggeleverde zonnestroom mag je
 
 Drie getallen tellen:
 
-1. **Stroomprijs.** Volgens het CBS was het gemiddelde leveringstarief voor huishoudens (vaste en variabele contracten) in september 2026 € 0,1487 per kWh inclusief btw, plus € 0,11085 energiebelasting. Samen ongeveer **€ 0,26 per kWh**.
+1. **Stroomprijs.** Het CBS geeft voor huishoudens (vaste en variabele contracten) in september 2026 een gemiddeld leveringstarief van € 0,1487 per kWh inclusief btw, plus € 0,11085 energiebelasting. Samen ongeveer **€ 0,26 per kWh**.
 2. **Netto terugleververgoeding.** Vanaf 2027 krijg je een vergoeding, maar betaal je vaak ook terugleverkosten. Milieu Centraal noemt netto rond de halve cent per kWh. Per leverancier: [thuisbatterij en terugleverkosten 2027](/blog/thuisbatterij-terugleverkosten-2027/).
-3. **Verschoven kWh.** Een batterij raakt niet elke dag vol; wij rekenen met 200 volle dagen per jaar en 90 procent rendement. Volgens Milieu Centraal leveren 10 panelen op een decemberdag ongeveer 2,5 kWh, tegen 15 kWh op een junidag.
+3. **Verschoven kWh.** Een batterij raakt niet elke dag vol; wij rekenen met 200 volle dagen per jaar en 90 procent rendement. Milieu Centraal rekent voor 10 panelen op een decemberdag ongeveer 2,5 kWh, tegen 15 kWh op een junidag.
 
 Hoe de terugverdientijd van een thuisaccu werkt, lees je in de gids [verdien je een thuisaccu terug?](/thuisaccu-terugverdientijd/). Twee voorbeelden uit onze [rekentool voor de terugverdientijd](/terugverdientijd-thuisaccu-berekenen/), met prijzen van de merken zelf:
 
@@ -83,7 +83,7 @@ Een warmtepomp verbruikt vooral in de winter, als je panelen weinig opwekken. Mi
 
 ### 7. Je hebt een elektrische auto met eigen laadpaal
 
-Een autobatterij is veel groter dan een thuisbatterij. Volgens Milieu Centraal stijgt je eigen gebruik van zonnestroom met slim laden van ongeveer 30 naar ruim 50 procent: ongeveer het effect van een thuisbatterij.
+Een autobatterij is veel groter dan een thuisbatterij. Milieu Centraal rekent bij slim laden met een stijging van je eigen gebruik van zonnestroom van ongeveer 30 naar ruim 50 procent: ongeveer het effect van een thuisbatterij.
 
 > **Besluit:** laad eerst slim op zonnestroom. Blijft er veel over, dan eventueel een kleine batterij.
 
@@ -101,7 +101,7 @@ Een vaste batterij gaat in de meterkast en heeft een goede plek nodig; een stekk
 
 ### 10. Je wilt de btw terugvragen
 
-Volgens de Belastingdienst alleen bij in- en verkoop van stroom, met een Energie Management Systeem (EMS), een dynamisch contract en een factuur op je eigen naam. Je wordt btw-ondernemer met kwartaalaangifte en betaalt btw over privégebruik.
+De Belastingdienst staat dit alleen toe bij in- en verkoop van stroom, met een Energie Management Systeem (EMS), een dynamisch contract en een factuur op je eigen naam. Je wordt btw-ondernemer met kwartaalaangifte en betaalt btw over privégebruik.
 
 > **Besluit:** 21 procent btw terug scheelt flink, maar kost administratie. Lees [btw op een thuisaccu](/btw-thuisaccu/).
 
@@ -113,7 +113,7 @@ Stroom bij uitval van het net vraagt een noodstroomfunctie, en niet elke batteri
 
 ### 12. Je overweegt nog zonnepanelen
 
-Panelen leveren per euro meer op dan een batterij. Volgens Milieu Centraal zijn isoleren of een warmtepomp betere stappen om geld te besparen dan een thuisbatterij.
+Panelen leveren per euro meer op dan een batterij. Milieu Centraal noemt isoleren of een warmtepomp betere stappen om geld te besparen dan een thuisbatterij.
 
 > **Besluit:** eerst panelen, dan een batterij. Zie [welke maatregel eerst](https://verduurzaammatch.nl/blog/huis-verduurzamen-waar-beginnen/) op VerduurzaamMatch, en de [rekentool einde salderen](/einde-salderen-berekenen/) voor je panelen.
 

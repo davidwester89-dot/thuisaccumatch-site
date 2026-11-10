@@ -3,7 +3,7 @@ title: Thuisbatterij met noodstroom: welke merken kunnen het?
 seo_title: Thuisbatterij met noodstroom: welke merken kunnen het?
 description: Welke thuisbatterij geeft stroom bij een storing? Het verschil tussen noodstroom en back-up, per merk wat het kan, wat je extra nodig hebt en wat het kost.
 date: 2026-10-20
-updated: 2026-10-30
+updated: 2026-11-18
 checked: 2026-10-20
 image: thuisbatterij-met-noodstroom
 image_alt: Een rij brandende kaarsen in het donker, zoals tijdens een stroomstoring
@@ -41,13 +41,13 @@ Wil je toch stroom bij een storing, dan moet je huis zich loskoppelen van het ne
 - **Gedeeltelijke back-up.** Een paar groepen in je meterkast krijgen stroom, bijvoorbeeld die voor verlichting en de koelkast.
 - **Volledige back-up.** Je hele huis blijft stroom krijgen, binnen het vermogen van de batterij en omvormer.
 
-Hoe lang het duurt, hangt volgens Milieu Centraal af van hoe vol je batterij is op het moment van de storing en welke apparaten je aansluit.
+Milieu Centraal koppelt de duur aan hoe vol je batterij is op het moment van de storing en welke apparaten je aansluit.
 
 ## Welke thuisbatterijen bieden noodstroom?
 
 Hieronder per merk wat de fabrikant zelf zegt, op alfabet. Meer details per merk vind je bij [merken](/merken/) en in de [vergelijking](/vergelijken/).
 
-| Merk | Noodstroom volgens de fabrikant | Hoeveel van je huis | 1-fase of 3-fase |
+| Merk | Noodstroom | Hoeveel van je huis | 1-fase of 3-fase |
 |---|---|---|---|
 | [BYD](/merken/byd/) Battery-Box Premium HVS | Back-up mogelijk, via de omvormer | Hangt af van de omvormer | 1- en 3-fase omvormers |
 | [HomeWizard](/merken/homewizard/) Plug-In Battery | Nee, schakelt uit bij stroomuitval | – | Stekker in een stopcontact |
@@ -71,7 +71,7 @@ Voor een back-up heb je meestal meer nodig dan alleen de batterij:
 - **Aanpassingen in je meterkast**, zoals een aparte groep voor noodstroom.
 - **Een installateur.** Bij Sessy is het aansluiten van een off-grid omvormer uitdrukkelijk werk voor een professional.
 
-Zonneplan zegt dat de kosten uiteenlopen van zo'n € 200 voor één stopcontact tot circa € 3.000 voor je hele woning. Bij Zonneplan zelf kost het noodstroomstopcontact € 200 tot € 250 extra. Een Zonneplan-batterij kost € 4.690 (10 kWh) tot € 9.090 (35 kWh), na btw-teruggave; die krijg je volgens Zonneplan met een dynamisch contract en slimme aansturing. De Sessy Plus 15 kWh met back-up-uitgang kost € 9.400 inclusief btw, zonder installatie. Huawei, SolarEdge en BYD noemen geen prijs; die hangt af van je installateur.
+Zonneplan zegt dat de kosten uiteenlopen van zo'n € 200 voor één stopcontact tot circa € 3.000 voor je hele woning. Bij Zonneplan zelf kost het noodstroomstopcontact € 200 tot € 250 extra. Een Zonneplan-batterij kost € 4.690 (10 kWh) tot € 9.090 (35 kWh), na btw-teruggave; die krijg je met een dynamisch contract en slimme aansturing. De Sessy Plus 15 kWh met back-up-uitgang kost € 9.400 inclusief btw, zonder installatie. Huawei, SolarEdge en BYD noemen geen prijs; die hangt af van je installateur.
 
 Denk ook aan je warme water. Zonneplan wijst erop dat je cv-ketel of boiler stroom nodig heeft: zonder stroom heb je dan geen warm water. Wat een batterij in totaal kost, lees je bij [thuisaccu kosten](/thuisaccu-kosten/).
 
@@ -79,11 +79,11 @@ Denk ook aan je warme water. Zonneplan wijst erop dat je cv-ketel of boiler stro
 
 Een stekkerbatterij steek je in een gewoon stopcontact. HomeWizard zegt dat zijn Plug-In Battery bij een stroomstoring automatisch uitschakelt, omdat hij het signaal van het net nodig heeft. Een stekkerbatterij is dus geen noodstroomvoorziening.
 
-Voor noodstroom is volgens HomeWizard een eilandnet nodig, met een speciale omvormer en aanpassingen in de meterkast. Twijfel je tussen de twee soorten? Lees [stekkerbatterij of vaste thuisaccu](/stekkerbatterij-of-vaste-thuisaccu/). Over veilig installeren lees je meer bij [veiligheid van een thuisaccu](/thuisaccu-veiligheid/).
+HomeWizard noemt voor noodstroom een eilandnet nodig, met een speciale omvormer en aanpassingen in de meterkast. Twijfel je tussen de twee soorten? Lees [stekkerbatterij of vaste thuisaccu](/stekkerbatterij-of-vaste-thuisaccu/). Over veilig installeren lees je meer bij [veiligheid van een thuisaccu](/thuisaccu-veiligheid/).
 
 ## Is noodstroom het geld waard?
 
-Het Nederlandse stroomnet is erg betrouwbaar. Volgens Netbeheer Nederland zat een aansluiting in 2025 gemiddeld 23,4 minuten zonder stroom door onverwachte storingen. Een storing duurde gemiddeld 73,9 minuten. Daarnaast waren er geplande onderbrekingen, waar je vooraf bericht over krijgt.
+Het Nederlandse stroomnet is erg betrouwbaar. Netbeheer Nederland geeft voor een aansluiting in 2025 gemiddeld 23,4 minuten zonder stroom door onverwachte storingen. Een storing duurde gemiddeld 73,9 minuten. Daarnaast waren er geplande onderbrekingen, waar je vooraf bericht over krijgt.
 
 Voor de meeste huishoudens is noodstroom dus vooral een geruststelling. Het kan wél de moeite waard zijn als:
 

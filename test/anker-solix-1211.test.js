@@ -1,3 +1,4 @@
+import { revisieDatum } from './nuchter-datums-helper.mjs';
 // Deep-dive Anker SOLIX (12-11-2026): Solarbank Max AC in Modellen en Prijzen, title/meta uit de briefing.
 // Checklist, telling en ranking ongewijzigd. L7: /merken/anker-solix/ blijft DD_UPD; hub /merken/ is op 17-11 opnieuw bijgewerkt (test/onbetaald-neutraal-1711.test.js).
 import test from 'node:test';
@@ -13,10 +14,10 @@ test('L7 12-11: /merken/anker-solix/ draagt DD_UPD (hub /merken/ zit in NEUTRAAL
   const sm = read('dist/sitemap.xml');
   const p = '/merken/anker-solix/';
   assert.ok(DD_PADEN.has(p) && DD_PADEN.has('/merken/'));
-  assert.ok(sm.includes(`<loc>https://thuisaccumatch.nl${p}</loc><lastmod>${DD_UPD}</lastmod>`), p);
+  assert.ok(sm.includes(`<loc>https://thuisaccumatch.nl${p}</loc><lastmod>${revisieDatum(p, DD_UPD)}</lastmod>`), p);
   const h = read(`dist${p}index.html`);
-  assert.match(h, new RegExp(`bijgewerkt (op )?<time datetime="${DD_UPD}">`, 'i'), p);
-  assert.doesNotMatch(h, new RegExp(`"dateModified": ?"(?!${DD_UPD})`), p);
+  assert.match(h, new RegExp(`bijgewerkt (op )?<time datetime="${revisieDatum(p, DD_UPD)}">`, 'i'), p);
+  assert.doesNotMatch(h, new RegExp(`"dateModified": ?"(?!${revisieDatum(p, DD_UPD)})`), p);
 });
 
 test('Anker SOLIX 12-11: title, meta, Solarbank Max AC met prijs en bron, checklist ongewijzigd', () => {

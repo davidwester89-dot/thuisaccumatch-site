@@ -1,3 +1,4 @@
+import { revisieDatum } from './nuchter-datums-helper.mjs';
 import { TVT_DATUM, TVT_PADEN } from '../src/tvt2027.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -65,7 +66,7 @@ test('onderzoek: eigen canonical, CSVs, Dataset, eerlijke meetperiode en geen ve
 
   for (const p of ['/', '/gidsen/', '/salderingsregeling-stopt-2027/', '/blog/', '/blog/thuisbatterij-dynamisch-contract/', '/terugverdientijd-thuisaccu-berekenen/', ONDERZOEK_PAD]) {
     const page = read('dist'+p+'index.html');
-    const date = p === '/' || TVT_PADEN.has(p) ? TVT_DATUM : ONDERZOEK_DATUM;
+    const date = revisieDatum(p, p === '/' || TVT_PADEN.has(p) ? TVT_DATUM : ONDERZOEK_DATUM);
     assert.ok(page.includes('href="'+ONDERZOEK_PAD+'"') || p===ONDERZOEK_PAD,p+' inkomende link');
     assert.ok(read('dist/sitemap.xml').includes('<loc>https://thuisaccumatch.nl'+p+'</loc><lastmod>'+date+'</lastmod>'),p);
     assert.match(page,new RegExp('bijgewerkt(?: op)? <time datetime="'+date+'">','i'));

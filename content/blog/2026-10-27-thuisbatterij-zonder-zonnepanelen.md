@@ -3,7 +3,7 @@ title: Thuisbatterij zonder zonnepanelen: wanneer loont het?
 seo_title: Thuisbatterij zonder zonnepanelen: wanneer loont het?
 description: Heeft een thuisbatterij zin zonder zonnepanelen? Wat je met een dynamisch contract kunt, welke merken het ondersteunen, wat het kost en wanneer het loont.
 date: 2026-10-27
-updated: 2026-10-30
+updated: 2026-11-18
 checked: 2026-10-27
 tools: /thuisaccu-keuzehulp/, /terugverdientijd-thuisaccu-berekenen/, /vergelijken/
 sources:
@@ -37,11 +37,11 @@ Ja. Een thuisbatterij hoeft niet alleen zonnestroom op te slaan. Hij kan ook str
 
 Zonder dynamisch contract werkt dit niet. Bij een vast of variabel contract beweegt je prijs niet per uur mee met de markt. Hooguit heb je een dal- en normaaltarief, dus valt er met laden en ontladen nauwelijks iets te verdienen. Sessy zegt het zelf: zonder zonnepanelen en met een vast tarief heeft een Sessy geen directe financiële impact.
 
-De salderingsregeling stopt volgens de Rijksoverheid op 1 januari 2027. Zonder panelen lever je geen zonnestroom terug, maar het stoppen raakt je wel als je stroom uit de batterij teruglevert: vanaf 2027 mag je teruglevering niet meer verrekenen met je verbruik. Voor jou draait het dus om de prijsverschillen op je dynamische contract en om zoveel mogelijk zelf gebruiken.
+De Rijksoverheid beëindigt de salderingsregeling op 1 januari 2027. Zonder panelen lever je geen zonnestroom terug, maar het stoppen raakt je wel als je stroom uit de batterij teruglevert: vanaf 2027 mag je teruglevering niet meer verrekenen met je verbruik. Voor jou draait het dus om de prijsverschillen op je dynamische contract en om zoveel mogelijk zelf gebruiken.
 
 ## Zo verdient hij iets: laden bij lage prijs, gebruiken bij hoge prijs
 
-Bij een dynamisch contract verandert de stroomprijs door de dag heen. Volgens de ACM wordt stroom op de Europese dag-vooruitmarkt sinds oktober 2025 per kwartier verhandeld: 96 prijzen per dag. Een batterij met slimme sturing laadt op de goedkope momenten en levert stroom op de dure momenten.
+Bij een dynamisch contract verandert de stroomprijs door de dag heen. De ACM beschrijft dat stroom op de Europese dag-vooruitmarkt sinds oktober 2025 per kwartier wordt verhandeld: 96 prijzen per dag. Een batterij met slimme sturing laadt op de goedkope momenten en levert stroom op de dure momenten.
 
 Twee dingen bepalen wat dat oplevert:
 
@@ -79,7 +79,7 @@ Wat levert het op? Onze eigen rekensom met de echte day-ahead-prijzen van 1 janu
 
 Onze [rekentool voor de terugverdientijd](/terugverdientijd-thuisaccu-berekenen/) rekent voorzichtiger. Zet je teruglevering op 0 en het dynamische contract aan, dan rekent hij met de aannames van ThuisaccuMatch: 150 dagen per jaar met 10 cent prijsverschil en 90 procent rendement. Voor 5 kWh is dat **ongeveer € 68 per jaar**. De rekentool toont dan een terugverdientijd van meer dan 30 jaar. Met de Sessy van € 3.550 is het ruim 52 jaar (onze rekensom: 3.550 / 67,50). Vul je eigen prijsverschil en offerteprijs in om je eigen situatie te zien. Meer over prijzen lees je bij [wat kost een thuisaccu](/thuisaccu-kosten/).
 
-Er is volgens Milieu Centraal geen rijkssubsidie voor een thuisbatterij. Wel kun je soms de btw terugvragen. Volgens de Belastingdienst heb je daarvoor onder meer een dynamisch contract en een EMS nodig om te handelen in stroom, en word je btw-ondernemer. Lees eerst [btw op een thuisaccu](/btw-thuisaccu/).
+Milieu Centraal noemt geen rijkssubsidie voor een thuisbatterij. Wel kun je soms de btw terugvragen. De Belastingdienst vraagt daarvoor onder meer een dynamisch contract en een EMS om te handelen in stroom; je wordt dan btw-ondernemer. Lees eerst [btw op een thuisaccu](/btw-thuisaccu/).
 
 ## Stekkerbatterij of vaste thuisaccu
 
@@ -90,14 +90,14 @@ De verschillen op een rij zie je bij [stekkerbatterij of vaste thuisaccu](/stekk
 
 ## Wanneer het niet loont
 
-Volgens Milieu Centraal verdien je een thuisbatterij op dit moment hoogstwaarschijnlijk niet terug, ook niet als je hem gebruikt om te handelen op de energiemarkt. Dat hangt af van veel factoren die snel veranderen en moeilijk te voorspellen zijn. Daarnaast kost het maken van een batterij veel energie en grondstoffen.
+Milieu Centraal verwacht dat je een thuisbatterij op dit moment hoogstwaarschijnlijk niet terugverdient, ook niet als je hem gebruikt om te handelen op de energiemarkt. Dat hangt af van veel factoren die snel veranderen en moeilijk te voorspellen zijn. Daarnaast kost het maken van een batterij veel energie en grondstoffen.
 
 Het loont in elk geval niet als:
 
 - je een vast of variabel contract hebt en niet wilt overstappen;
 - je de stroom uit de batterij vooral teruglevert in plaats van zelf gebruikt.
 
-Kun je nog isoleren, de ventilatie verbeteren of een warmtepomp nemen? Volgens Milieu Centraal zijn dat spijtvrije keuzes die zeker een lagere energierekening geven. Besteed het geld daar dan eerst aan.
+Kun je nog isoleren, de ventilatie verbeteren of een warmtepomp nemen? Milieu Centraal noemt dat spijtvrije keuzes die zeker een lagere energierekening geven. Besteed het geld daar dan eerst aan.
 
 ## Veelgestelde vragen
 
