@@ -3,7 +3,7 @@ title: Thuisbatterij 10 kWh: prijs, merken en voor wie hij past
 seo_title: Thuisbatterij 10 kWh: prijs, merken en voor wie hij past
 description: Wat kost een thuisbatterij van 10 kWh en past die maat bij jou? Prijzen per merk, 1-fase of 3-fase, met stekker of vast, en de terugverdientijd.
 date: 2026-11-03
-updated: 2026-11-03
+updated: 2026-11-13
 checked: 2026-11-03
 tools: /thuisaccu-keuzehulp/, /capaciteit-thuisaccu-berekenen/, /terugverdientijd-thuisaccu-berekenen/
 sources:
@@ -26,7 +26,7 @@ Twijfel je of een thuisaccu überhaupt bij jou past? Doe eerst de [thuisaccu-keu
 
 ## Is 10 kWh de juiste maat?
 
-Milieu Centraal geeft een duidelijke richting: kies niet te groot. Een thuisbatterij moet je avond- en nachtverbruik kunnen dekken. Dat meet je met een P1-meter in je meterkast. Volgens Milieu Centraal kan een gemiddelde thuisbatterij ongeveer 6 kWh opslaan. Een kleine slaat 2 kWh op, een grote ongeveer 20 kWh.
+Milieu Centraal geeft een duidelijke richting: kies niet te groot. Een thuisbatterij moet je avond- en nachtverbruik kunnen dekken. Dat meet je met een P1-meter in je meterkast. Een gemiddelde thuisbatterij kan ongeveer 6 kWh opslaan. Een kleine slaat 2 kWh op, een grote ongeveer 20 kWh.
 
 Twee merken koppelen hun advies aan je jaarverbruik:
 
@@ -39,7 +39,7 @@ Ligt je verbruik lager, dan is 10 kWh waarschijnlijk meer dan je 's avonds en 's
 
 Alleen Sessy, Zonneplan en HomeWizard zetten een prijs op hun site. Let goed op wat er in die prijs zit, want dat verschilt per merk.
 
-- **Sessy 10 kWh: € 5.500.** Dit is een adviesprijs inclusief btw, zonder abonnementskosten. De installatie zit er niet in. Met kennis van NEN1010 kun je Sessy volgens het merk zelf installeren, anders via een installatiepartner.
+- **Sessy 10 kWh: € 5.500.** Dit is een adviesprijs inclusief btw, zonder abonnementskosten. De installatie zit er niet in. Met kennis van NEN1010 kun je Sessy zelf installeren, anders via een installatiepartner.
 - **Zonneplan 10 kWh: € 4.690.** Inclusief installatie, maar Zonneplan noemt alleen de prijs na teruggave van de btw. Een prijs inclusief btw staat niet op de site. Of jij de btw terugkrijgt, hangt af van voorwaarden, zie [btw op een thuisaccu](/btw-thuisaccu/).
 - **HomeWizard: € 1.195 per Plug-In Battery van 2,7 kWh.** Zonder installatiekosten, want je steekt hem in het stopcontact. Je hebt wel een P1 Meter nodig (€ 24,95).
 
@@ -53,7 +53,7 @@ Huawei, SolarEdge en BYD noemen geen prijzen; die koop je via een installateur. 
 
 Zonneplan legt het verschil uit. De meeste woningen hebben een 1-fase-aansluiting. Daarop ligt het maximale laad- en ontlaadvermogen meestal rond de 5 kW: een batterij van 10 kWh laadt of ontlaadt dan in ongeveer 2 uur. Dat past goed als je vooral je eigen zonnestroom wilt opslaan.
 
-Met een 3-fasen-aansluiting kan het vermogen in theorie oplopen tot 17 kW, maar in de praktijk ligt het maximum van de omvormer vaak rond de 10 kW. Dan is een batterij van 10 kWh in ongeveer 1 uur vol of leeg. Volgens Zonneplan is dat vooral interessant als je ook wilt inspelen op lage en hoge stroomprijzen. Je aansluiting laten ophogen naar 3-fasen vraag je aan bij je netbeheerder; dat kost volgens Zonneplan meestal zo'n € 275 tot € 350.
+Met een 3-fasen-aansluiting kan het vermogen in theorie oplopen tot 17 kW, maar in de praktijk ligt het maximum van de omvormer vaak rond de 10 kW. Dan is een batterij van 10 kWh in ongeveer 1 uur vol of leeg. Dat is vooral interessant als je ook wilt inspelen op lage en hoge stroomprijzen. Je aansluiting laten ophogen naar 3-fasen vraag je aan bij je netbeheerder; dat kost meestal zo'n € 275 tot € 350.
 
 Een 10 kWh-batterij kan dus prima op 1-fase. De 10 kWh van Zonneplan is zelfs een 1-fase-model, met 4 kW vermogen en een losse omvormer.
 
@@ -80,6 +80,6 @@ Wat de verschillen verder zijn, lees je bij [stekkerbatterij of vaste thuisaccu]
 
 ## Terugverdientijd
 
-Hoe snel een batterij van 10 kWh zich terugbetaalt, hangt af van je verbruik, je zonnepanelen, je energiecontract en de prijs die je betaalt. Milieu Centraal is voorzichtig: een thuisbatterij is volgens hen zo duur dat je hem op dit moment hoogstwaarschijnlijk niet terugverdient met de besparing op je stroomrekening. Dat geldt volgens Milieu Centraal ook voor grotere batterijen waarmee je op de energiemarkt handelt.
+Hoe snel een batterij van 10 kWh zich terugbetaalt, hangt af van je verbruik, je zonnepanelen, je energiecontract en de prijs die je betaalt. Milieu Centraal is voorzichtig: een thuisbatterij is zo duur dat je hem op dit moment hoogstwaarschijnlijk niet terugverdient met de besparing op je stroomrekening. Dat geldt ook voor grotere batterijen waarmee je op de energiemarkt handelt.
 
 Reken het voor je eigen situatie uit met de [rekentool terugverdientijd](/terugverdientijd-thuisaccu-berekenen/). Vul daar de prijs in van de batterij die je overweegt.

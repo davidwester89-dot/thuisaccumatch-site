@@ -1,3 +1,4 @@
+import { revisieDatum } from './nuchter-datums-helper.mjs'; // Latere stijlrevisie, exacte datumtests blijven gelden.
 // Anker SOLIX als 7e merk (6-11-2026): merkpagina op feiten van ankersolix.com/nl; partnerlink via PARTNERLINKS; L7 op ANKER_UPD.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -41,7 +42,7 @@ test('Anker SOLIX: merkpagina, bronnen ankersolix.com, partnerlink sjv.io', () =
 test('L7 6-11: pagina\'s die de merken opsommen hebben ANKER_UPD', () => {
   const sm = read('dist/sitemap.xml');
   for (const p of [...ANKER_PADEN].filter((x) => !DD_PADEN.has(x))) {
-    assert.ok(sm.includes(`<loc>https://thuisaccumatch.nl${p}</loc><lastmod>${ANKER_UPD}</lastmod>`), p);
-    assert.doesNotMatch(read(`dist${p}index.html`), new RegExp(`"dateModified": ?"(?!${ANKER_UPD})`), p);
+    assert.ok(sm.includes(`<loc>https://thuisaccumatch.nl${p}</loc><lastmod>${revisieDatum(p, ANKER_UPD)}</lastmod>`), p);
+    assert.doesNotMatch(read(`dist${p}index.html`), new RegExp(`"dateModified": ?"(?!${revisieDatum(p, ANKER_UPD)})`), p);
   }
 });

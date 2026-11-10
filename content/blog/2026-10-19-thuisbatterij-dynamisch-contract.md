@@ -3,7 +3,7 @@ title: Thuisbatterij dynamisch contract: welke combinatie werkt?
 seo_title: Welke thuisbatterij past bij een dynamisch contract?
 description: Welke thuisbatterij werkt met jouw dynamische contract? Merkonafhankelijk overzicht van sturing, EMS en btw-teruggave. Vergelijk thuisbatterijen.
 date: 2026-10-19
-updated: 2026-10-30
+updated: 2026-11-13
 checked: 2026-10-19
 image: thuisbatterij-dynamisch-contract
 image_alt: Hoogspanningsmast met stroomkabels tussen herfstbomen
@@ -30,7 +30,7 @@ Met een dynamisch contract kan de stroomprijs per kwartier verschillen. Een thui
 
 ## Hoe een dynamisch contract werkt
 
-Bij een vast of variabel contract betaal je de hele dag dezelfde prijs per kWh. Bij een dynamisch contract betaal je de beursprijs van dat moment, plus energiebelasting, btw en een opslag van je leverancier. Volgens de ACM wordt stroom op de Europese dag-vooruitmarkt sinds oktober 2025 per kwartier verhandeld: 96 prijzen per dag in plaats van 24.
+Bij een vast of variabel contract betaal je de hele dag dezelfde prijs per kWh. Bij een dynamisch contract betaal je de beursprijs van dat moment, plus energiebelasting, btw en een opslag van je leverancier. Stroom wordt op de Europese dag-vooruitmarkt sinds oktober 2025 per kwartier verhandeld: 96 prijzen per dag in plaats van 24.
 
 Wij haalden de day-ahead-prijzen per uur van 1 januari tot en met 18 oktober 2026 op (291 dagen):
 
@@ -93,7 +93,7 @@ De opslag per kWh staat op je tarievenblad. Hoe hoger die opslag, hoe minder sli
 
 ## Btw terugvragen: zo pakt het uit
 
-Volgens de Belastingdienst kun je de btw op aanschaf en installatie terugvragen als je:
+Je kunt de btw op aanschaf en installatie terugvragen als je:
 
 - de batterij gebruikt voor de in- en verkoop van stroom, waarvoor je energiemaatschappij je een vergoeding betaalt;
 - een batterij met een EMS hebt om te handelen in stroom;
