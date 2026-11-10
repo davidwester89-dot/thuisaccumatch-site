@@ -9,7 +9,7 @@ const ZICHTBAAR = /bijgewerkt <time datetime="2026-10-30">/;
 
 test('L7 30-10: pagina\'s met logo\'s in de tabellen', () => {
   const sm = readFileSync('dist/sitemap.xml', 'utf8');
-  for (const p of PAGINAS.filter((x) => !EF_PADEN.has(x))) {
+  for (const p of PAGINAS.filter((x) => !EF_PADEN.has(x) && x !== '/blog/thuisbatterij-dynamisch-contract/')) {
     const h = readFileSync(`dist${p}index.html`, 'utf8');
     assert.match(h, /"dateModified": ?"2026-10-30"/, p);
     assert.match(h, ZICHTBAAR, p);

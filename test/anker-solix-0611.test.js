@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { execSync } from 'node:child_process';
-import { ANKER_UPD, ANKER_PADEN, DD_PADEN } from '../src/pages.mjs'; // /merken/anker-solix/ en /merken/: op 12-11 opnieuw bijgewerkt, test/anker-solix-1211.test.js
+import { ANKER_UPD, ANKER_PADEN, DD_PADEN, ONDERZOEK_PADEN } from '../src/pages.mjs'; // /merken/anker-solix/ en /merken/: op 12-11 opnieuw bijgewerkt, test/anker-solix-1211.test.js
 import { MERKEN, FEATURES } from '../src/lib/merken.js';
 import { PARTNERLINKS, PARTNER_NOOT } from '../src/lib/partnerlinks.js';
 
@@ -40,7 +40,7 @@ test('Anker SOLIX: merkpagina, bronnen ankersolix.com, partnerlink sjv.io', () =
 
 test('L7 6-11: pagina\'s die de merken opsommen hebben ANKER_UPD', () => {
   const sm = read('dist/sitemap.xml');
-  for (const p of [...ANKER_PADEN].filter((x) => !DD_PADEN.has(x))) {
+  for (const p of [...ANKER_PADEN].filter((x) => !DD_PADEN.has(x) && !ONDERZOEK_PADEN.has(x))) {
     assert.ok(sm.includes(`<loc>https://thuisaccumatch.nl${p}</loc><lastmod>${ANKER_UPD}</lastmod>`), p);
     assert.doesNotMatch(read(`dist${p}index.html`), new RegExp(`"dateModified": ?"(?!${ANKER_UPD})`), p);
   }

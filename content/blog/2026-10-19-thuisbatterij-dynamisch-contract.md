@@ -3,7 +3,7 @@ title: Thuisbatterij dynamisch contract: welke combinatie werkt?
 seo_title: Welke thuisbatterij past bij een dynamisch contract?
 description: Welke thuisbatterij werkt met jouw dynamische contract? Merkonafhankelijk overzicht van sturing, EMS en btw-teruggave. Vergelijk thuisbatterijen.
 date: 2026-10-19
-updated: 2026-10-30
+updated: 2026-11-13
 checked: 2026-10-19
 image: thuisbatterij-dynamisch-contract
 image_alt: Hoogspanningsmast met stroomkabels tussen herfstbomen
@@ -15,7 +15,7 @@ sources:
 - Milieu Centraal: thuisbatterij | https://www.milieucentraal.nl/energie-besparen/zonnepanelen/thuisbatterij-zonne-energie-opslaan/
 - Belastingdienst: tarieven energiebelasting | https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/overige_belastingen/belastingen_op_milieugrondslag/energiebelasting/energiebelasting
 - Kamerbrief 500-regelaanpak | https://www.regeldrukmonitor.nl/site/binaries/site-content/collections/documents/2026/10/kamerbrief-500-regelaanpak/kamerbrief-500-regelaanpak.pdf
-- EnergyZero: day-ahead-stroomprijzen per uur | https://api.energyzero.nl/v1/energyprices?fromDate=2026-01-01T00:00:00.000Z&tillDate=2026-10-18T21:59:59.999Z&interval=4&usageType=1&inclBtw=false
+- EnergyZero: day-ahead-stroomprijzen per uur | https://api.energyzero.nl/v1/energyprices?fromDate=2025-12-31T23:00:00.000Z&tillDate=2026-10-18T21:59:59.999Z&interval=4&usageType=1&inclBtw=false
 - HomeWizard: Plug-In Battery | https://www.homewizard.com/nl/plug-in-battery/
 - Sessy | https://www.sessy.nl/
 - Sessy: prijsinformatie | https://www.sessy.nl/prijsinformatie
@@ -31,6 +31,8 @@ Met een dynamisch contract kan de stroomprijs per kwartier verschillen. Een thui
 ## Hoe een dynamisch contract werkt
 
 Bij een vast of variabel contract betaal je de hele dag dezelfde prijs per kWh. Bij een dynamisch contract betaal je de beursprijs van dat moment, plus energiebelasting, btw en een opslag van je leverancier. Volgens de ACM wordt stroom op de Europese dag-vooruitmarkt sinds oktober 2025 per kwartier verhandeld: 96 prijzen per dag in plaats van 24.
+
+De [datapagina met CSV-downloads en volledige methode](/onderzoek/thuisbatterij-dynamisch-contract-2026/) maakt deze historische berekening controleerbaar. Het is een bovengrens, geen praktijktest of prognose.
 
 Wij haalden de day-ahead-prijzen per uur van 1 januari tot en met 18 oktober 2026 op (291 dagen):
 

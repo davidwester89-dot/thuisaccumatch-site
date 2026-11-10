@@ -1,0 +1,10 @@
+{
+  "periode": "2026-01-01 t/m 2026-10-18",
+  "dagen": 291,
+  "bron_snapshot_sha256": "c6baf52b697241188ffc3dd44d024b4eb3b3c2170784ee106d72e778bdccdee6",
+  "bestanden": {
+    "rekenpakket-2026.zip": "eba16131646f667687dda8cbf9ee14bc81cb6a4c47972639fad04623439ccaa9",
+    "scenarios-per-dag-2026.csv": "a65cfd11986e3ca676a02ed5fdee11e661fe67cb26ff5894204c0df666905341",
+    "uurprijzen-2026.csv": "bd5f68f6dcb8a2f097ee5b26af1d9aa5fd634b8a99293f370c595e3baa4ea963"
+  }
+}
