@@ -21,7 +21,12 @@ export const STIJL_PADEN = new Set([
   "/thuisaccu-terugverdientijd/",
   "/thuisaccu-veiligheid/"
 ]);
-export const revisieDatum = (pad, vorige) => STIJL_PADEN.has(pad) ? '2026-11-20' : vorige;
+// Wk47 (push 23-11): nieuwe post /blog/thuisbatterij-5-kwh/. Alleen als die in de build zit (BUILD_DATE ≥ 23-11) tillen
+// de bloglijst (/blog/) en de homepage (nieuwste posts) mee; verder geen pagina.
+export const VIJF_KWH_DATUM = '2026-11-23';
+export const VIJF_KWH_PADEN = new Set(['/', '/blog/', '/blog/thuisbatterij-5-kwh/']);
+const vijfKwhInBuild = () => (process.env.BUILD_DATE || process.env.PUSH_DATE || new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Amsterdam' })) >= VIJF_KWH_DATUM;
+export const revisieDatum = (pad, vorige) => VIJF_KWH_PADEN.has(pad) && vijfKwhInBuild() ? VIJF_KWH_DATUM : STIJL_PADEN.has(pad) ? '2026-11-20' : vorige;
 
 // Exacte tekstregels van de stijlronde; operatoren, getallen en alle andere bytes blijven onder de regressiecheck.
 const STIJL_REGELS = new Map([

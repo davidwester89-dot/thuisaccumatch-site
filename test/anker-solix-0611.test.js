@@ -32,7 +32,8 @@ test('Anker SOLIX: merkpagina, bronnen ankersolix.com, partnerlink sjv.io', () =
   for (const f of files('dist').filter((x) => /\.(html|js|xml|json|txt)$/.test(x))) {
     const t = read(f);
     if (/AgOYVR|sjv\.io/i.test(t)) {
-      assert.ok(f.includes('merken/anker-solix') || f.endsWith('merken/index.html'), `sjv.io/AgOYVR alleen Anker-CTA: ${f}`);
+      // Wk47: de 5 kWh-post heeft de bestaande Anker-knop ({{knop:anker}}) in de modellensectie (briefing: alleen bestaande Anker SOLIX-link).
+      assert.ok(f.includes('merken/anker-solix') || f.endsWith('merken/index.html') || f.endsWith('blog/thuisbatterij-5-kwh/index.html'), `sjv.io/AgOYVR alleen Anker-CTA: ${f}`);
     }
     if (/impact\.com/i.test(t)) assert.ok(f.includes('/privacy/'), `impact.com alleen privacy: ${f}`);
   }
