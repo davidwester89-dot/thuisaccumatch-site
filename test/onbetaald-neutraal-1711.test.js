@@ -1,3 +1,4 @@
+import { revisieDatum } from './nuchter-datums-helper.mjs';
 // 19-11: onbetaalde merken-CTA's (geen PARTNERLINKS-entry) worden bronlink, geen knop.
 // Faalt op parent fd317a3 (Sessy/HomeWizard-knoppen in de top 3); slaagt op deze hash.
 import test from 'node:test';
@@ -96,7 +97,7 @@ test('onbetaalde CTA in top 3: faalt op fd317a3, slaagt op deze hash', () => {
     const tar = join(tmp, 'src.tar');
     execFileSync('git', ['archive', '--format=tar', '-o', tar, PARENT], { cwd: process.cwd() });
     execFileSync('tar', ['-xf', tar], { cwd: tmp });
-    execFileSync('node', ['build.mjs'], { cwd: tmp, env: { ...process.env, BASE: '', PREVIEW: '', GO_LIVE: '1', BUILD_DATE: '2026-11-18' }, stdio: 'ignore' });
+    execFileSync('node', ['build.mjs'], { cwd: tmp, env: { ...process.env, BASE: '', PREVIEW: '', GO_LIVE: '1', BUILD_DATE: '2026-11-20' }, stdio: 'ignore' });
     const parent = scanDist(join(tmp, 'dist'));
     assert.ok(parent.top3.items.length >= 2, 'parent fd317a3 moet onbetaalde CTA in de top 3 hebben, vond ' + parent.top3.items.length);
     const brands = new Set(parent.top3.items.map((x) => x.brand));
@@ -111,12 +112,12 @@ test('L7 19-11: alleen pagina’s met bodywijziging krijgen NEUTRAAL_DATUM', () 
   const sm = read('dist/sitemap.xml');
   assert.equal(NEUTRAAL_DATUM, '2026-11-19');
   for (const p of NEUTRAAL_PADEN) {
-    assert.ok(sm.includes(`<loc>https://thuisaccumatch.nl${p}</loc><lastmod>${NEUTRAAL_DATUM}</lastmod>`), p);
+    assert.ok(sm.includes(`<loc>https://thuisaccumatch.nl${p}</loc><lastmod>${revisieDatum(p, NEUTRAAL_DATUM)}</lastmod>`), p);
     const h = read(`dist${p}index.html`);
-    assert.match(h, new RegExp(`bijgewerkt (op )?<time datetime="${NEUTRAAL_DATUM}">`, 'i'), p);
-    assert.doesNotMatch(h, new RegExp(`"dateModified": ?"(?!${NEUTRAAL_DATUM})`), p);
+    assert.match(h, new RegExp(`bijgewerkt (op )?<time datetime="${revisieDatum(p, NEUTRAAL_DATUM)}">`, 'i'), p);
+    assert.doesNotMatch(h, new RegExp(`"dateModified": ?"(?!${revisieDatum(p, NEUTRAAL_DATUM)})`), p);
   }
   for (const [p, date] of [['/merken/anker-solix/', '2026-11-12'], ['/', '2026-11-18'], ['/vergelijken/', '2026-11-06'], ['/gidsen/', '2026-11-18'], ['/thuisaccu-keuzehulp/', '2026-11-06']]) {
-    assert.ok(sm.includes(`<loc>https://thuisaccumatch.nl${p}</loc><lastmod>${date}</lastmod>`), `${p} niet getild, blijft ${date}`);
+    assert.ok(sm.includes(`<loc>https://thuisaccumatch.nl${p}</loc><lastmod>${revisieDatum(p, date)}</lastmod>`), `${p} niet getild, blijft ${revisieDatum(p, date)}`);
   }
 });
