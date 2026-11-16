@@ -88,7 +88,7 @@ test('partnerlinks: Anker SOLIX; gevuld = sponsored nofollow, geen zichtbaar lab
     } else {
       assert.equal(o.partner, false);
       assert.equal(o.href, MERKEN[id].url);
-      assert.match(knop(id, 't'), /rel="noopener"/);
+      assert.equal(knop(id, 't'), `<a href="${MERKEN[id].url}" rel="noopener">Bron: ${MERKEN[id].naam}</a>`);
     }
     assert.ok(!knop(id, 't').includes('partner"'));
   }
