@@ -46,7 +46,7 @@ export function advies(a) {
     if (panelen > 0) notes.push(`Milieu Centraal: kies niet te groot, de accu hoeft alleen je avond- en nachtverbruik te dekken. Bij jou is dat ongeveer ${String(cap.avond).replace('.', ',')} kWh per dag (aanname: de helft van je verbruik valt 's avonds en 's nachts; meet het met een P1-meter).`);
     if (type === 'stekker') notes.push('Een stekkerbatterij sluit je zelf aan op een geaard stopcontact, zonder verlengsnoer, en liefst op een eigen groep (Brandweer). Milieu Centraal wijst op brandrisico als er al zware apparaten op dezelfde groep zitten.');
     else notes.push('Laat een vaste thuisaccu plaatsen door een erkend installateur, op een koele, geventileerde plek buiten je vluchtroute, met een rookmelder erbij (Brandweer).');
-    if (dyn) notes.push('Met een dynamisch contract kun je laden als stroom goedkoop is. Handel je met een EMS en krijg je een terugleververgoeding, dan kun je volgens de Belastingdienst de btw op de accu terugvragen; je doet dan wel btw-aangifte.');
+    if (dyn) notes.push('Met een dynamisch contract kun je laden als stroom goedkoop is. Handel je met een EMS en krijg je een terugleververgoeding, dan staat de Belastingdienst toe dat je de btw op de accu terugvraagt; je doet dan wel btw-aangifte.');
     else if (a.doel === 'handel') notes.push('Slim laden op de stroomprijs werkt alleen met een dynamisch contract. Bij een vast of variabel contract staat de prijs per kWh vast.');
     if (a.doel === 'nood') notes.push('Noodstroom zit niet standaard op een thuisaccu. Bij de meeste merken is het een uitbreiding met een extra kast of schakelaar.');
   }
