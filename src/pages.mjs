@@ -46,7 +46,7 @@ const T10D = terugverdien({ prijs: 5500, capaciteit: 10, teruglevering: EX.terug
 const CAP = capaciteit({ verbruik: EX.verbruik, panelen: EX.panelen });
 const jr = (t) => (t.jaren == null ? 'niet' : `${komma(t.jaren)} jaar`);
 
-const TOOLS = [['/terugverdientijd-thuisaccu-berekenen/', 'Terugverdientijd van een thuisaccu berekenen', 'Wat levert een thuisaccu jou per jaar op, en na hoeveel jaar heb je hem terugverdiend?'], ['/capaciteit-thuisaccu-berekenen/', 'Hoeveel kWh thuisaccu heb je nodig?', 'Bereken de capaciteit uit je verbruik en je zonnepanelen, zonder te groot te kopen.'], ['/einde-salderen-berekenen/', 'Wat kost het einde van salderen jou?', 'Zie wat je zonnepanelen vanaf 1 januari 2027 minder opleveren, en wat een thuisaccu terugwint.']];
+const TOOLS = [['/terugverdientijd-thuisaccu-berekenen/', 'Terugverdientijd van een thuisaccu berekenen', 'Reken zonder salderen, met eigen totaalprijs, zichtbare aannames en verliezen.'], ['/capaciteit-thuisaccu-berekenen/', 'Hoeveel kWh thuisaccu heb je nodig?', 'Bereken de capaciteit uit je verbruik en je zonnepanelen, zonder te groot te kopen.'], ['/einde-salderen-berekenen/', 'Wat kost het einde van salderen jou?', 'Zie wat je zonnepanelen vanaf 1 januari 2027 minder opleveren, en wat een thuisaccu terugwint.']];
 const GIDSLINKS = [['/salderingsregeling-stopt-2027/', 'Salderingsregeling stopt in 2027: wat verandert er?'], ['/thuisaccu-kosten/', 'Wat kost een thuisaccu in 2026?'], ['/thuisaccu-terugverdientijd/', 'Verdien je een thuisaccu terug?'], ['/stekkerbatterij-of-vaste-thuisaccu/', 'Stekkerbatterij of vaste thuisaccu?'], ['/thuisaccu-dynamisch-energiecontract/', 'Thuisaccu met een dynamisch energiecontract'], ['/terugleverkosten/', 'Terugleverkosten en terugleververgoeding'], ['/btw-thuisaccu/', 'Btw op een thuisaccu terugvragen'], ['/thuisaccu-veiligheid/', 'Een thuisaccu veilig plaatsen']];
 
 // ---- Home ----
@@ -92,7 +92,7 @@ export const home = {
 </div></section>
 <section class="sec"><div class="wrap">
 <h2>Rekentools</h2><p>Controleer de onderbouwing: <a href="${ONDERZOEK_PAD}">291 dagen uurprijzen en de arbitrageberekening</a>, met CSV en methode. Dit zijn historische modeluitkomsten, geen opbrengstbelofte.</p>
-<p class="sub">Vul je eigen cijfers in. Standaardwaarden komen van Milieu Centraal, het CBS en de prijzen van de merken. Uitleg en aannames per tool staan op <a href="/rekentools/">alle rekentools voor je thuisaccu</a>.</p>
+<p class="sub">Vul je eigen cijfers in. Uitleg en aannames per tool staan op <a href="/rekentools/">alle rekentools voor je thuisaccu</a>. De terugverdientijdtool vult geen leveranciersprijs in; overige standaardwaarden komen, waar dat zo is, van Milieu Centraal, het CBS of de merken en staan bij de tool.</p>
 ${toolCards()}
 </div></section>
 <section class="sec tint"><div class="wrap">
@@ -497,7 +497,7 @@ export const toolHub = {
   lastmod: '2026-10-19',
   path: '/rekentools/', title: 'Rekentools thuisaccu: terugverdientijd, kWh en saldering', h1: 'Rekentools voor je thuisaccu', crumb: 'Rekentools', og: 'rekenhulp',
   description: 'Drie gratis rekentools: de terugverdientijd van een thuisaccu, de capaciteit die je nodig hebt en wat het einde van salderen in 2027 jou kost.',
-  body: `<h1>Rekentools voor je thuisaccu</h1><p class="lead">Drie rekentools met je eigen cijfers. Standaardwaarden komen van het CBS, Milieu Centraal en de prijzen van de merken; aannames staan er altijd bij.</p>${toolCards('h2')}
+  body: `<h1>Rekentools voor je thuisaccu</h1><p class="lead">Drie rekentools met je eigen cijfers. Bij de terugverdientijdtool zijn de ingevulde waarden rekenaannames (geen actuele leveranciersprijs of vastgesteld 2027-tarief). Waar de andere tools CBS, Milieu Centraal of merkenprijzen als standaard gebruiken, staat dat bij die tool. Aannames kun je overal aanpassen.</p>${toolCards('h2')}
 <section class="prose"><h2>In welke volgorde?</h2><ol><li><strong>Wat kost het einde van salderen jou?</strong> Begin hier als je zonnepanelen hebt. Je ziet wat je panelen vanaf 2027 minder opleveren. Dat is ongeveer het bedrag waar een thuisaccu een deel van kan terugwinnen.</li><li><strong>Hoeveel kWh heb je nodig?</strong> Een te grote accu raakt niet vol en verdient zich langzamer terug. Milieu Centraal adviseert: niet groter dan je avond- en nachtverbruik.</li><li><strong>Terugverdientijd.</strong> Vul de prijs uit je offerte in. Reken met de bruikbare capaciteit en de totaalprijs inclusief installatie en btw.</li></ol>
 <p>De rekentools zijn een indicatie. Stroomprijzen veranderen, en je eigen verbruiksprofiel kan anders zijn dan het gemiddelde. Je antwoorden blijven in je browser; we slaan niets op. Wil je liever één advies? Doe de <a href="/thuisaccu-keuzehulp/">keuzehulp</a>: zes vragen en je krijgt de soort, de capaciteit, de terugverdientijd en de merken die passen.</p>
 <h2>Welke cijfers gebruiken we?</h2><ul><li>Stroomprijs € ${komma(STROOMPRIJS, 2)} per kWh: CBS, september 2026 (levering plus energiebelasting, inclusief btw).</li><li>Netto teruglevering ${ct(NETTO_TERUG)} per kWh: Milieu Centraal, vast of variabel contract.</li><li>Opwek ${OPWEK_PANEEL} kWh per paneel per jaar en 30% direct zelf gebruikt: Milieu Centraal.</li><li>Prijzen van accu's: de eigen sites van HomeWizard, Sessy en Zonneplan.</li></ul></section>${matchCta()}`,

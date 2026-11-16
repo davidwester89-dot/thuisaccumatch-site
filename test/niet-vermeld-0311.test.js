@@ -1,3 +1,4 @@
+import { TVT_DATUM } from '../src/tvt2027.mjs';
 import { ONDERZOEK_DATUM } from '../src/onderzoek.mjs';
 // Externe feedback nov: 'Niet vermeld' overal dezelfde, ware uitleg. Code: checklist.js punt(null) = 0 (net als nee),
 // ranglijst = meeste punten; /vergelijken/ zei 'telt niet mee', /over/ en de merkpagina's 'telt als 0'. Nu overal:
@@ -37,7 +38,7 @@ test('L7 3-11: lastmod, zichtbare bijgewerkt-regel en dateModified', () => {
 
 test('L7-hubregel D: /gidsen/ met zichtbare bijgewerkt-regel en lastmod op 2026-10-30 (deploy nieuwste kind)', () => {
   const h = read('dist/gidsen/index.html');
-  const g = ONDERZOEK_DATUM; // hubregel D: kind /thuisaccu-keuzehulp/ gewijzigd 6-11
+  const g = TVT_DATUM; // hubregel D: kind /thuisaccu-keuzehulp/ gewijzigd 6-11
   assert.match(h, new RegExp(`bijgewerkt <time datetime="${g}">`));
   assert.ok(read('dist/sitemap.xml').includes(`<loc>https://thuisaccumatch.nl/gidsen/</loc><lastmod>${g}</lastmod>`));
 });

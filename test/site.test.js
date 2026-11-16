@@ -96,7 +96,7 @@ test('build: componenten, vergelijking in vaste volgorde, keuzehulp en rekentool
     assert.ok(existsSync(`dist/js/${js}.js`));
   }
   assert.match(read('dist/einde-salderen-berekenen/index.html'), /€ 625/);
-  assert.match(read('dist/terugverdientijd-thuisaccu-berekenen/index.html'), /15,4 jaar/);
+  assert.match(read('dist/terugverdientijd-thuisaccu-berekenen/index.html'), /15,5 jaar/);
   for (const id of IDS) assert.match(read(`dist/merken/${MERKEN[id].slug}/index.html`), /Checklist: wat biedt/);
   const sal = read('dist/salderingsregeling-stopt-2027/index.html');
   for (const t of ['1 januari 2027', '50%', '2030']) assert.ok(sal.includes(t), `saldering mist ${t}`);
