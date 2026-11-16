@@ -16,7 +16,7 @@ const NEP = [/★/, /aggregateRating/, /reviewCount/, /ratingValue/, /sterren/i,
 test('build (productie): pagina’s, sitemap, robots, IndexNow, CNAME, huisregels', () => {
   buildLive();
   const html = htmlFiles();
-  assert.equal(html.length, 28 + loadPosts().length); // 26 pagina's + blogindex + 404 + gepubliceerde blogposts (datum <= vandaag)
+  assert.equal(html.length, 29 + loadPosts().length); // 27 pagina's (incl. onderzoek) + blogindex + 404 + gepubliceerde blogposts (datum <= vandaag)
   const sm = read('dist/sitemap.xml');
   assert.equal((sm.match(/<loc>/g) || []).length, html.length - 1);
   assert.match(read('dist/robots.txt'), /Sitemap: https:\/\/thuisaccumatch.nl\/sitemap.xml/);
