@@ -1,11 +1,11 @@
 // Blog: content/blog/JJJJ-MM-DD-slug.md → /blog/<slug>/. Zelfde opbouw als de BoekhoudMatch-blog.
 // Extra tokens in de markdown: {{knop:<merk-id>}} op een eigen regel = knop naar de aanbieder (partnerlink zodra goedgekeurd,
-// via partnerlinks.js; heeft nooit invloed op de volgorde). Scores tonen we niet meer (29-10-2026); een {{score:...}}-token geeft een buildfout.
+// via partnerlinks.js; heeft nooit invloed op de volgorde). {{redactie:<id>:<pos>|<tekst>}} = redactionele partnerlink; {{partnernoot}} op een eigen regel = de partnerzin. Scores tonen we niet meer (29-10-2026); een {{score:...}}-token geeft een buildfout.
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { SITE, esc, fmtDate, ORG, AUTHOR } from './layout.mjs';
 import { parsePost, markdown, inline } from './markdown.mjs';
-import { knop } from './lib/partnerlinks.js';
+import { knop, redactiePartner, NOOT_HTML } from './lib/partnerlinks.js';
 import { MERKEN as PLATFORMS } from './lib/merken.js';
 import { faqHtml, matchCta } from './parts.mjs';
 
@@ -41,6 +41,8 @@ function tokens(html, slug) {
   let n = 0;
   return html
     .replace(/<p>\{\{knop:([a-z]+)\}\}<\/p>/g, (_, id) => { if (!PLATFORMS[id]) throw new Error(`${slug}: onbekend merk ${id}`); return `<div class="out">${knop(id, `blog_${++n}`)}</div>`; })
+    .replace(/\{\{redactie:([a-z]+):([a-z0-9_]+)\|([^}]+)\}\}/g, (_, id, pos, tekst) => redactiePartner(id, pos, tekst))
+    .replace(/<p>\{\{partnernoot\}\}<\/p>/g, () => NOOT_HTML)
     .replace(/\{\{score:([a-z]+)\}\}/g, () => { throw new Error(`${slug}: {{score}}-token wordt niet meer getoond`); });
 }
 
@@ -110,7 +112,8 @@ ${posts.map((x) => `<a class="card${x.image ? ' has-img' : ''}" href="${x.path}"
 <p>Partnerlinks spelen geen rol in wat we schrijven of in de volgorde van merken. Meer over hoe we werken lees je <a href="/over/">over ThuisaccuMatch</a>. Wil je eerst de basis? Lees dan de <a href="/gidsen/">gidsen</a> over saldering, kosten, btw en veiligheid.</p>
 <p>Liever alles naast elkaar? <a href="/vergelijken/">Vergelijk alle merken</a>.</p>
 ${matchCta()}`;
-  const upd = posts.map((x) => x.updated).sort().at(-1);
+  // L7 bodyOnlyHubs: de lijst toont datePublished, niet dateModified. Hub-lastmod volgt de nieuwste publicatiedatum, zodat een latere post-update de hub niet meelift.
+  const upd = posts.map((x) => x.date).sort().at(-1);
   return {
     path: '/blog/', title: 'Blog: thuisaccu kiezen | ThuisaccuMatch', h1: 'Blog', ogTitle: 'Blog: thuisaccu kiezen',
     description: 'Artikelen over het kiezen van een thuisaccu: kosten, het einde van de saldering, merken en wat past bij jouw huis. Met bronnen.',

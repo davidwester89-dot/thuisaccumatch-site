@@ -1,7 +1,11 @@
 // Goedgekeurde partnerlinks per merk-id. Alleen invullen na goedkeuring (SC + MM) en akkoord Dave.
 // De keuzehulp en de checklist lezen dit bestand NOOIT: geen invloed op advies, score of volgorde.
 import { MERKEN } from './merken.js';
-export const PARTNERLINKS = { anker: 'https://ankersolixnl.sjv.io/AgOYVR' };
+export const PARTNERLINKS = {
+  anker: 'https://ankersolixnl.sjv.io/AgOYVR',
+  // Daisycon 17689, media TAM 439450. Geen merk in de vergelijking.
+  nextenergy: 'https://partners.nextenergy.nl/c/?si=17689&li=1765747&wi=439450&ws=&dl=',
+};
 
 /** Uitgaande link: partnerlink (rel sponsored nofollow, zonder zichtbaar label) als die er is, anders de officiële site. */
 export function uitgaand(id, partnerlinks = PARTNERLINKS) {
@@ -24,6 +28,15 @@ export function knop(id, pos, cls = 'btn', partnerlinks = PARTNERLINKS) {
   const o = uitgaand(id, partnerlinks);
   if (!o.partner) return bronlink(id);
   return `<a class="${cls}" href="${o.href}" rel="${o.rel}" target="_blank" data-vendor="${id}" data-pos="${pos}" data-cta="outbound" data-partner-slot="${id}">Naar de site van ${o.naam}</a>`;
+}
+
+
+/** Redactionele partnerlink (geen merken-knop, geen zichtbaar label). Alleen voor id's die niet in MERKEN staan. */
+export function redactiePartner(id, pos, tekst) {
+  const href = PARTNERLINKS[id];
+  if (!href) throw new Error('Geen goedgekeurde partnerlink voor ' + id);
+  if (MERKEN[id]) throw new Error('Merk ' + id + ' hoort bij knop(), niet bij redactiePartner()');
+  return `<a href="${href}" rel="sponsored nofollow noopener" target="_blank" data-vendor="${id}" data-pos="${pos}" data-cta="outbound" data-partner-slot="${id}">${tekst}</a>`;
 }
 
 // Partnerzin: geen label per knop, maar precies één korte zin direct na elk blok waarin een partnerlink staat

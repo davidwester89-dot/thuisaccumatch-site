@@ -32,6 +32,10 @@ Met een dynamisch contract kan de stroomprijs per kwartier verschillen. Een thui
 
 Bij een vast of variabel contract betaal je de hele dag dezelfde prijs per kWh. Bij een dynamisch contract betaal je de beursprijs van dat moment, plus energiebelasting, btw en een opslag van je leverancier. De ACM beschrijft dat stroom op de Europese dag-vooruitmarkt sinds oktober 2025 per kwartier wordt verhandeld: 96 prijzen per dag in plaats van 24.
 
+Een voorbeeld van een aanbieder van een dynamisch contract is {{redactie:nextenergy:blog_dyn|NextEnergy}}.
+
+{{partnernoot}}
+
 De [datapagina met CSV-downloads en volledige methode](/onderzoek/thuisbatterij-dynamisch-contract-2026/) maakt deze historische berekening controleerbaar. Het is een bovengrens, geen praktijktest of prognose.
 
 Wij haalden de day-ahead-prijzen per uur van 1 januari tot en met 18 oktober 2026 op (291 dagen):

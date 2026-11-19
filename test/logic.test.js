@@ -78,7 +78,7 @@ test('score = som van de punten; volgorde = score, dan naam', () => {
 });
 
 test('partnerlinks: Anker SOLIX; gevuld = sponsored nofollow, geen zichtbaar label; nooit in keuzehulp of checklist', () => {
-  assert.deepEqual(PARTNERLINKS, { anker: 'https://ankersolixnl.sjv.io/AgOYVR' });
+  assert.deepEqual(PARTNERLINKS, { anker: 'https://ankersolixnl.sjv.io/AgOYVR', nextenergy: 'https://partners.nextenergy.nl/c/?si=17689&li=1765747&wi=439450&ws=&dl=' });
   for (const id of IDS) {
     const o = uitgaand(id);
     if (id === 'anker') {

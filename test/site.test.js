@@ -123,7 +123,7 @@ test('build: componenten, vergelijking in vaste volgorde, keuzehulp en rekentool
   assert.ok(existsSync('dist/site.webmanifest') && existsSync('dist/icon-512.png'), 'manifest');
   assert.match(read('dist/site.webmanifest'), /ThuisaccuMatch/);
   assert.match(h, /<link rel="manifest" href="\/site\.webmanifest">/);
-  assert.deepEqual(Object.keys(PARTNERLINKS), ['anker']);
+  assert.deepEqual(Object.keys(PARTNERLINKS), ['anker', 'nextenergy']);
   // Cookiemelding en GA4 alleen na toestemming.
   const consent = read('dist/js/consent.js');
   assert.match(consent, /Cookies voor statistieken\?/);
