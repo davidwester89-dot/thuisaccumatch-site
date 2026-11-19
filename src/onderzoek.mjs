@@ -9,7 +9,7 @@ export const onderzoek = {
   lastmod: ONDERZOEK_DATUM, stamp: { updated: ONDERZOEK_DATUM },
   schema: [{ '@context': 'https://schema.org', '@type': 'Dataset', name: '291 dagen uurprijzen en thuisbatterij-arbitrage 2026', url: ONDERZOEK_URL,
     description: 'Historische uurprijsanalyse, geen praktijktest of voorspelling. Geen prijsdata uit 2025.', creator: ORG,
-    temporalCoverage: '2026-01-01/2026-10-18', datePublished: ONDERZOEK_DATUM, dateModified: ONDERZOEK_DATUM,
+    temporalCoverage: '2026-01-01/2026-10-18', license: 'https://rightsstatements.org/vocab/InC/1.0/', datePublished: ONDERZOEK_DATUM, dateModified: ONDERZOEK_DATUM,
     distribution: ['uurprijzen-2026.csv', 'scenarios-per-dag-2026.csv'].map((f) => ({ '@type': 'DataDownload', contentUrl: SITE.domain + '/onderzoek/data/' + f, encodingFormat: 'text/csv' })) }],
   body: `<article class="prose"><h1>Thuisbatterij en dynamisch contract: 291 dagen uit 2026</h1>
 <p class="lead">Wat leverde slim laden uit het net op in onze bestaande rekensom? Hier staan de prijsdata en berekening achter het dynamisch-contractartikel, zonder merken, partnerlinks of verkoopadvies.</p>

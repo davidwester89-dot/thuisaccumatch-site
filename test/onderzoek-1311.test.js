@@ -59,6 +59,10 @@ test('onderzoek: eigen canonical, CSVs, Dataset, eerlijke meetperiode en geen ve
   for (const f of ['uurprijzen-2026.csv','scenarios-per-dag-2026.csv','rekenpakket-2026.zip']) assert.ok(main.includes('href="/onderzoek/data/'+f+'" download'));
   for (const txt of ['geen gegevens uit 2025','geen praktijktest','niet naar een volledig jaar','Afrondingsmarge','geen statistisch betrouwbaarheidsinterval','90%','0,09161','2026-01-01/2026-10-18','Dataset','Citeer dit onderzoek']) assert.ok(h.includes(txt),txt);
   assert.equal(ONDERZOEK_PAD, '/onderzoek/thuisbatterij-dynamisch-contract-2026/');
+  // GSC-schema 19-11 (SEO-briefing B): Dataset heeft license 'In Copyright', in lijn met repo-LICENSE.
+  const ds = [...h.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap((m) => [JSON.parse(m[1])].flat()).filter((x) => x['@type'] === 'Dataset');
+  assert.equal(ds.length, 1);
+  assert.equal(ds[0].license, 'https://rightsstatements.org/vocab/InC/1.0/');
   assert.doesNotMatch(h, /thuisbatterij-dynamisch-contract-2025-2026/);
   assert.doesNotMatch(h, /De vaste URL noemt 2025/);
   assert.match(h, /fromDate=2025-12-31T23:00:00\.000Z/);
