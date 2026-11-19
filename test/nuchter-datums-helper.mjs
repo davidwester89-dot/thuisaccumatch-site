@@ -25,8 +25,15 @@ export const STIJL_PADEN = new Set([
 // de bloglijst (/blog/) en de homepage (nieuwste posts) mee; verder geen pagina.
 export const VIJF_KWH_DATUM = '2026-11-25';
 export const VIJF_KWH_PADEN = new Set(['/', '/blog/', '/blog/thuisbatterij-5-kwh/']);
+// NextEnergy redactionele partnerplaatsing (push 24-11): alleen de twee gewijzigde pagina's + /privacy/ (Daisycon erbij in de netwerkzin).
+export const NEXTENERGY_DATUM = '2026-11-24';
+export const NEXTENERGY_PADEN = new Set([
+  '/thuisaccu-dynamisch-energiecontract/',
+  '/blog/thuisbatterij-dynamisch-contract/',
+  '/privacy/',
+]);
 const vijfKwhInBuild = () => (process.env.BUILD_DATE || process.env.PUSH_DATE || new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Amsterdam' })) >= VIJF_KWH_DATUM;
-export const revisieDatum = (pad, vorige) => VIJF_KWH_PADEN.has(pad) && vijfKwhInBuild() ? VIJF_KWH_DATUM : STIJL_PADEN.has(pad) ? '2026-11-24' : vorige;
+export const revisieDatum = (pad, vorige) => NEXTENERGY_PADEN.has(pad) ? NEXTENERGY_DATUM : VIJF_KWH_PADEN.has(pad) && vijfKwhInBuild() ? VIJF_KWH_DATUM : STIJL_PADEN.has(pad) ? '2026-11-24' : vorige;
 
 // Exacte tekstregels van de stijlronde; operatoren, getallen en alle andere bytes blijven onder de regressiecheck.
 const STIJL_REGELS = new Map([

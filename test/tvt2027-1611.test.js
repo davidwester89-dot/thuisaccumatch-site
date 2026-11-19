@@ -69,6 +69,9 @@ test('2027: zichtbaar bron/aannames, lege aanschafprijs, exacte L7 en geen datum
   for(const p of [ONDERZOEK_PAD,'/blog/','/blog/thuisbatterij-dynamisch-contract/','/salderingsregeling-stopt-2027/']) assert.ok(read('dist/sitemap.xml').includes('<loc>https://thuisaccumatch.nl'+p+'</loc><lastmod>'+revisieDatum(p,'2026-11-17')+'</lastmod>'),p);
   for(const f of ['src/lib/match.js','src/lib/kosten.js','src/lib/checklist.js','src/lib/merken.js']) assert.equal(normaliseerStijl(read(f)),normaliseerStijl(execFileSync('git',['show','d08406914ff26aa215b70fe15fa77e75df67edbf:'+f],{encoding:'utf8'})),f+' matchbasis ongewijzigd');
   const pl=read('src/lib/partnerlinks.js');
-  assert.match(pl,/export const PARTNERLINKS = \{ anker: 'https:\/\/ankersolixnl.sjv.io\/AgOYVR' \};/);
-  assert.equal(pl.match(/export const PARTNERLINKS[\s\S]*?;/)[0], execFileSync('git',['show','d08406914ff26aa215b70fe15fa77e75df67edbf:src/lib/partnerlinks.js'],{encoding:'utf8'}).match(/export const PARTNERLINKS[\s\S]*?;/)[0], 'PARTNERLINKS-kaart ongewijzigd');
+  const kaart=pl.match(/export const PARTNERLINKS[\s\S]*?;/)[0];
+  const oud=execFileSync('git',['show','d08406914ff26aa215b70fe15fa77e75df67edbf:src/lib/partnerlinks.js'],{encoding:'utf8'}).match(/export const PARTNERLINKS[\s\S]*?;/)[0];
+  assert.match(oud, /anker: 'https:\/\/ankersolixnl.sjv.io\/AgOYVR'/);
+  assert.match(kaart, /anker: 'https:\/\/ankersolixnl.sjv.io\/AgOYVR'/);
+  assert.match(kaart, /nextenergy: 'https:\/\/partners\.nextenergy\.nl\/c\/\?si=17689&li=1765747&wi=439450&ws=&dl='/);
 });
