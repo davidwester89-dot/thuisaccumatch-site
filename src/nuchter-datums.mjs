@@ -19,7 +19,6 @@ const PADEN = new Set([
   "/merken/zonneplan/",
   "/terugleverkosten/",
   "/thuisaccu-dynamisch-energiecontract/",
-  "/thuisaccu-keuzehulp/",
   "/thuisaccu-kosten/",
   "/thuisaccu-terugverdientijd/",
   "/thuisaccu-veiligheid/"

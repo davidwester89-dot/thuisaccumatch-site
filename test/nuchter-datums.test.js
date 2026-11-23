@@ -24,3 +24,13 @@ test('stijl-datumvloer regresseert een latere inhoudelijke paginadatum niet', ()
   assert.equal(p.schema[0].dateModified, '2027-01-02');
   assert.match(p.body, /datetime="2027-01-02"/);
 });
+
+test('keuzehulp blijft live-datum 2026-11-06 (geen nuchter-lift zonder bodywijziging)', () => {
+  const pad = '/thuisaccu-keuzehulp/';
+  assert.equal(STIJL_PADEN.has(pad), false);
+  const sitemap = readSitemap('dist');
+  const fields = dateFields(readFileSync('dist' + pad + 'index.html', 'utf8'));
+  assert.equal(fields.visible, '2026-11-06', pad + ': zichtbaar');
+  assert.equal(sitemap.get(pad), '2026-11-06', pad + ': sitemap');
+  for (const date of [...fields.ld, ...fields.og]) assert.equal(date, '2026-11-06', pad + ': dateModified');
+});
