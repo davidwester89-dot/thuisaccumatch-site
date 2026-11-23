@@ -1,4 +1,4 @@
-// Onafhankelijke verwachting voor de stijlrelease van 20 november 2026.
+// Onafhankelijke verwachting voor de stijlrelease van 24 november 2026.
 export const STIJL_PADEN = new Set([
   "/onderzoek/thuisbatterij-dynamisch-contract-2026/",
   "/blog/thuisbatterij-10-kwh/",
@@ -21,7 +21,7 @@ export const STIJL_PADEN = new Set([
   "/thuisaccu-terugverdientijd/",
   "/thuisaccu-veiligheid/"
 ]);
-export const revisieDatum = (pad, vorige) => STIJL_PADEN.has(pad) ? '2026-11-20' : vorige;
+export const revisieDatum = (pad, vorige) => STIJL_PADEN.has(pad) ? '2026-11-24' : vorige;
 
 // Exacte tekstregels van de stijlronde; operatoren, getallen en alle andere bytes blijven onder de regressiecheck.
 const STIJL_REGELS = new Map([

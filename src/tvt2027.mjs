@@ -1,7 +1,7 @@
 import { SITE, ORG } from './layout.mjs';
 import { bereken2027, TVT2027, SCENARIOS2027 } from './lib/tvt2027.js';
 import { ONDERZOEK_PAD } from './onderzoek.mjs';
-export const TVT_DATUM = '2026-11-20';
+export const TVT_DATUM = '2026-11-24';
 export const TVT_PADEN = new Set(['/terugverdientijd-thuisaccu-berekenen/', '/rekentools/', '/gidsen/']);
 const geld = (v) => '€ ' + v.toLocaleString('nl-NL', {minimumFractionDigits:2,maximumFractionDigits:2});
 const dec = (v) => v.toLocaleString('nl-NL',{maximumFractionDigits:1});

@@ -3,15 +3,15 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { dateFields, readSitemap } from '../scripts/l7check.mjs';
 import { STIJL_PADEN } from './nuchter-datums-helper.mjs';
-test('stijlrelease 20-11: exacte bijgewerkt-/lastmod-/dateModified-datums, uitsluitend op de vastgelegde pagina’s', () => {
+test('stijlrelease 24-11: exacte bijgewerkt-/lastmod-/dateModified-datums, uitsluitend op de vastgelegde pagina’s', () => {
   const out = 'dist';
   const sitemap = readSitemap(out);
   for (const pad of STIJL_PADEN) {
     const file = pad.endsWith('.html') ? out + pad : out + pad + 'index.html';
     const fields = dateFields(readFileSync(file, 'utf8'));
-    assert.equal(fields.visible, '2026-11-20', pad + ': zichtbaar');
-    assert.equal(sitemap.get(pad), '2026-11-20', pad + ': sitemap');
-    for (const date of [...fields.ld, ...fields.og]) assert.equal(date, '2026-11-20', pad + ': dateModified');
+    assert.equal(fields.visible, '2026-11-24', pad + ': zichtbaar');
+    assert.equal(sitemap.get(pad), '2026-11-24', pad + ': sitemap');
+    for (const date of [...fields.ld, ...fields.og]) assert.equal(date, '2026-11-24', pad + ': dateModified');
   }
 });
 

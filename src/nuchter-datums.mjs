@@ -1,7 +1,7 @@
 // Stijlronde: uitsluitend gewijzigde pagina's (incl. clientdata); hubs zonder eigen body blijven staan.
 // Geen nieuwe broncontrole: publicatie- en controledatums blijven staan.
-const RELEASE_DATE = '2026-11-20';
-const HUB_DATUMS = {"/blog/": "2026-11-17", "/gidsen/": "2026-11-20"};
+const RELEASE_DATE = '2026-11-24';
+const HUB_DATUMS = {"/blog/": "2026-11-17", "/gidsen/": "2026-11-24"};
 const PADEN = new Set([
   "/onderzoek/thuisbatterij-dynamisch-contract-2026/",
   "/blog/thuisbatterij-10-kwh/",

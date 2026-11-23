@@ -3,7 +3,7 @@ title: Thuisbatterij 10 kWh: prijs, merken en voor wie hij past
 seo_title: Thuisbatterij 10 kWh: prijs, merken en voor wie hij past
 description: Wat kost een thuisbatterij van 10 kWh en past die maat bij jou? Prijzen per merk, 1-fase of 3-fase, met stekker of vast, en de terugverdientijd.
 date: 2026-11-03
-updated: 2026-11-20
+updated: 2026-11-24
 checked: 2026-11-03
 tools: /thuisaccu-keuzehulp/, /capaciteit-thuisaccu-berekenen/, /terugverdientijd-thuisaccu-berekenen/
 sources:
