@@ -1,7 +1,7 @@
 // Aanvullende AVG-blokken voor /privacy/ (audit beveiliging & juridisch 20-10-2026, punt A.6 / F1).
 // Alleen vaststaande feiten: cookielooptijd uit consent.js (cookie_expires), GA4-bewaartermijn uit de property-instelling.
 // "Wie is verantwoordelijk?" staat hier bewust NIET in: dat volgt na het KvK-besluit.
-export const PRIVACY_UPDATED = '2026-11-24';
+export const PRIVACY_UPDATED = '2026-11-26';
 
 const NETWERKEN = [
   { re: /(^|\.)(pxf\.io|sjv\.io)$|impact\.com$/, naam: 'Impact', privacy: 'https://impact.com/privacy-policy/' },
