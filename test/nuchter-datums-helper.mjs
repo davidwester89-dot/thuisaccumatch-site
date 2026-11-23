@@ -33,7 +33,11 @@ export const NEXTENERGY_PADEN = new Set([
   '/privacy/',
 ]);
 const vijfKwhInBuild = () => (process.env.BUILD_DATE || process.env.PUSH_DATE || new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Amsterdam' })) >= VIJF_KWH_DATUM;
-export const revisieDatum = (pad, vorige) => NEXTENERGY_PADEN.has(pad) ? NEXTENERGY_DATUM : VIJF_KWH_PADEN.has(pad) && vijfKwhInBuild() ? VIJF_KWH_DATUM : STIJL_PADEN.has(pad) ? '2026-11-24' : vorige;
+// 30-11 (blog thuisbatterij huren of kopen): home ('Nieuw op de blog') en /blog/ tillen naar 30-11, alleen als de post in de build zit.
+export const HUREN_DATUM = '2026-11-30';
+export const HUREN_PADEN = new Set(['/', '/blog/', '/blog/thuisbatterij-huren-of-kopen/']);
+const hurenInBuild = () => (process.env.BUILD_DATE || process.env.PUSH_DATE || new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Amsterdam' })) >= HUREN_DATUM;
+export const revisieDatum = (pad, vorige) => HUREN_PADEN.has(pad) && hurenInBuild() ? HUREN_DATUM : NEXTENERGY_PADEN.has(pad) ? NEXTENERGY_DATUM : VIJF_KWH_PADEN.has(pad) && vijfKwhInBuild() ? VIJF_KWH_DATUM : STIJL_PADEN.has(pad) ? '2026-11-24' : vorige;
 
 // Exacte tekstregels van de stijlronde; operatoren, getallen en alle andere bytes blijven onder de regressiecheck.
 const STIJL_REGELS = new Map([

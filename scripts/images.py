@@ -35,6 +35,7 @@ cards={
  'blog-thuisbatterij-zonder-zonnepanelen':('Thuisbatterij zonder zonnepanelen','Wanneer het loont en welke merken het kunnen'),
  'blog-thuisbatterij-10-kwh':('Thuisbatterij 10 kWh','Prijs, merken en voor wie hij past'),
  'blog-thuisbatterij-5-kwh':('Thuisbatterij 5 kWh','Prijs, stekker of vast en voor wie'),
+ 'blog-thuisbatterij-huren-of-kopen':('Thuisbatterij huren of kopen','Koopprijs, salderen en zo reken je huur na'),
  'gidsen':('Gidsen over thuisaccu’s','Saldering, kosten, btw en veiligheid'),
 }
 # blogkaarten met kopfoto: kaart -> WebP in src/assets/img/blog
