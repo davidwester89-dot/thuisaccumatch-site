@@ -25,12 +25,12 @@ test('stijl-datumvloer regresseert een latere inhoudelijke paginadatum niet', ()
   assert.match(p.body, /datetime="2027-01-02"/);
 });
 
-test('keuzehulp blijft live-datum 2026-11-06 (geen nuchter-lift zonder bodywijziging)', () => {
+test('keuzehulp tilt mee naar 2026-11-24 (zichtbare adviesnoot in match.js gewijzigd)', () => {
   const pad = '/thuisaccu-keuzehulp/';
-  assert.equal(STIJL_PADEN.has(pad), false);
+  assert.equal(STIJL_PADEN.has(pad), true);
   const sitemap = readSitemap('dist');
   const fields = dateFields(readFileSync('dist' + pad + 'index.html', 'utf8'));
-  assert.equal(fields.visible, '2026-11-06', pad + ': zichtbaar');
-  assert.equal(sitemap.get(pad), '2026-11-06', pad + ': sitemap');
-  for (const date of [...fields.ld, ...fields.og]) assert.equal(date, '2026-11-06', pad + ': dateModified');
+  assert.equal(fields.visible, '2026-11-24', pad + ': zichtbaar');
+  assert.equal(sitemap.get(pad), '2026-11-24', pad + ': sitemap');
+  for (const date of [...fields.ld, ...fields.og]) assert.equal(date, '2026-11-24', pad + ': dateModified');
 });

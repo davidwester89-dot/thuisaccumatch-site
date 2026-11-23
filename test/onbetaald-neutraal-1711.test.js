@@ -117,7 +117,7 @@ test('L7 19-11: alleen pagina’s met bodywijziging krijgen NEUTRAAL_DATUM', () 
     assert.match(h, new RegExp(`bijgewerkt (op )?<time datetime="${revisieDatum(p, NEUTRAAL_DATUM)}">`, 'i'), p);
     assert.doesNotMatch(h, new RegExp(`"dateModified": ?"(?!${revisieDatum(p, NEUTRAAL_DATUM)})`), p);
   }
-  for (const [p, date] of [['/merken/anker-solix/', '2026-11-12'], ['/', '2026-11-24'], ['/vergelijken/', '2026-11-06'], ['/gidsen/', '2026-11-24'], ['/thuisaccu-keuzehulp/', '2026-11-06']]) {
+  for (const [p, date] of [['/merken/anker-solix/', '2026-11-12'], ['/', '2026-11-24'], ['/vergelijken/', '2026-11-06'], ['/gidsen/', '2026-11-24'], ['/thuisaccu-keuzehulp/', '2026-11-24']]) {
     assert.ok(sm.includes(`<loc>https://thuisaccumatch.nl${p}</loc><lastmod>${revisieDatum(p, date)}</lastmod>`), `${p} niet getild, blijft ${revisieDatum(p, date)}`);
   }
 });
