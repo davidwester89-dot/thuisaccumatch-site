@@ -115,7 +115,7 @@ ${matchCta()}`;
     path: '/blog/', title: 'Blog: thuisaccu kiezen | ThuisaccuMatch', h1: 'Blog', ogTitle: 'Blog: thuisaccu kiezen',
     description: 'Artikelen over het kiezen van een thuisaccu: kosten, het einde van de saldering, merken en wat past bij jouw huis. Met bronnen.',
     crumb: 'Blog', og: 'blog', body, lastmod: upd, stamp: { updated: upd },
-    schema: [{ '@context': 'https://schema.org', '@type': 'Blog', name: 'ThuisaccuMatch blog', url: SITE.domain + '/blog/', inLanguage: 'nl-NL', publisher: ORG, dateModified: upd,
+    schema: [{ '@context': 'https://schema.org', '@type': 'Blog', name: 'ThuisaccuMatch blog', url: SITE.domain + '/blog/', inLanguage: 'nl-NL', publisher: ORG,
       blogPost: posts.map((x) => ({ '@type': 'BlogPosting', headline: x.title, url: SITE.domain + x.path, datePublished: x.date, dateModified: x.updated })) }],
   };
 }
