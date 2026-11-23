@@ -25,8 +25,8 @@ export const STIJL_PADEN = new Set([
 // de bloglijst (/blog/) en de homepage (nieuwste posts) mee; verder geen pagina.
 export const VIJF_KWH_DATUM = '2026-11-25';
 export const VIJF_KWH_PADEN = new Set(['/', '/blog/', '/blog/thuisbatterij-5-kwh/']);
-// NextEnergy redactionele partnerplaatsing (push 24-11): alleen de twee gewijzigde pagina's + /privacy/ (Daisycon erbij in de netwerkzin).
-export const NEXTENERGY_DATUM = '2026-11-24';
+// NextEnergy redactionele partnerplaatsing (push 26-11): alleen de twee gewijzigde pagina's + /privacy/ (Daisycon erbij in de netwerkzin).
+export const NEXTENERGY_DATUM = '2026-11-26';
 export const NEXTENERGY_PADEN = new Set([
   '/thuisaccu-dynamisch-energiecontract/',
   '/blog/thuisbatterij-dynamisch-contract/',

@@ -400,7 +400,7 @@ const LEES = {
 };
 const NAMEN = Object.fromEntries([...GIDSLINKS, ...TOOLS.map(([h, t]) => [h, t]), ['/vergelijken/', 'Alle thuisaccu’s vergelijken'], ['/blog/thuisbatterij-rendabel-2027/', 'Blog: is een thuisbatterij rendabel in 2027?'], ['/blog/thuisbatterij-dynamisch-contract/', 'Blog: welke thuisbatterij past bij een dynamisch contract?'], ['/blog/thuisbatterij-terugleverkosten-2027/', 'Blog: thuisbatterij en terugleverkosten 2027'], ...IDS.map((id) => [`/merken/${M[id].slug}/`, `${M[id].naam}-thuisaccu`])]);
 export const leesOok = (path) => (LEES[path] ? `<h2>Lees ook</h2><ul class="gidslijst">${LEES[path].map((h) => `<li><a href="${h}">${esc(NAMEN[h])}</a></li>`).join('')}</ul>` : '');
-const BIJGEWERKT = { '/thuisaccu-veiligheid/': '2026-10-26', '/salderingsregeling-stopt-2027/': '2026-10-19', '/thuisaccu-terugverdientijd/': '2026-10-19', '/thuisaccu-dynamisch-energiecontract/': '2026-11-24' };
+const BIJGEWERKT = { '/thuisaccu-veiligheid/': '2026-10-26', '/salderingsregeling-stopt-2027/': '2026-10-19', '/thuisaccu-terugverdientijd/': '2026-10-19', '/thuisaccu-dynamisch-energiecontract/': '2026-11-26' };
 export const guides = [salderingGids, kostenGids, tvtGids, soortGids, dynGids, tlkGids, btwGids, veiligGids].map((x) => (BIJGEWERKT[x.path] ? { ...x, lastmod: BIJGEWERKT[x.path], article: { ...x.article, updated: BIJGEWERKT[x.path] }, schema: x.schema.map((o) => (o['@type'] === 'Article' ? { ...o, dateModified: BIJGEWERKT[x.path] } : o)) } : x)).map((x) => ({ ...x, body: x.body.replace('<p class="src">Bronnen:', () => `${leesOok(x.path)}<p class="src">Bronnen:`) }));
 
 // ---- Rekentools ----

@@ -18,7 +18,7 @@ test('NextEnergy: redactionele vermelding op gids en blog, niet in vergelijking 
   );
   assert.throws(() => redactiePartner('anker', 'x', 'Anker'), /knop/);
   assert.ok(!IDS.includes('nextenergy'));
-  execSync('node build.mjs', { env: { ...process.env, BUILD_DATE: '2026-11-24', PUSH_DATE: '2026-11-24', BASE: '', PREVIEW: '', GO_LIVE: '1', LEADS_PREVIEW: '' }, stdio: 'ignore' });
+  execSync('node build.mjs', { env: { ...process.env, BUILD_DATE: '2026-11-26', PUSH_DATE: '2026-11-26', BASE: '', PREVIEW: '', GO_LIVE: '1', LEADS_PREVIEW: '' }, stdio: 'ignore' });
 
   const sm = readFileSync('dist/sitemap.xml', 'utf8');
   for (const pad of PADEN) {
@@ -35,9 +35,9 @@ test('NextEnergy: redactionele vermelding op gids en blog, niet in vergelijking 
     const zin = (h.match(/voorbeeld van een aanbieder van een dynamisch contract is <a [^>]+>NextEnergy<\/a>\./) || [])[0] || '';
     assert.doesNotMatch(zin, /beste/i);
     assert.ok(h.includes(PARTNER_NOOT), pad + ': partnerzin');
-    assert.match(h, new RegExp(`bijgewerkt[^<]*<time datetime="2026-11-24">`, 'i'));
-    assert.match(h, /"dateModified": ?"2026-11-24"/);
-    assert.ok(sm.includes(`<loc>https://thuisaccumatch.nl${pad}</loc><lastmod>2026-11-24</lastmod>`), pad);
+    assert.match(h, new RegExp(`bijgewerkt[^<]*<time datetime="2026-11-26">`, 'i'));
+    assert.match(h, /"dateModified": ?"2026-11-26"/);
+    assert.ok(sm.includes(`<loc>https://thuisaccumatch.nl${pad}</loc><lastmod>2026-11-26</lastmod>`), pad);
     assert.match(h, /<p>Een voorbeeld van een aanbieder van een dynamisch contract is <a [^>]*data-vendor="nextenergy"/, pad + ': eerste vermelding in p');
     assert.doesNotMatch(h, /<h[1-6][^>]*>[^<]*NextEnergy/, pad + ': niet in kop');
     assert.doesNotMatch(h, /<summary[^>]*>[^<]*NextEnergy|<script type="application\/ld\+json">[^<]*NextEnergy/, pad + ': niet in FAQ/schema');
@@ -57,6 +57,6 @@ test('NextEnergy: redactionele vermelding op gids en blog, niet in vergelijking 
 
   const privacy = readFileSync('dist/privacy/index.html', 'utf8');
   assert.match(privacy, /affiliatenetwerk \(Impact, Daisycon\)/);
-  assert.match(privacy, /bijgewerkt[^<]*<time datetime="2026-11-24">/i);
-  assert.ok(sm.includes('<loc>https://thuisaccumatch.nl/privacy/</loc><lastmod>2026-11-24</lastmod>'));
+  assert.match(privacy, /bijgewerkt[^<]*<time datetime="2026-11-26">/i);
+  assert.ok(sm.includes('<loc>https://thuisaccumatch.nl/privacy/</loc><lastmod>2026-11-26</lastmod>'));
 });
