@@ -2,8 +2,8 @@
 title: Thuisbatterij 5 kWh: prijs, stekker of vast en voor wie
 seo_title: Thuisbatterij 5 kWh: prijs, stekker of vast en voor wie
 description: Is een thuisbatterij van 5 kWh genoeg? Voor wie die capaciteit past, wat hij kost, stekker of vast aangesloten en wat hij na het einde van salderen doet.
-date: 2026-11-23
-updated: 2026-11-23
+date: 2026-11-25
+updated: 2026-11-25
 checked: 2026-11-16
 tools: /thuisaccu-keuzehulp/, /capaciteit-thuisaccu-berekenen/, /terugverdientijd-thuisaccu-berekenen/
 sources:
