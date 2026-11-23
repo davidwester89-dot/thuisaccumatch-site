@@ -536,7 +536,6 @@ export const over = {
 export const privacy = {
   path: '/privacy/', title: 'Privacy en cookies | ThuisaccuMatch', h1: 'Privacy en cookies', crumb: 'Privacy', og: 'home', lastmod: PRIVACY_UPDATED, stamp: { updated: PRIVACY_UPDATED },
   description: 'Hoe ThuisaccuMatch met je gegevens omgaat: geen account, je antwoorden blijven in je browser en statistieken alleen na jouw toestemming.',
-  schema: [pageSchema('WebPage', '/privacy/', 'Privacy en cookies', 'Hoe ThuisaccuMatch met je gegevens omgaat: geen account, je antwoorden blijven in je browser en statistieken alleen na jouw toestemming.', PRIVACY_UPDATED)],
   body: `<article class="prose"><h1>Privacy en cookies</h1>
 <p>Vragen? Mail naar <a href="mailto:${SITE.email}">${SITE.email}</a>. Wie we zijn en hoe we werken, lees je bij <a href="/over/">over ons</a>.</p>
 <h2>Wie is verantwoordelijk?</h2><p>Verantwoordelijk voor de verwerking van persoonsgegevens op deze site: ${SITE.name}, <a href="mailto:${SITE.email}">${SITE.email}</a>.</p>
