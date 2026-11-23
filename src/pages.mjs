@@ -39,6 +39,9 @@ const ct = (n) => komma(n * 100, 1).replace(/,0$/, '') + ' cent';
 const faqSchema = (faq) => ({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a.replace(/<[^>]+>/g, '') } })) });
 const app = (name, path) => ({ '@context': 'https://schema.org', '@type': 'WebApplication', name, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Web', url: SITE.domain + path, offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, publisher: ORG });
 
+// Elke lastmod-lift vereist dateModified, ook op templates zonder datePublished (SEO-les 23-11).
+const pageSchema = (type, path, name, description, dateModified) => ({ '@context': 'https://schema.org', '@type': type, name, url: SITE.domain + path, description, inLanguage: 'nl-NL', dateModified });
+
 // Rekenvoorbeeld (Milieu Centraal): 10 panelen ≈ 3.500 kWh (≈ 350 kWh/paneel), ongeveer het verbruik van een rijtjeshuis. VerduurzaamMatch gebruikt elders het MC-voorbeeld met 435 Wp (10 panelen ≈ 3.800 kWh).
 const EX = { panelen: 10, opwek: 10 * OPWEK_PANEEL, verbruik: 3500 };
 EX.terug = Math.round(EX.opwek * (1 - ZELFVERBRUIK));
@@ -72,7 +75,7 @@ export const home = {
   lastmod: '2026-10-19',
   path: '/', title: 'Thuisaccu kiezen: keuzehulp, merken, kosten | ThuisaccuMatch', ogTitle: 'ThuisaccuMatch: past een thuisaccu bij jou?', h1: 'Thuisaccu kiezen? Reken eerst.', og: 'home', lastmod: SCORE_WEG,
   description: 'Past een thuisaccu bij jou? Doe de keuzehulp, vergelijk 7 merken op een vaste checklist en reken uit wat een accu oplevert als de saldering in 2027 stopt.',
-  schema: [faqSchema(homeFaq)],
+  schema: [pageSchema('WebPage', '/', 'Thuisaccu kiezen? Reken eerst.', 'Past een thuisaccu bij jou? Doe de keuzehulp, vergelijk 7 merken op een vaste checklist en reken uit wat een accu oplevert als de saldering in 2027 stopt.', SCORE_WEG), faqSchema(homeFaq)],
   full: true,
   body: `<section class="hero"><div class="wrap hero-in"><div class="hero-txt">
 <p class="h1-brand">Thuisaccu<b>Match</b>.nl</p>
@@ -220,7 +223,8 @@ export const merkPages = merkPagesRaw.map((pg) => bijgewerkt(pg, SCORE_WEG));
 export const merkHub = {
   path: '/merken/', title: 'Thuisaccu merken 2026: 7 merken op een rij | ThuisaccuMatch', h1: 'Alle thuisaccumerken op een rij', crumb: 'Merken', og: 'merken', stamp: { checked: CHECKED, updated: SCORE_WEG }, lastmod: SCORE_WEG,
   description: 'HomeWizard, Sessy, Zonneplan, Huawei, SolarEdge en BYD: per merk het aanbod, de checklist met bron, de prijs als die openbaar is en voor wie het past.',
-  schema: [{ '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: RANG.map((id, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE.domain}/merken/${M[id].slug}/`, name: M[id].naam })) }],
+  // CollectionPage met dateModified: elke lastmod-lift vereist dateModified (SEO-les 23-11).
+  schema: [pageSchema('CollectionPage', '/merken/', 'Alle thuisaccumerken op een rij', 'HomeWizard, Sessy, Zonneplan, Huawei, SolarEdge en BYD: per merk het aanbod, de checklist met bron, de prijs als die openbaar is en voor wie het past.', SCORE_WEG), { '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: RANG.map((id, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE.domain}/merken/${M[id].slug}/`, name: M[id].naam })) }],
   body: `<h1>Alle thuisaccumerken op een rij</h1><p class="lead">Zeven merken die in Nederland thuisaccu’s leveren: twee stekkerbatterijen en vijf vaste systemen. Gesorteerd op het aantal checklistpunten, bij gelijke stand op naam.</p>
 <div class="actions"><a class="btn" href="/thuisaccu-keuzehulp/">Liever advies op maat? Start de keuzehulp</a><a class="btn ghost" href="/vergelijken/">Filter en vergelijk</a></div>
 <ol class="plist">${RANG.map((id, i) => pcard(id, { rank: i + 1, pos: 'lijst' })).join('')}</ol>
@@ -478,7 +482,7 @@ export const calcSal = tool({
   path: '/einde-salderen-berekenen/', title: 'Einde salderen 2027 berekenen: wat kost het jou?', h1: 'Wat kost het einde van salderen jou?', crumb: 'Einde salderen', og: 'saldering',
   description: 'Bereken wat je zonnepanelen vanaf 1 januari 2027 minder opleveren als de saldering stopt, en hoeveel een thuisaccu daarvan terugwint.',
   scripts: ['/js/saldering.js'],
-  schema: [app('Einde salderen berekenen', '/einde-salderen-berekenen/')],
+  schema: [{ ...app('Einde salderen berekenen', '/einde-salderen-berekenen/'), dateModified: '2026-10-18' }],
   body: `<h1>Wat kost het einde van salderen jou?</h1><p class="lead">Op 1 januari 2027 stopt de salderingsregeling (Rijksoverheid). Vul je opwek en verbruik in en zie wat je zonnepanelen vóór en na 2027 waard zijn, en wat een thuisaccu terugwint.</p>
 <div class="grid calc">
 <form class="calc-form card" id="form" novalidate>
@@ -501,6 +505,7 @@ export const toolHub = {
   lastmod: '2026-10-19',
   path: '/rekentools/', title: 'Rekentools thuisaccu: terugverdientijd, kWh en saldering', h1: 'Rekentools voor je thuisaccu', crumb: 'Rekentools', og: 'rekenhulp',
   description: 'Drie gratis rekentools: de terugverdientijd van een thuisaccu, de capaciteit die je nodig hebt en wat het einde van salderen in 2027 jou kost.',
+  schema: [pageSchema('CollectionPage', '/rekentools/', 'Rekentools voor je thuisaccu', 'Drie gratis rekentools: de terugverdientijd van een thuisaccu, de capaciteit die je nodig hebt en wat het einde van salderen in 2027 jou kost.', '2026-10-19')],
   body: `<h1>Rekentools voor je thuisaccu</h1><p class="lead">Drie rekentools met je eigen cijfers. Bij de terugverdientijdtool zijn de ingevulde waarden rekenaannames (geen actuele leveranciersprijs of vastgesteld 2027-tarief). Waar de andere tools CBS, Milieu Centraal of merkenprijzen als standaard gebruiken, staat dat bij die tool. Aannames kun je overal aanpassen.</p>${toolCards('h2')}
 <section class="prose"><h2>In welke volgorde?</h2><ol><li><strong>Wat kost het einde van salderen jou?</strong> Begin hier als je zonnepanelen hebt. Je ziet wat je panelen vanaf 2027 minder opleveren. Dat is ongeveer het bedrag waar een thuisaccu een deel van kan terugwinnen.</li><li><strong>Hoeveel kWh heb je nodig?</strong> Een te grote accu raakt niet vol en verdient zich langzamer terug. Milieu Centraal adviseert: niet groter dan je avond- en nachtverbruik.</li><li><strong>Terugverdientijd.</strong> Vul de prijs uit je offerte in. Reken met de bruikbare capaciteit en de totaalprijs inclusief installatie en btw.</li></ol>
 <p>De rekentools zijn een indicatie. Stroomprijzen veranderen, en je eigen verbruiksprofiel kan anders zijn dan het gemiddelde. Je antwoorden blijven in je browser; we slaan niets op. Wil je liever één advies? Doe de <a href="/thuisaccu-keuzehulp/">keuzehulp</a>: zes vragen en je krijgt de soort, de capaciteit, de terugverdientijd en de merken die passen.</p>
@@ -512,6 +517,7 @@ export const gidsHub = {
   // L7-hubregel D: zichtbare bijgewerkt-regel + lastmod = deploydatum nieuwste kind (2026-10-30), niet de pushdatum: de hub zelf verandert niet.
   stamp: { updated: GIDSEN_UPD }, lastmod: GIDSEN_UPD,
   description: 'Gidsen over het einde van salderen in 2027, kosten en terugverdientijd van een thuisaccu, dynamische contracten, terugleverkosten, btw en veiligheid.',
+  schema: [pageSchema('CollectionPage', '/gidsen/', 'Thuisaccu kiezen: alle gidsen', 'Gidsen over het einde van salderen in 2027, kosten en terugverdientijd van een thuisaccu, dynamische contracten, terugleverkosten, btw en veiligheid.', GIDSEN_UPD)],
   body: `<h1>Thuisaccu kiezen: alle gidsen</h1><p>Zelf de cijfers controleren? Bekijk het <a href="${ONDERZOEK_PAD}">onderzoek met 291 dagen uurprijzen, CSV en methode</a>; historische bovengrenzen zijn geen praktijkopbrengst.</p><p class="lead">Alles wat je wilt weten voordat je een thuisaccu koopt, met bronnen van Milieu Centraal, de Rijksoverheid, de ACM, de Belastingdienst en de Brandweer.</p><div class="grid cards two">${guides.map((x) => `<a class="card" href="${x.path}"><h2 class="h3">${esc(x.h1)}</h2><p>${esc(x.description)}</p><span class="more">Lees de gids →</span></a>`).join('')}${TOOLS.map(([h, t, d]) => `<a class="card" href="${h}"><h2 class="h3">${esc(t)}</h2><p>${esc(d)}</p><span class="more">Naar de rekentool →</span></a>`).join('')}</div>${matchCta()}`,
 };
 
@@ -530,6 +536,7 @@ export const over = {
 export const privacy = {
   path: '/privacy/', title: 'Privacy en cookies | ThuisaccuMatch', h1: 'Privacy en cookies', crumb: 'Privacy', og: 'home', lastmod: PRIVACY_UPDATED, stamp: { updated: PRIVACY_UPDATED },
   description: 'Hoe ThuisaccuMatch met je gegevens omgaat: geen account, je antwoorden blijven in je browser en statistieken alleen na jouw toestemming.',
+  schema: [pageSchema('WebPage', '/privacy/', 'Privacy en cookies', 'Hoe ThuisaccuMatch met je gegevens omgaat: geen account, je antwoorden blijven in je browser en statistieken alleen na jouw toestemming.', PRIVACY_UPDATED)],
   body: `<article class="prose"><h1>Privacy en cookies</h1>
 <p>Vragen? Mail naar <a href="mailto:${SITE.email}">${SITE.email}</a>. Wie we zijn en hoe we werken, lees je bij <a href="/over/">over ons</a>.</p>
 <h2>Wie is verantwoordelijk?</h2><p>Verantwoordelijk voor de verwerking van persoonsgegevens op deze site: ${SITE.name}, <a href="mailto:${SITE.email}">${SITE.email}</a>.</p>
