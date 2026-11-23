@@ -18,4 +18,10 @@ export const ALLOW_NAME = [];
 export const BEKEND_ORPHAN = []; // SC 30-10 besluit 2: geserveerd = publiek, geen allowlist; build-only modules uit de output (zie build.mjs)
 // Hub-audit: bestaande bevindingen op origin/main (30-10). Haal een regel weg zodra de hub is gefixt; dan bewaakt de test hem.
 export const BEKEND_HUB = []; // /gidsen/ gefixt 03-11 (zichtbare bijgewerkt-regel + lastmod), hub-audit bewaakt hem weer
-export const BEKEND_L7 = [];
+export const BEKEND_L7 = [
+  // SEO 23-11 (seo-review-tam-inhaal.md): /thuisaccu-keuzehulp/ heeft t.o.v. live 72d03c3 geen zichtbare bodywijziging
+  // (main-vingerafdruk gelijk). dateModified, stempel en lastmod blijven 2026-11-06 (ANKER_UPD). L7 ziet wel een
+  // wijziging in js/lib/match.js en js/lib/merken.js (nuchter/neutraal, al getild op de merkenpagina's). Geen lastmod-lift
+  // zonder eigen zichtbare body. SC toetst deze uitzondering op de v2-hash.
+  { pad: '/thuisaccu-keuzehulp/', reden: 'SEO 23-11: geen zichtbare bodywijziging; datums blijven 2026-11-06', alleen: /client-side data: js\/lib\/match\.js, js\/lib\/merken\.js/ },
+];
