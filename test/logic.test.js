@@ -77,13 +77,19 @@ test('score = som van de punten; volgorde = score, dan naam', () => {
   }
 });
 
-test('partnerlinks: Anker SOLIX; gevuld = sponsored nofollow, geen zichtbaar label; nooit in keuzehulp of checklist', () => {
-  assert.deepEqual(PARTNERLINKS, { anker: 'https://ankersolixnl.sjv.io/AgOYVR', nextenergy: 'https://partners.nextenergy.nl/c/?si=17689&li=1765747&wi=439450&ws=&dl=' });
+test('partnerlinks: Anker SOLIX en HomeWizard; gevuld = sponsored nofollow, geen zichtbaar label; nooit in keuzehulp of checklist', () => {
+  assert.deepEqual(PARTNERLINKS, {
+    anker: 'https://ankersolixnl.sjv.io/AgOYVR',
+    homewizard: 'https://partner.homewizard.com/c/?si=18407&li=1796814&wi=439450&ws=',
+    nextenergy: 'https://partners.nextenergy.nl/c/?si=17689&li=1765747&wi=439450&ws=&dl=',
+    frankenergie: 'https://jf79.net/c/?si=16978&li=1838994&wi=439450&ws=',
+    energiedirect: 'https://lt45.net/c/?si=924&li=1782260&wi=439450&ws=',
+  });
   for (const id of IDS) {
     const o = uitgaand(id);
-    if (id === 'anker') {
+    if (id === 'anker' || id === 'homewizard') {
       assert.equal(o.partner, true);
-      assert.equal(o.href, 'https://ankersolixnl.sjv.io/AgOYVR');
+      assert.equal(o.href, PARTNERLINKS[id]);
       assert.match(knop(id, 't'), /rel="sponsored nofollow noopener"/);
     } else {
       assert.equal(o.partner, false);

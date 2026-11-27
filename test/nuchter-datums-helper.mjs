@@ -32,8 +32,16 @@ export const NEXTENERGY_PADEN = new Set([
   '/blog/thuisbatterij-dynamisch-contract/',
   '/privacy/',
 ]);
+// Daisycon 27-11: HomeWizard-partnerknop plus Frank Energie en energiedirect op de dynamische-contractpagina's. /privacy/ blijft 26-11 (netwerkzin ongewijzigd).
+export const DAISYCON_DATUM = '2026-11-27';
+export const DAISYCON_PADEN = new Set([
+  '/merken/',
+  '/merken/homewizard/',
+  '/thuisaccu-dynamisch-energiecontract/',
+  '/blog/thuisbatterij-dynamisch-contract/',
+]);
 const vijfKwhInBuild = () => (process.env.BUILD_DATE || process.env.PUSH_DATE || new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Amsterdam' })) >= VIJF_KWH_DATUM;
-export const revisieDatum = (pad, vorige) => NEXTENERGY_PADEN.has(pad) ? NEXTENERGY_DATUM : VIJF_KWH_PADEN.has(pad) && vijfKwhInBuild() ? VIJF_KWH_DATUM : STIJL_PADEN.has(pad) ? '2026-11-24' : vorige;
+export const revisieDatum = (pad, vorige) => DAISYCON_PADEN.has(pad) ? DAISYCON_DATUM : NEXTENERGY_PADEN.has(pad) ? NEXTENERGY_DATUM : VIJF_KWH_PADEN.has(pad) && vijfKwhInBuild() ? VIJF_KWH_DATUM : STIJL_PADEN.has(pad) ? '2026-11-24' : vorige;
 
 // Exacte tekstregels van de stijlronde; operatoren, getallen en alle andere bytes blijven onder de regressiecheck.
 const STIJL_REGELS = new Map([

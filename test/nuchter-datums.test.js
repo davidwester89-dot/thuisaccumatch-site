@@ -2,12 +2,12 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { dateFields, readSitemap } from '../scripts/l7check.mjs';
-import { STIJL_PADEN, NEXTENERGY_PADEN, NEXTENERGY_DATUM } from './nuchter-datums-helper.mjs';
+import { STIJL_PADEN, NEXTENERGY_PADEN, NEXTENERGY_DATUM, DAISYCON_PADEN, DAISYCON_DATUM } from './nuchter-datums-helper.mjs';
 test('stijlrelease 24-11: exacte bijgewerkt-/lastmod-/dateModified-datums, uitsluitend op de vastgelegde pagina’s', () => {
   const out = 'dist';
   const sitemap = readSitemap(out);
   for (const pad of STIJL_PADEN) {
-    const verwacht = NEXTENERGY_PADEN.has(pad) ? NEXTENERGY_DATUM : '2026-11-24';
+    const verwacht = DAISYCON_PADEN.has(pad) ? DAISYCON_DATUM : NEXTENERGY_PADEN.has(pad) ? NEXTENERGY_DATUM : '2026-11-24';
     const file = pad.endsWith('.html') ? out + pad : out + pad + 'index.html';
     const fields = dateFields(readFileSync(file, 'utf8'));
     assert.equal(fields.visible, verwacht, pad + ': zichtbaar');

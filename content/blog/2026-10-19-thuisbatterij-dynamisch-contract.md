@@ -3,7 +3,7 @@ title: Thuisbatterij dynamisch contract: welke combinatie werkt?
 seo_title: Welke thuisbatterij past bij een dynamisch contract?
 description: Welke thuisbatterij werkt met jouw dynamische contract? Merkonafhankelijk overzicht van sturing, EMS en btw-teruggave. Vergelijk thuisbatterijen.
 date: 2026-10-19
-updated: 2026-11-26
+updated: 2026-11-27
 checked: 2026-10-19
 image: thuisbatterij-dynamisch-contract
 image_alt: Hoogspanningsmast met stroomkabels tussen herfstbomen
@@ -32,7 +32,7 @@ Met een dynamisch contract kan de stroomprijs per kwartier verschillen. Een thui
 
 Bij een vast of variabel contract betaal je de hele dag dezelfde prijs per kWh. Bij een dynamisch contract betaal je de beursprijs van dat moment, plus energiebelasting, btw en een opslag van je leverancier. De ACM beschrijft dat stroom op de Europese dag-vooruitmarkt sinds oktober 2025 per kwartier wordt verhandeld: 96 prijzen per dag in plaats van 24.
 
-Een voorbeeld van een aanbieder van een dynamisch contract is {{redactie:nextenergy:blog_dyn|NextEnergy}}.
+Een voorbeeld van een aanbieder van een dynamisch contract is {{redactie:nextenergy:blog_dyn|NextEnergy}}. Een voorbeeld van een aanbieder van een dynamisch contract is {{redactie:frankenergie:blog_dyn|Frank Energie}}. Een voorbeeld van een aanbieder van een dynamisch contract is {{redactie:energiedirect:blog_dyn|energiedirect}}.
 
 {{partnernoot}}
 

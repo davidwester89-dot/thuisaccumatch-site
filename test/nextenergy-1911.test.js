@@ -35,9 +35,9 @@ test('NextEnergy: redactionele vermelding op gids en blog, niet in vergelijking 
     const zin = (h.match(/voorbeeld van een aanbieder van een dynamisch contract is <a [^>]+>NextEnergy<\/a>\./) || [])[0] || '';
     assert.doesNotMatch(zin, /beste/i);
     assert.ok(h.includes(PARTNER_NOOT), pad + ': partnerzin');
-    assert.match(h, new RegExp(`bijgewerkt[^<]*<time datetime="2026-11-26">`, 'i'));
-    assert.match(h, /"dateModified": ?"2026-11-26"/);
-    assert.ok(sm.includes(`<loc>https://thuisaccumatch.nl${pad}</loc><lastmod>2026-11-26</lastmod>`), pad);
+    assert.match(h, new RegExp(`bijgewerkt[^<]*<time datetime="2026-11-27">`, 'i'));
+    assert.match(h, /"dateModified": ?"2026-11-27"/);
+    assert.ok(sm.includes(`<loc>https://thuisaccumatch.nl${pad}</loc><lastmod>2026-11-27</lastmod>`), pad);
     assert.match(h, /<p>Een voorbeeld van een aanbieder van een dynamisch contract is <a [^>]*data-vendor="nextenergy"/, pad + ': eerste vermelding in p');
     assert.doesNotMatch(h, /<h[1-6][^>]*>[^<]*NextEnergy/, pad + ': niet in kop');
     assert.doesNotMatch(h, /<summary[^>]*>[^<]*NextEnergy|<script type="application\/ld\+json">[^<]*NextEnergy/, pad + ': niet in FAQ/schema');

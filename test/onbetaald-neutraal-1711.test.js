@@ -29,7 +29,7 @@ const vendorOf = (tag, href) => {
   return null;
 };
 
-/** Uitgaande knop/CTA naar een merk zonder PARTNERLINKS-entry, of sponsored zonder die entry. */
+/** Uitgaande knop/CTA of sponsored link die niet de goedgekeurde PARTNERLINKS-URL van dat merk is. */
 export function onbetaaldeCtas(html, page = '') {
   const found = [];
   for (const m of html.matchAll(/<a\b[^>]*>/g)) {
@@ -38,7 +38,8 @@ export function onbetaaldeCtas(html, page = '') {
     if (!href || href.startsWith('/') || href.startsWith('#') || href.startsWith('mailto:')) continue;
     const id = vendorOf(tag, href);
     if (!id) continue;
-    const paid = Boolean(PARTNERLINKS[id]);
+    const partnerHref = PARTNERLINKS[id];
+    const paid = Boolean(partnerHref) && (href === partnerHref || href.startsWith(partnerHref + '?'));
     const sponsored = /rel="[^"]*\bsponsored\b/.test(tag);
     if ((isCta(tag) || sponsored) && !paid) found.push({ page, brand: id, href, tag: tag.slice(0, 240) });
   }
@@ -67,14 +68,16 @@ function scanDist(root) {
 }
 
 test('onbetaalde CTA in top 3: faalt op fd317a3, slaagt op deze hash', () => {
-  for (const id of ['sessy', 'homewizard', 'zonneplan', 'solaredge', 'byd', 'huawei']) {
+  for (const id of ['sessy', 'zonneplan', 'solaredge', 'byd', 'huawei']) {
     assert.ok(!(id in PARTNERLINKS), id);
     assert.equal(knop(id, 'lijst', 'btn ghost sm'), bronlink(id));
     assert.equal(bronlink(id), `<a href="${MERKEN[id].url}" rel="noopener">Bron: ${MERKEN[id].naam}</a>`);
     assert.doesNotMatch(bronlink(id), /class="[^"]*\bbtn\b|data-cta|data-vendor|data-partner-slot|sponsored|target=|[?&]ref=|utm_/i);
   }
   assert.equal(PARTNERLINKS.anker, 'https://ankersolixnl.sjv.io/AgOYVR');
+  assert.equal(PARTNERLINKS.homewizard, 'https://partner.homewizard.com/c/?si=18407&li=1796814&wi=439450&ws=');
   assert.match(knop('anker', 'lijst'), /class="btn"[^>]*rel="sponsored nofollow noopener"[^>]*>Naar de site van Anker SOLIX</);
+  assert.match(knop('homewizard', 'lijst', 'btn ghost sm'), /rel="sponsored nofollow noopener"[^>]*>Naar de site van HomeWizard</);
 
   buildLive();
   const here = scanDist('dist');
@@ -82,15 +85,20 @@ test('onbetaalde CTA in top 3: faalt op fd317a3, slaagt op deze hash', () => {
   assert.deepEqual(here.top3.items, [], 'geen onbetaalde CTA in de top 3');
   assert.deepEqual(here.sitewide, [], 'geen onbetaalde CTA sitewide');
   const hub = read('dist/merken/index.html');
-  for (const id of ['sessy', 'homewizard', 'zonneplan', 'solaredge', 'byd', 'huawei']) {
+  for (const id of ['sessy', 'zonneplan', 'solaredge', 'byd', 'huawei']) {
     assert.ok(hub.includes(`<a href="/merken/${MERKEN[id].slug}/">${MERKEN[id].naam}</a>`), `merk blijft staan: ${id}`);
     assert.ok(hub.includes(bronlink(id)), `bronlink op hub: ${id}`);
     const detail = read(`dist/merken/${MERKEN[id].slug}/index.html`);
     assert.equal((detail.match(new RegExp(bronlink(id).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length, 2, `twee bronlinks op ${id}`);
     assert.doesNotMatch(detail, /Naar de site van /);
   }
+  assert.ok(hub.includes(`<a href="/merken/${MERKEN.homewizard.slug}/">${MERKEN.homewizard.naam}</a>`), 'HomeWizard blijft staan');
+  assert.match(hub, /href="https:\/\/partner\.homewizard\.com\/c\/\?si=18407&li=1796814&wi=439450&ws="[^>]*rel="sponsored nofollow noopener"/);
   assert.match(hub, /href="https:\/\/ankersolixnl\.sjv\.io\/AgOYVR"[^>]*rel="sponsored nofollow noopener"/);
   assert.match(read('dist/merken/anker-solix/index.html'), /Naar de site van Anker SOLIX/);
+  const hw = read('dist/merken/homewizard/index.html');
+  assert.equal((hw.match(/Naar de site van HomeWizard/g) || []).length, 2);
+  assert.doesNotMatch(hw, new RegExp(bronlink('homewizard').replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
 
   const tmp = mkdtempSync(join(tmpdir(), 'tam-cta-fd317a3-'));
   try {
