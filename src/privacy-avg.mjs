@@ -5,7 +5,7 @@ export const PRIVACY_UPDATED = '2026-11-26';
 
 const NETWERKEN = [
   { re: /(^|\.)(pxf\.io|sjv\.io)$|impact\.com$/, naam: 'Impact', privacy: 'https://impact.com/privacy-policy/' },
-  { re: /(^|\.)jf79\.net$|ds1\.nl$|daisycon\.|partners\.nextenergy\.nl$/, naam: 'Daisycon', privacy: 'https://daisycon.com/en/legal-information/privacy-policy/' },
+  { re: /(^|\.)(jf79\.net|lt45\.net)$|(^|\.)partner\.homewizard\.com$|ds1\.nl$|daisycon\.|partners\.nextenergy\.nl$/, naam: 'Daisycon', privacy: 'https://daisycon.com/en/legal-information/privacy-policy/' },
 ];
 
 /** Privacybeleid van de netwerken (geen affiliate-links; tests laten deze URL's toe). */

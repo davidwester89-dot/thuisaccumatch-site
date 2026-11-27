@@ -3,8 +3,14 @@
 import { MERKEN } from './merken.js';
 export const PARTNERLINKS = {
   anker: 'https://ankersolixnl.sjv.io/AgOYVR',
+  // Daisycon 18407, media TAM 439450. Merk: knop()/uitgaand() gebruiken deze link.
+  homewizard: 'https://partner.homewizard.com/c/?si=18407&li=1796814&wi=439450&ws=',
   // Daisycon 17689, media TAM 439450. Geen merk in de vergelijking.
   nextenergy: 'https://partners.nextenergy.nl/c/?si=17689&li=1765747&wi=439450&ws=&dl=',
+  // Daisycon 16978, media TAM 439450. Geen merk in de vergelijking.
+  frankenergie: 'https://jf79.net/c/?si=16978&li=1838994&wi=439450&ws=',
+  // Daisycon 924, media TAM 439450. Geen merk in de vergelijking.
+  energiedirect: 'https://lt45.net/c/?si=924&li=1782260&wi=439450&ws=',
 };
 
 /** Uitgaande link: partnerlink (rel sponsored nofollow, zonder zichtbaar label) als die er is, anders de officiële site. */
